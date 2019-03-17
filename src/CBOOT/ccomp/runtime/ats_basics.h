@@ -43,7 +43,7 @@
 /* ****** ****** */
 //
 // HX-2011-02-17:
-// if the following definition is not supporten, please change it to:
+// if the following definition is not supported, please change it to:
 // #define ATSunused
 //
 #define ATSunused __attribute__ ((unused))
