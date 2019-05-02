@@ -140,12 +140,12 @@ implement{a}
 dllist_make_list (xs) = let
 //
 fun loop (
-  nx0: g2node1 (a), xs: List (a)
+  nx0: g2node1 (a), xs: List_1 (a)
 ) : void = let
 in
 //
 case+ xs of
-| list_cons
+| List_cons
     (x, xs) => let
     val nx1 =
       g2node_make_elt<a> (x)
@@ -154,7 +154,7 @@ case+ xs of
   in
     loop (nx1, xs)
   end // end of [loop]
-| list_nil () => let
+| List_nil () => let
     val () = gnode_set_next_null (nx0)
   in
     // nothing
@@ -165,14 +165,14 @@ end // end of [loop]
 in
 //
 case+ xs of
-| list_cons
+| List_cons
     (x, xs) => let
     val nx0 = g2node_make_elt<a> (x)
     val () = $effmask_all (loop (nx0, xs))
   in
     dllist_encode (nx0)
   end // end of [list_cons]
-| list_nil () => dllist_nil ()
+| List_nil () => dllist_nil ()
 //
 end // end of [dllist_make_list]
 
@@ -183,7 +183,7 @@ dllist_is_nil
   {a}{f,r} (xs) = let
   val nxs = $UN.castvwtp1{g2node0(a)}(xs)
 in
-  $UN.cast{bool(r==0)}(gnodelst_is_nil (nxs))
+  $UN.cast{Bool(r==0)}(gnodelst_is_nil (nxs))
 end // end of [dllist_is_nil]
 
 implement{}
@@ -191,7 +191,7 @@ dllist_is_cons
   {a}{f,r} (xs) = let
   val nxs = $UN.castvwtp1{g2node0(a)}(xs)
 in
-  $UN.cast{bool(r > 0)}(gnodelst_is_cons (nxs))
+  $UN.cast{Bool(r > 0)}(gnodelst_is_cons (nxs))
 end // end of [dllist_is_cons]
 
 (* ****** ****** *)
@@ -218,7 +218,7 @@ val ans = (
 ) : bool // end of [val]
 //
 in
-  $UN.cast{bool(f==0)}(ans)
+  $UN.cast{Bool(f==0)}(ans)
 end // end of [dllist_is_atbeg]
 
 (* ****** ****** *)
@@ -238,7 +238,7 @@ val nxs = $UN.castvwtp1{g2node1(a)}(xs)
 val ans = gnode_is_null (gnode_get_next (nxs))
 //
 in
-  $UN.cast{bool(r==1)}(ans)
+  $UN.cast{Bool(r==1)}(ans)
 end // end of [dllist_is_atend]
 
 (* ****** ****** *)
@@ -303,7 +303,7 @@ dllist_length
 val nxs = $UN.castvwtp1{g2node0(a)}(xs)
 //
 in
-  $UN.cast{int(r)}(gnodelst_length (nxs))
+  $UN.cast{Int(r)}(gnodelst_length (nxs))
 end // end of [dllist_length]
 
 (*
@@ -318,7 +318,7 @@ rdllist_length
 val nxs = $UN.castvwtp1{g2node0(a)}(xs)
 //
 in
-  $UN.cast{int(f)}(gnodelst_rlength (nxs))
+  $UN.cast{Int(f)}(gnodelst_rlength (nxs))
 end // end of [rdllist_length]
 
 (* ****** ****** *)

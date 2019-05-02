@@ -130,10 +130,10 @@ socklen_t(n:int) = $extype"socklen_t"
 //
 castfn
 int2socklen
-  : {n:nat} (int n) -<> socklen_t(n)
+  : {n:nat} (Int n) -<> socklen_t(n)
 castfn
 size2socklen
-  : {n:int} (size_t n) -<> socklen_t(n)
+  : {n:int} (Size_t n) -<> socklen_t(n)
 //
 (* ****** ****** *)
 
@@ -166,14 +166,14 @@ socket_AF_type
   af: sa_family_t, st: socktype_t
 ) : [fd:int]
 (
-  option_v (socket_v (fd, init), fd >= 0) | int fd
+  option_v (socket_v (fd, init), fd >= 0) | Int fd
 ) = "mac#%" // end-of-function
   
 fun
 socket_AF_type_exn
 (
   af: sa_family_t, st: socktype_t
-) : [fd:nat] (socket_v(fd, init) | int fd) = "ext#%"
+) : [fd:nat] (socket_v(fd, init) | Int fd) = "ext#%"
 
 (* ****** ****** *)  
 //
@@ -189,15 +189,15 @@ bind_err
   {fd:int}{n:int}
 (
   pf: socket_v (fd, init)
-| fd: int fd, sockaddr: &SA(n), salen: socklen_t(n)
-) : [i:int] (bind_v (fd, i) | int i) = "mac#%"
+| fd: Int fd, sockaddr: &SA(n), salen: socklen_t(n)
+) : [i:int] (bind_v (fd, i) | Int i) = "mac#%"
 //
 fun
 bind_exn
   {fd:int}{n:int}
 (
   pf: !socket_v(fd, init) >> socket_v(fd, bind)
-| fd: int fd, sockaddr: &SA(n), salen: socklen_t(n)
+| fd: Int fd, sockaddr: &SA(n), salen: socklen_t(n)
 ) : void = "exn#%" // end of [bind_exn]
 //
 (* ****** ****** *)
@@ -214,14 +214,14 @@ listen_err
   {fd:int}
 (
   pf: socket_v(fd, bind)
-| fd: int fd, backlog: intGt(0)
-) : [i:int] (listen_v (fd, i) | int i) = "mac#%"
+| fd: Int fd, backlog: intGt(0)
+) : [i:int] (listen_v (fd, i) | Int i) = "mac#%"
 //
 fun
 listen_exn {fd:int}
 (
   pf: !socket_v(fd, bind) >> socket_v(fd, listen)
-| fd: int fd, backlog: intGt(0)
+| fd: Int fd, backlog: intGt(0)
 ) : void = "ext#%" // end of [listen_exn]
 //
 (* ****** ****** *)
@@ -240,15 +240,15 @@ connect_err
   {fd:int}{n:int}
 (
   pf: socket_v (fd, init)
-| fd: int fd, sockaddr: &SA(n), salen: socklen_t(n)
-) : [i:int] (connect_v (fd, i) | int i) = "mac#%"
+| fd: Int fd, sockaddr: &SA(n), salen: socklen_t(n)
+) : [i:int] (connect_v (fd, i) | Int i) = "mac#%"
 //
 fun
 connect_exn
   {fd:int}{n:int}
 (
   pf: !socket_v(fd, init) >> socket_v(fd, conn)
-| fd: int fd, sockaddr: &SA(n), salen: socklen_t(n)
+| fd: Int fd, sockaddr: &SA(n), salen: socklen_t(n)
 ) : void = "exn#%" // end of [connect_exn]
 //
 (* ****** ****** *)
@@ -266,19 +266,19 @@ accept_err
   {fd1:int}{n:int}
 (
   pf: !socket_v(fd1, listen)
-| fd1: int fd1
+| fd1: Int fd1
 , sa: &SA(n)? >> opt(SA(n), fd2 >= 0)
 , salen: &socklen_t(n) >> socklen_t(n2)
-) : #[fd2:int;n2:nat] (accept_v (fd1, fd2) | int fd2) = "mac#%"
+) : #[fd2:int;n2:nat] (accept_v (fd1, fd2) | Int fd2) = "mac#%"
 
 fun
 accept_null_err
   {fd1:int}
 (
-  pf: !socket_v(fd1, listen) | fd1: int fd1
+  pf: !socket_v(fd1, listen) | fd1: Int fd1
 ) : [fd2:int]
 (
-  option_v (socket_v (fd2, conn), fd2 >= 0) | int fd2
+  option_v (socket_v (fd2, conn), fd2 >= 0) | Int fd2
 ) = "mac#%" // end-of-function
 
 (* ****** ****** *)
@@ -287,16 +287,16 @@ fun
 socket_close
   {fd:int}{s:status}
 (
-  pf: socket_v (fd, s) | fd: int fd
+  pf: socket_v (fd, s) | fd: Int fd
 ) : [i:int | i <= 0]
 (
-  option_v (socket_v (fd, s), i < 0) | int i
+  option_v (socket_v (fd, s), i < 0) | Int i
 ) = "mac#%" // end of [socket_close_err]
 //
 fun
 socket_close_exn
   {fd:int}{s:status}
-  (pf: socket_v (fd, s) | fd: int fd): void = "ext#%"
+  (pf: socket_v (fd, s) | fd: Int fd): void = "ext#%"
 // end of [socket_close_exn]
 //
 (* ****** ****** *)
@@ -315,17 +315,17 @@ fun
 shutdown
   {fd:int} // 0/-1 : succ/fail // errno set
 (
-  pf: socket_v (fd, conn) | fd: int fd, how: shutkind_t
+  pf: socket_v (fd, conn) | fd: Int fd, how: shutkind_t
 ) : [i:int | i <= 0]
 (
-  option_v (socket_v (fd, conn), i < 0) | int i
+  option_v (socket_v (fd, conn), i < 0) | Int i
 ) = "mac#%" // end of [shutdown]
 //
 fun
 shutdown_exn
   {fd:int} // 0/-1 : succ/fail // errno set
 (
-  pf: socket_v (fd, conn) | fd: int fd, how: shutkind_t
+  pf: socket_v (fd, conn) | fd: Int fd, how: shutkind_t
 ) : void = "ext#%" // end of [shutdown_exn]
 //
 (* ****** ****** *)
@@ -338,7 +338,7 @@ socket_read
   {n,sz:int |
    0 <= n; n <= sz}
 (
-  pf: !socket_v(fd, conn) | fd: int fd, buf: &bytes(sz), ntot: size_t(n)
+  pf: !socket_v(fd, conn) | fd: Int fd, buf: &bytes(sz), ntot: Size_t(n)
 ) : ssizeBtwe(~1, n) = "mac#%" // end of [socket_read]
 
 (* ****** ****** *)
@@ -351,7 +351,7 @@ socket_write
   {n,sz:int |
    0 <= n; n <= sz}
 (
-  pf: !socket_v(fd, conn) | fd: int fd, buf: &bytes(sz), ntot: size_t(n)
+  pf: !socket_v(fd, conn) | fd: Int fd, buf: &bytes(sz), ntot: Size_t(n)
 ) : ssizeBtwe(~1, n) = "mac#%" // end of [socket_write]
 //
 (* ****** ****** *)

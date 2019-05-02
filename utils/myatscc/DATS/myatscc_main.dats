@@ -121,7 +121,7 @@ fun
 loop
 {i:nat | i <= n}
 (
- i: int(i), argv: !argv(n), res: res
+ i: Int(i), argv: !argv(n), res: res
 ) : res =
 (
 if
@@ -132,7 +132,7 @@ in
   if comarg_parse(arg) = 0
     then let
       val arg = GVstring(arg)
-      val res = cons_vt(arg, res)
+      val res = Cons_vt(arg, res)
     in
       loop(i+1, argv, res)
     end // end of [then]
@@ -142,13 +142,13 @@ else res (* end of [else] *)
 )
 //
 val arg = GVstring(argv[0])
-val res = list_vt_sing(arg)
+val res = List_vt_sing(arg)
 val res = loop(1, argv, res)
 //
 in
 //
 the_name_i_env_initset
-  (list0_of_list_vt(list_vt_reverse(res)))
+  (list0_of_list_vt(List_vt_reverse(res)))
 //
 end // end of [the_name_i_env_initize]
 //
@@ -231,7 +231,7 @@ fun
 myatscc_usage
   {n:pos}
 (
-  argc: int(n), argv: !argv(n)
+  argc: Int(n), argv: !argv(n)
 ) : int // end-of-function
 //
 implement
@@ -242,7 +242,7 @@ fun
 loop
 {i:nat | i <= n}
 (
- i: int(i), argv: !argv(n)
+ i: Int(i), argv: !argv(n)
 ) : int =
 (
 if
@@ -328,8 +328,8 @@ state_initset
 {n:int}
 {i:nat|i <= n}
 (
-  i: int(i)
-, argc: int(n)
+  i: Int(i)
+, argc: Int(n)
 , argv: !argv(n)
 , state: &state >> _
 ) : void =

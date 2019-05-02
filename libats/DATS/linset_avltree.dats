@@ -67,7 +67,7 @@ datavtype avltree
      hl <= hr+HTDF;
      hr <= hl+HTDF}
     B (a, 1+max(hl,hr)) of
-      (int (1+max(hl,hr)), a, avltree (a, hl), avltree (a, hr))
+      (Int (1+max(hl,hr)), a, avltree (a, hl), avltree (a, hr))
   | E (a, 0) of ((*void*))
 // end of [avltree]
 
@@ -199,7 +199,7 @@ case+ ,(t) of B (h, _, _, _) => h | E ((*void*)) => 0
 (* ****** ****** *)
 
 fn{a:t0p}
-avltree_height{h:int}(t: !avltree (a, h)):<> int (h) = avlht(t)
+avltree_height{h:int}(t: !avltree (a, h)):<> Int (h) = avlht(t)
 
 (* ****** ****** *)
 
@@ -215,15 +215,15 @@ avltree_lrotate
 , pf_tl: avltree (a, hl) @ l_tl
 , pf_tr: avltree (a, hr) @ l_tr
 | p_h: ptr l_h
-, hl: int hl, p_tl: ptr l_tl
-, hr: int hr, p_tr: ptr l_tr
+, hl: Int hl, p_tl: ptr l_tl
+, hr: Int hr, p_tr: ptr l_tr
 , t0: B_unfold (l, l_h, l_x, l_tl, l_tr)
 ) :<!wrt> avltree_inc (a, hr) = let
   val tr = !p_tr
   val+@B{..}{hrl,hrr}
     (hr2, _, trl, trr) = tr
-  val hrl = avlht(trl): int(hrl)
-  and hrr = avlht(trr): int(hrr)
+  val hrl = avlht(trl): Int(hrl)
+  and hrr = avlht(trr): Int(hrr)
 in
   if hrl <= hrr+HTDF_1 then let
     val hrl1 = hrl + 1
@@ -239,8 +239,8 @@ in
     val trl_ = trl
     val+@B{..}{hrll,hrlr}
       (hrl, _, trll, trlr) = trl_
-    val hrll = avlht (trll) : int(hrll)
-    and hrlr = avlht (trlr) : int(hrlr)
+    val hrll = avlht (trll) : Int(hrll)
+    and hrlr = avlht (trlr) : Int(hrlr)
     val () = !p_h := 1+max(hl,hrll)
     val () = !p_tr := trll
     prval () = fold@ (t0)
@@ -270,15 +270,15 @@ avltree_rrotate
 , pf_tl: avltree (a, hl) @ l_tl
 , pf_tr: avltree (a, hr) @ l_tr
 | p_h: ptr l_h
-, hl : int hl, p_tl: ptr l_tl
-, hr : int hr, p_tr: ptr l_tr
+, hl : Int hl, p_tl: ptr l_tl
+, hr : Int hr, p_tr: ptr l_tr
 , t0: B_unfold (l, l_h, l_x, l_tl, l_tr)
 ) :<!wrt> avltree_inc (a, hl) = let
   val tl = !p_tl
   val+@B{..}{hll,hlr}
     (hl2, _, tll, tlr) = tl
-  val hll = avlht(tll): int(hll)
-  and hlr = avlht(tlr): int(hlr)
+  val hll = avlht(tll): Int(hll)
+  and hlr = avlht(tlr): Int(hlr)
 in
   if hll+HTDF_1 >= hlr then let
     val hlr1 = hlr + 1
@@ -294,8 +294,8 @@ in
     val tlr_ = tlr
     val+@B{..}{hlrl,hlrr}
       (hlr, _, tlrl, tlrr) = tlr_
-    val hlrl = avlht (tlrl): int(hlrl)
-    val hlrr = avlht (tlrr): int(hlrr)
+    val hlrl = avlht (tlrl): Int(hlrl)
+    val hlrr = avlht (tlrr): Int(hlrr)
     val () = !p_h := 1+max(hlrr,hr)
     val () = !p_tl := tlrr
     prval () = fold@ (t0)
@@ -663,7 +663,7 @@ in
 case+ t of
 | ~B (_, x, tl, tr) => let
     val res = aux (tr, res)
-    val res = list_vt_cons{a}(x, res)
+    val res = List_vt_cons{a}(x, res)
     val res = aux (tl, res)
   in
     res
@@ -673,7 +673,7 @@ case+ t of
 end // end of [aux]
 //
 in
-  aux (xs, list_vt_nil)
+  aux (xs, List_vt_nil)
 end // end of [linset_listize]
 
 (* ****** ****** *)

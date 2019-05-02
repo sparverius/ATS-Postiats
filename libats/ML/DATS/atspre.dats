@@ -205,62 +205,62 @@ end // end of [intrange_rforeach_cloref]
 //
 (* ****** ****** *)
 //
-// HX: prelude/list
+// HX: prelude/List
 //
 (* ****** ****** *)
 //
 implement
 {x}(*tmp*)
-list_exists_cloptr
+List_exists_cloptr
   (xs, p0) = res where
 {
 //
 val p1 =
 $UN.castvwtp1(p0)
 val res =
-list_exists_cloref<x>(xs, p1)
+List_exists_cloref<x>(xs, p1)
 //
 val ((*freed*)) =
 cloptr_free($UN.castvwtp0{cloptr(void)}(p0))
 //
-} // end of [list_exists_cloptr]
+} // end of [List_exists_cloptr]
 //
 implement
 {x}(*tmp*)
-list_exists_cloref
+List_exists_cloref
   (xs, pred) = let
 //
 implement(x2)
-list_exists$pred<x2>(x2) = pred($UN.cast{x}(x2))
+List_exists$pred<x2>(x2) = pred($UN.cast{x}(x2))
 //
 in
-  list_exists<x>(xs)
-end // end of [list_exists_cloref]
+  List_exists<x>(xs)
+end // end of [List_exists_cloref]
 //
 (* ****** ****** *)
 //
 implement
 {x}(*tmp*)
-list_iexists_cloptr
+List_iexists_cloptr
   (xs, p0) = res where
 {
 //
 val p1 =
 $UN.castvwtp1(p0)
 val res =
-list_iexists_cloref<x>(xs, p1)
+List_iexists_cloref<x>(xs, p1)
 //
 val ((*freed*)) =
 cloptr_free($UN.castvwtp0{cloptr(void)}(p0))
 //
-} // end of [list_iexists_cloptr]
+} // end of [List_iexists_cloptr]
 //
 implement
 {x}(*tmp*)
-list_iexists_cloref
+List_iexists_cloref
   {n}(xs, pred) = let
 //
-prval() = lemma_list_param(xs)
+prval() = lemma_List_param(xs)
 //
 fun
 loop
@@ -268,74 +268,74 @@ loop
 | i+j == n
 } .<n-i>.
 (
-  i: int(i), xs: list(x, j)
+  i: Int(i), xs: List(x, j)
 ) :<> bool =
 (
   case+ xs of
-  | list_nil() => false
-  | list_cons(x, xs) =>
+  | List_nil() => false
+  | List_cons(x, xs) =>
       if pred(i, x) then true else loop(i+1, xs)
-    // end of [list_cons]
+    // end of [List_cons]
 )
 //
 in
   loop(0, xs)
-end // end of [list_iexists_cloref]
+end // end of [List_iexists_cloref]
 //
 (* ****** ****** *)
 //
 implement
 {x}(*tmp*)
-list_forall_cloptr
+List_forall_cloptr
   (xs, p0) = res where
 {
 //
 val p1 =
 $UN.castvwtp1(p0)
 val res =
-list_forall_cloref<x>(xs, p1)
+List_forall_cloref<x>(xs, p1)
 //
 val ((*freed*)) =
 cloptr_free($UN.castvwtp0{cloptr(void)}(p0))
 //
-} // end of [list_forall_cloptr]
+} // end of [List_forall_cloptr]
 //
 implement
 {x}(*tmp*)
-list_forall_cloref
+List_forall_cloref
   (xs, pred) = let
 //
 implement(x2)
-list_forall$pred<x2>(x2) = pred($UN.cast{x}(x2))
+List_forall$pred<x2>(x2) = pred($UN.cast{x}(x2))
 //
 in
-  list_forall<x>(xs)
-end // end of [list_forall_cloref]
+  List_forall<x>(xs)
+end // end of [List_forall_cloref]
 //
 (* ****** ****** *)
 //
 implement
 {x}(*tmp*)
-list_iforall_cloptr
+List_iforall_cloptr
   (xs, p0) = res where
 {
 //
 val p1 =
 $UN.castvwtp1(p0)
 val res =
-list_iforall_cloref<x>(xs, p1)
+List_iforall_cloref<x>(xs, p1)
 //
 val ((*freed*)) =
 cloptr_free($UN.castvwtp0{cloptr(void)}(p0))
 //
-} // end of [list_iforall_cloptr]
+} // end of [List_iforall_cloptr]
 //
 implement
 {x}(*tmp*)
-list_iforall_cloref
+List_iforall_cloref
   {n}(xs, pred) = let
 //
-prval() = lemma_list_param(xs)
+prval() = lemma_List_param(xs)
 //
 fun
 loop
@@ -343,70 +343,70 @@ loop
 | i+j == n
 } .<n-i>.
 (
-  i: int(i), xs: list(x, j)
+  i: Int(i), xs: List(x, j)
 ) :<> bool =
 (
   case+ xs of
-  | list_nil() => true
-  | list_cons(x, xs) =>
+  | List_nil() => true
+  | List_cons(x, xs) =>
       if pred(i, x) then loop(i+1, xs) else false
-    // end of [list_cons]
+    // end of [List_cons]
 )
 //
 in
   loop(0, xs)
-end // end of [list_iforall_cloref]
+end // end of [List_iforall_cloref]
 //
 (* ****** ****** *)
 
 implement
 {x}(*tmp*)
-list_equal_cloref
+List_equal_cloref
   (xs1, xs2, eqfn) =
-  list_equal<x>(xs1, xs2) where
+  List_equal<x>(xs1, xs2) where
 {
 //
 implement{y}
-list_equal$eqfn
+List_equal$eqfn
   (x1, x2) = eqfn($UN.cast(x1), $UN.cast(x2))
 //
-} (* end of [list_equal_cloref] *)
+} (* end of [List_equal_cloref] *)
 
 (* ****** ****** *)
 
 implement
 {x}(*tmp*)
-list_compare_cloref
+List_compare_cloref
   (xs1, xs2, cmpfn) =
-  list_compare<x>(xs1, xs2) where
+  List_compare<x>(xs1, xs2) where
 {
 //
 implement{y}
-list_compare$cmpfn
+List_compare$cmpfn
   (x1, x2) = cmpfn($UN.cast(x1), $UN.cast(x2))
 //
-} (* end of [list_compare_cloref] *)
+} (* end of [List_compare_cloref] *)
 
 (* ****** ****** *)
 
 implement
 {x}(*tmp*)
-list_app_fun
+List_app_fun
   (xs, fwork) =
-  list_app<x>(xs) where
+  List_app<x>(xs) where
 {
 //
 implement
 {x2}(*tmp*)
-list_app$fwork(x2) = fwork($UN.cast{x}(x2))
+List_app$fwork(x2) = fwork($UN.cast{x}(x2))
 //
-} (* end of [list_app_fun] *)
+} (* end of [List_app_fun] *)
 
 implement
 {x}(*tmp*)
-list_app_clo
+List_app_clo
   (xs, fwork) =
-  list_app<x>(xs) where
+  List_app<x>(xs) where
 {
 //
 val
@@ -415,54 +415,54 @@ $UN.cast{cfun(x,void)}(addr@fwork)
 //
 implement
 {x2}(*tmp*)
-list_app$fwork(x2) = fwork($UN.cast{x}(x2))
+List_app$fwork(x2) = fwork($UN.cast{x}(x2))
 //
-} (* end of [list_app_clo] *)
+} (* end of [List_app_clo] *)
 
 implement
 {x}(*tmp*)
-list_app_cloref
+List_app_cloref
   (xs, fwork) = let
 //
 fun
 loop
 {n:nat} .<n>.
 (
-  xs: list(x, n)
+  xs: List(x, n)
 , fwork: (x) -<cloref1> void
 ) : void = (
 //
 case+ xs of
-| list_nil() => ()
-| list_cons(x, xs) => (fwork(x); loop(xs, fwork))
+| List_nil() => ()
+| List_cons(x, xs) => (fwork(x); loop(xs, fwork))
 //
 ) (* end of [loop] *)
 //
-prval() = lemma_list_param(xs)
+prval() = lemma_List_param(xs)
 //
 in
   loop(xs, fwork)
-end // end of [list_app_cloref]
+end // end of [List_app_cloref]
 
 (* ****** ****** *)
 
 implement
 {x}{y}(*tmp*)
-list_map_fun
+List_map_fun
   (xs, fopr) = let
 //
 implement
 {x2}{y2}
-list_map$fopr(x2) =
+List_map$fopr(x2) =
   $UN.castvwtp0{y2}(fopr($UN.cast{x}(x2)))
 //
 in
-  list_map<x><y>(xs)
-end // end of [list_map_fun]
+  List_map<x><y>(xs)
+end // end of [List_map_fun]
 
 implement
 {x}{y}(*tmp*)
-list_map_clo
+List_map_clo
   (xs, fopr) = let
 //
 val fopr =
@@ -470,167 +470,167 @@ val fopr =
 //
 implement
 {x2}{y2}
-list_map$fopr(x2) =
+List_map$fopr(x2) =
   $UN.castvwtp0{y2}(fopr($UN.cast{x}(x2)))
 //
 in
-  list_map<x><y>(xs)
-end // end of [list_map_clo]
+  List_map<x><y>(xs)
+end // end of [List_map_clo]
 
 implement
 {x}{y}(*tmp*)
-list_map_cloref
+List_map_cloref
   (xs, fopr) = let
 //
 implement
 {x2}{y2}
-list_map$fopr(x2) =
+List_map$fopr(x2) =
   $UN.castvwtp0{y2}(fopr($UN.cast{x}(x2)))
 //
 in
-  list_map<x><y>(xs)
-end // end of [list_map_cloref]
+  List_map<x><y>(xs)
+end // end of [List_map_cloref]
 
 (* ****** ****** *)
 
 implement
 {a}(*tmp*)
-list_tabulate_fun
+List_tabulate_fun
   (n, fopr) =
-  list_tabulate<a>(n) where
+  List_tabulate<a>(n) where
 {
 //
 val fopr = $UN.cast{int->a}(fopr)
 //
 implement(a2)
-list_tabulate$fopr<a2>(n) = $UN.castvwtp0{a2}(fopr(n))
+List_tabulate$fopr<a2>(n) = $UN.castvwtp0{a2}(fopr(n))
 //
-} (* end of [list_tabulate_fun] *)
+} (* end of [List_tabulate_fun] *)
 
 implement
 {a}(*tmp*)
-list_tabulate_clo
+List_tabulate_clo
   (n, fopr) =
-  list_tabulate<a>(n) where
+  List_tabulate<a>(n) where
 {
 //
 val fopr = $UN.cast{cfun(int,a)}(addr@fopr)
 //
 implement(a)
-list_tabulate$fopr<a>(n) = $UN.castvwtp0{a}(fopr(n))
+List_tabulate$fopr<a>(n) = $UN.castvwtp0{a}(fopr(n))
 //
-} (* end of [list_tabulate_clo] *)
+} (* end of [List_tabulate_clo] *)
 
 implement
 {a}(*tmp*)
-list_tabulate_cloref
+List_tabulate_cloref
   (n, fopr) = let
 //
 val fopr =
 $UN.cast{int -<cloref1> a}(fopr)
 //
 implement(a)
-list_tabulate$fopr<a>(n) = $UN.castvwtp0{a}(fopr(n))
+List_tabulate$fopr<a>(n) = $UN.castvwtp0{a}(fopr(n))
 //
 in
-  list_tabulate<a>(n)
-end // end of [list_tabulate_cloref]
+  List_tabulate<a>(n)
+end // end of [List_tabulate_cloref]
 
 (* ****** ****** *)
 
 implement
 {x}(*tmp*)
-list_foreach_fun
+List_foreach_fun
   (xs, fwork) = let
 //
 fun
-loop(xs: List(x)): void =
+loop(xs: List_1(x)): void =
 //
 case+ xs of
-| list_nil() => ()
-| list_cons(x, xs) => (fwork(x); loop(xs))
+| List_nil() => ()
+| List_cons(x, xs) => (fwork(x); loop(xs))
 //
 in
   $effmask_all (loop(xs))
-end // end of [list_foreach_fun]
+end // end of [List_foreach_fun]
 
 (* ****** ****** *)
 //
 implement
 {x}(*tmp*)
-list_foreach_clo
+List_foreach_clo
   (xs, fwork) =
 (
 $effmask_all
-  (list_foreach_cloref<x>(xs, $UN.cast(addr@fwork)))
-) (* list_foreach_clo *)
+  (List_foreach_cloref<x>(xs, $UN.cast(addr@fwork)))
+) (* List_foreach_clo *)
 implement
 {x}(*tmp*)
-list_foreach_vclo
+List_foreach_vclo
   (pf | xs, fwork) =
 (
 $effmask_all
-  (list_foreach_cloref<x>(xs, $UN.cast(addr@fwork)))
-) (* list_foreach_vclo *)
+  (List_foreach_cloref<x>(xs, $UN.cast(addr@fwork)))
+) (* List_foreach_vclo *)
 //
 (* ****** ****** *)
 
 implement
 {x}(*tmp*)
-list_foreach_cloptr
+List_foreach_cloptr
   (xs, fwork) =
   cloptr_free
   ($UN.castvwtp0{cloptr(void)}(fwork)) where
 {
 val () =
 $effmask_all
-  (list_foreach_cloref<x>(xs, $UN.castvwtp1(fwork)))
-} (* list_foreach_cloptr *)
+  (List_foreach_cloref<x>(xs, $UN.castvwtp1(fwork)))
+} (* List_foreach_cloptr *)
 implement
 {x}(*tmp*)
-list_foreach_vcloptr
+List_foreach_vcloptr
   (pf | xs, fwork) =
   cloptr_free
   ($UN.castvwtp0{cloptr(void)}(fwork)) where
 {
 val () =
 $effmask_all
-  (list_foreach_cloref<x>(xs, $UN.castvwtp1(fwork)))
-} (* list_foreach_vcloptr *)
+  (List_foreach_cloref<x>(xs, $UN.castvwtp1(fwork)))
+} (* List_foreach_vcloptr *)
 
 (* ****** ****** *)
 
 implement
 {x}(*tmp*)
-list_foreach_cloref
+List_foreach_cloref
   (xs, fwork) = let
 //
 fun
-loop(xs: List(x)): void =
+loop(xs: List_1(x)): void =
 //
 case+ xs of
-| list_nil() => ()
-| list_cons(x, xs) => (fwork(x); loop(xs))
+| List_nil() => ()
+| List_cons(x, xs) => (fwork(x); loop(xs))
 //
 in
   $effmask_all (loop(xs))
-end // end of [list_foreach_cloref]
+end // end of [List_foreach_cloref]
 
 (* ****** ****** *)
 //
 implement
 {a}(*tmp*)
-list_foreach_method(xs) =
-  lam(fwork) => list_foreach_cloref<a>(xs, fwork)
+List_foreach_method(xs) =
+  lam(fwork) => List_foreach_cloref<a>(xs, fwork)
 //
 (* ****** ****** *)
 
 implement
 {x}(*tmp*)
-list_iforeach_cloref
+List_iforeach_cloref
   {n}(xs, fwork) = let
 //
-prval() = lemma_list_param(xs)
+prval() = lemma_List_param(xs)
 //
 fun
 loop
@@ -639,29 +639,29 @@ loop
 | i+j == n
 } .<n-i>.
 (
-  i: int(i), xs: list(x, j)
+  i: Int(i), xs: List(x, j)
 ) : void =
 //
 case+ xs of
-| list_nil() => ()
-| list_cons(x, xs) => (fwork (i, x); loop(i+1, xs))
+| List_nil() => ()
+| List_cons(x, xs) => (fwork (i, x); loop(i+1, xs))
 //
 in
   loop(0, xs)
-end // end of [list_iforeach_cloref]
+end // end of [List_iforeach_cloref]
 
 (* ****** ****** *)
 //
 implement
 {a}(*tmp*)
-list_iforeach_method(xs) =
-  lam(fwork) => list_iforeach_cloref<a>(xs, fwork)
+List_iforeach_method(xs) =
+  lam(fwork) => List_iforeach_cloref<a>(xs, fwork)
 //
 (* ****** ****** *)
 
 implement
 {res}{x}
-list_foldleft_cloptr
+List_foldleft_cloptr
 (
 xs, ini, f0
 ) = res where
@@ -670,21 +670,21 @@ xs, ini, f0
 val f1 =
 $UN.castvwtp1(f0)
 val res =
-list_foldleft_cloref<res><x>(xs, ini, f1)
+List_foldleft_cloref<res><x>(xs, ini, f1)
 //
 val ((*freed*)) =
 cloptr_free($UN.castvwtp0{cloptr(void)}(f0))
 //
-} // end of [list_foldleft_cloptr]
+} // end of [List_foldleft_cloptr]
 
 implement
 {res}{x}
-list_foldleft_cloref
+List_foldleft_cloref
   (xs, ini, fopr) = let
 //
 implement
 {res2}{x2}
-list_foldleft$fopr
+List_foldleft$fopr
   (res2, x2) =
 (
 $UN.castvwtp0{res2}
@@ -692,14 +692,14 @@ $UN.castvwtp0{res2}
 )
 //
 in
-  list_foldleft<res><x>(xs, ini)
-end // end of [list_foldleft_cloref]
+  List_foldleft<res><x>(xs, ini)
+end // end of [List_foldleft_cloref]
 
 (* ****** ****** *)
 
 implement
 {x}{res}
-list_foldright_cloptr
+List_foldright_cloptr
 (
 xs, f0, snk
 ) = res where
@@ -708,21 +708,21 @@ xs, f0, snk
 val f1 =
 $UN.castvwtp1(f0)
 val res =
-list_foldright_cloref<x><res>(xs, f1, snk)
+List_foldright_cloref<x><res>(xs, f1, snk)
 //
 val ((*freed*)) =
 cloptr_free($UN.castvwtp0{cloptr(void)}(f0))
 //
-} // end of [list_foldright_cloptr]
+} // end of [List_foldright_cloptr]
 
 implement
 {x}{res}
-list_foldright_cloref
+List_foldright_cloref
   (xs, fopr, snk) = let
 //
 implement
 {x2}{res2}
-list_foldright$fopr
+List_foldright$fopr
   (x2, res2) =
 (
 $UN.castvwtp0{res2}
@@ -730,36 +730,36 @@ $UN.castvwtp0{res2}
 )
 //
 in
-  list_foldright<x><res>(xs, snk)
-end // end of [list_foldright_cloref]
+  List_foldright<x><res>(xs, snk)
+end // end of [List_foldright_cloref]
 
 (* ****** ****** *)
 //
-// HX: prelude/list_vt
+// HX: prelude/List_vt
 //
 (* ****** ****** *)
 
 implement
 {x}{y}(*tmp*)
-list_vt_map_fun
+List_vt_map_fun
   (xs, f0) = let
 //
 implement
 {x2}{y2}
-list_vt_map$fopr(x2) = let
+List_vt_map$fopr(x2) = let
 //
 val f0 =
 $UN.cast{(&x2)->y}(f0) in $UN.castvwtp0{y2}(f0(x2))
 //
-end // end of [list_vt_map$fopr]
+end // end of [List_vt_map$fopr]
 //
 in
-  list_vt_map<x><y>(xs)
-end // end of [list_vt_map_fun]
+  List_vt_map<x><y>(xs)
+end // end of [List_vt_map_fun]
 
 implement
 {x}{y}(*tmp*)
-list_vt_map_clo
+List_vt_map_clo
   (xs, f0) = let
 //
 val f0 =
@@ -767,74 +767,74 @@ $UN.cast{(&x) -<cloref1> y}(addr@f0)
 //
 implement
 {x2}{y2}
-list_vt_map$fopr(x2) = let
+List_vt_map$fopr(x2) = let
 //
 val f0 =
 $UN.cast{(&x2)-<cloref1>y}(f0) in $UN.castvwtp0{y2}(f0(x2))
 //
-end // end of [list_vt_map$fopr]
+end // end of [List_vt_map$fopr]
 //
 in
-  list_vt_map<x><y>(xs)
-end // end of [list_vt_map_clo]
+  List_vt_map<x><y>(xs)
+end // end of [List_vt_map_clo]
 
 implement
 {x}{y}(*tmp*)
-list_vt_map_cloptr
+List_vt_map_cloptr
   (xs, f0) = ys where
 {
 //
 val f1 =
 $UN.castvwtp1(f0)
 val ys =
-list_vt_map_cloref<x><y>(xs, f1)
+List_vt_map_cloref<x><y>(xs, f1)
 val () =
 cloptr_free($UN.castvwtp0{cloptr(void)}(f0))
 //
-} (* end of [list_vt_map_cloptr] *)
+} (* end of [List_vt_map_cloptr] *)
 
 implement
 {x}{y}(*tmp*)
-list_vt_map_cloref
+List_vt_map_cloref
   (xs, f0) = let
 //
 implement
 {x2}{y2}
-list_vt_map$fopr(x2) = let
+List_vt_map$fopr(x2) = let
 //
 val f0 =
 $UN.cast{(&x2)-<cloref1>y}(f0) in $UN.castvwtp0{y2}(f0(x2))
 //
-end // end of [list_vt_map$fopr]
+end // end of [List_vt_map$fopr]
 //
 in
-  list_vt_map<x><y>(xs)
-end // end of [list_vt_map_cloref]
+  List_vt_map<x><y>(xs)
+end // end of [List_vt_map_cloref]
 
 (* ****** ****** *)
 
 implement
 {x}{y}(*tmp*)
-list_vt_mapfree_fun
+List_vt_mapfree_fun
   (xs, f0) = let
 //
 implement
 {x2}{y2}
-list_vt_mapfree$fopr
+List_vt_mapfree$fopr
   (x2) = let
 //
 val f0 =
 $UN.cast{(&x2>>_?)->y}(f0) in $UN.castvwtp0{y2}(f0(x2))
 //
-end // end of [list_vt_mapfree$fopr]
+end // end of [List_vt_mapfree$fopr]
 //
 in
-  list_vt_mapfree<x><y>(xs)
-end // end of [list_vt_mapfree_fun]
+  List_vt_mapfree<x><y>(xs)
+end // end of [List_vt_mapfree_fun]
 
 implement
 {x}{y}(*tmp*)
-list_vt_mapfree_clo
+List_vt_mapfree_clo
   (xs, f0) = let
 //
 val f0 =
@@ -842,94 +842,94 @@ $UN.cast{(&x>>_?) -<cloref1> y}(addr@f0)
 //
 implement
 {x2}{y2}
-list_vt_mapfree$fopr(x2) = let
+List_vt_mapfree$fopr(x2) = let
 //
 val f0 =
 $UN.cast{(&x2>>_?)-<cloref1>y}(f0) in $UN.castvwtp0{y2}(f0(x2))
 //
-end // end of [list_vt_mapfree$fopr]
+end // end of [List_vt_mapfree$fopr]
 //
 in
-  list_vt_mapfree<x><y>(xs)
-end // end of [list_vt_mapfree_clo]
+  List_vt_mapfree<x><y>(xs)
+end // end of [List_vt_mapfree_clo]
 
 implement
 {x}{y}(*tmp*)
-list_vt_mapfree_cloptr
+List_vt_mapfree_cloptr
   (xs, f0) = ys where
 {
 //
 val f1 =
 $UN.castvwtp1(f0)
 val ys =
-list_vt_mapfree_cloref<x><y>(xs, f1)
+List_vt_mapfree_cloref<x><y>(xs, f1)
 val () =
 cloptr_free($UN.castvwtp0{cloptr(void)}(f0))
 //
-} (* end of [list_vt_mapfree_cloptr] *)
+} (* end of [List_vt_mapfree_cloptr] *)
 
 implement
 {x}{y}(*tmp*)
-list_vt_mapfree_cloref
+List_vt_mapfree_cloref
   (xs, f0) = let
 //
 implement
 {x2}{y2}
-list_vt_mapfree$fopr(x2) = let
+List_vt_mapfree$fopr(x2) = let
 //
 val f0 =
 $UN.cast{(&x2>>_?)-<cloref1>y}(f0) in $UN.castvwtp0{y2}(f0(x2))
 //
-end // end of [list_vt_mapfree$fopr]
+end // end of [List_vt_mapfree$fopr]
 //
 in
-  list_vt_mapfree<x><y>(xs)
-end // end of [list_vt_mapfree_cloref]
+  List_vt_mapfree<x><y>(xs)
+end // end of [List_vt_mapfree_cloref]
 
 (* ****** ****** *)
 
 implement
 {a}{b}
-list_vt_mapfree_method
+List_vt_mapfree_method
   (xs, _(*type*)) =
 (
-  llam(fopr) => list_vt_mapfree_cloptr<a><b>(xs, fopr)
-) (* list_vt_mapfree_method *)
+  llam(fopr) => List_vt_mapfree_cloptr<a><b>(xs, fopr)
+) (* List_vt_mapfree_method *)
 
 (* ****** ****** *)
 
 implement
 {a}(*tmp*)
-list_vt_foreach_fun
+List_vt_foreach_fun
   {fe}(xs, f0) = let
 //
-prval() = lemma_list_vt_param(xs)
+prval() = lemma_List_vt_param(xs)
 //
 fun
 loop
 {n:nat} .<n>.
 (
-xs: !list_vt(a, n), f0: (&a) -<fe> void
+xs: !List_vt(a, n), f0: (&a) -<fe> void
 ) :<fe> void =
   case+ xs of
-  | @list_vt_cons
+  | @List_vt_cons
       (x, xs1) => let
       val () = f0(x)
       val () = loop(xs1, f0)
     in
       fold@ (xs)
     end // end of [cons]
-  | list_vt_nil((*void*)) => ()
+  | List_vt_nil((*void*)) => ()
 // end of [loop]
 in
   loop(xs, f0)
-end // end of [list_vt_foreach_fun]
+end // end of [List_vt_foreach_fun]
 
 (* ****** ****** *)
 
 implement
 {a}(*tmp*)
-list_vt_foreach_cloptr
+List_vt_foreach_cloptr
 (
   xs, f0
 ) = () where
@@ -938,15 +938,15 @@ list_vt_foreach_cloptr
 val f1 =
 $UN.castvwtp1(f0)
 val () =
-list_vt_foreach_cloref<a>(xs, f1)
+List_vt_foreach_cloref<a>(xs, f1)
 val () =
 cloptr_free($UN.castvwtp0{cloptr(void)}(f0))
 //
-} // end of [list_vt_foreach_cloptr]
+} // end of [List_vt_foreach_cloptr]
 
 implement
 {a}(*tmp*)
-list_vt_foreach_cloref
+List_vt_foreach_cloref
   (xs, f0) =
   loop(xs, f0) where
 {
@@ -954,29 +954,29 @@ list_vt_foreach_cloref
 fun
 loop{n:nat} .<n>.
 (
-xs: !list_vt(a, n),
+xs: !List_vt(a, n),
 f0: (&a) -<cloref1> void
 ) : void =
   case+ xs of
-  | @list_vt_cons
+  | @List_vt_cons
       (x, xs1) =>
       fold@(xs) where
     {
       val () = f0(x)
       val () = loop(xs1, f0)
     } // end of [cons]
-  | list_vt_nil((*void*)) => ()
+  | List_vt_nil((*void*)) => ()
 // end of [loop]
 //
-prval() = lemma_list_vt_param(xs)
+prval() = lemma_List_vt_param(xs)
 //
-} // end of [list_vt_foreach_cloref]
+} // end of [List_vt_foreach_cloref]
 
 (* ****** ****** *)
 
 implement
 {r}{x}//tmp
-list_vt_foldleft_cloptr
+List_vt_foldleft_cloptr
 (
   xs, r0, f0
 ) = res where
@@ -985,39 +985,39 @@ list_vt_foldleft_cloptr
 val f1 =
 $UN.castvwtp1(f0)
 val res =
-list_vt_foldleft_cloref<r><x>(xs, r0, f1)
+List_vt_foldleft_cloref<r><x>(xs, r0, f1)
 val ((*freed*)) =
 cloptr_free($UN.castvwtp0{cloptr(void)}(f0))
 //
-} // end of [list_vt_foldleft_cloptr]
+} // end of [List_vt_foldleft_cloptr]
 
 implement
 {r}{x}//tmp
-list_vt_foldleft_cloref
+List_vt_foldleft_cloref
   (xs, r0, f0) = let
 //
 fun
 auxlst:
 $d2ctype
 (
-list_vt_foldleft_cloref<r><x>
+List_vt_foldleft_cloref<r><x>
 ) = lam(xs, r0, f0) =>
 (
 case+ xs of
-| @list_vt_nil
+| @List_vt_nil
     () => (fold@(xs); r0)
-| @list_vt_cons
+| @List_vt_cons
     (x0, xs1) => res where
   {
     val res =
     auxlst(xs1, f0(r0, x0), f0)
     prval ((*folded*)) = fold@(xs)
-  } (* end of [list_vt_cons] *)
+  } (* end of [List_vt_cons] *)
 )
 //
 in
   auxlst(xs, r0, f0)
-end // end of [list_vt_foldleft_cloref]
+end // end of [List_vt_foldleft_cloref]
 
 (* ****** ****** *)
 //
@@ -1158,8 +1158,8 @@ option_map_fun
   (opt, fopr) = (
 //
 case+ opt of
-| None() => None_vt()
-| Some(x0) => Some_vt(fopr(x0))
+| None1() => None1_vt()
+| Some1(x0) => Some1_vt(fopr(x0))
 //
 ) // end of [option_map_fun]
 //
@@ -1181,8 +1181,8 @@ option_map_cloref
   (opt, fopr) = (
 //
 case+ opt of
-| None() => None_vt()
-| Some(x0) => Some_vt(fopr(x0))
+| None1() => None1_vt()
+| Some1(x0) => Some1_vt(fopr(x0))
 //
 ) // end of [option_map_cloref]
 //

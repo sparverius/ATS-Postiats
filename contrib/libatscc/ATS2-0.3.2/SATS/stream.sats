@@ -41,7 +41,7 @@ stream_nth_opt
   {a:t0p}
 (
   xs: stream(INV(a)), n: intGte(0)
-) : Option_vt(a) = "mac#%" // end-of-fun
+) : Option_vt_1(a) = "mac#%" // end-of-fun
 //
 (* ****** ****** *)
 //
@@ -76,15 +76,15 @@ fun
 stream_take_opt
   {a:t0p}{n:nat}
 (
-xs: stream(INV(a)), n: int(n)
-) : Option_vt(list(a,n)) = "mac#%" // endfun
+xs: stream(INV(a)), n: Int(n)
+) : Option_vt_1(List(a,n)) = "mac#%" // endfun
 //
 fun
 stream_drop_opt
   {a:t0p}{n:nat}
 (
-xs: stream(INV(a)), n: int(n)
-) : Option_vt(stream(a)) = "mac#%" // endfun
+xs: stream(INV(a)), n: Int(n)
+) : Option_vt_1(stream(a)) = "mac#%" // endfun
 //
 (* ****** ****** *)
 //
@@ -234,7 +234,7 @@ stream2cloref_exn
 fun
 stream2cloref_opt
   {a:t0p}
-  (xs: stream(INV(a))): cfun(Option_vt(a)) = "mac#%"
+  (xs: stream(INV(a))): cfun(Option_vt_1(a)) = "mac#%"
 fun
 stream2cloref_last
   {a:t0p}(xs: stream(INV(a)), last: a): cfun(a) = "mac#%"

@@ -943,6 +943,7 @@ the_prelude_load
 val () =
 the_fixity_load(PATSHOME)
 //
+
 val () =
   pervasive_load(PATSHOME, "prelude/basics_pre.sats")
 val () =
@@ -953,6 +954,7 @@ val () =
   pervasive_load(PATSHOME, "prelude/basics_gen.sats")
 //
 val () = pervasive_load(PATSHOME, "prelude/macrodef.sats")
+//val () = pervasive_load(PATSHOME, "prelude/basics.sats")
 //
 val () = stacst2_initialize() // internalizing some static consts
 val () = $CNSTR3.constraint3_initialize() // internalizing some maps
@@ -963,6 +965,8 @@ val () = $CNSTR3.constraint3_initialize() // internalizing some maps
 //
 *)
 //
+(*
+
 val () = pervasive_load(PATSHOME, "prelude/SATS/integer.sats")
 val () = pervasive_load(PATSHOME, "prelude/SATS/pointer.sats")
 //
@@ -994,6 +998,8 @@ val () = pervasive_load(PATSHOME, "prelude/SATS/intrange.sats")
 val () = pervasive_load(PATSHOME, "prelude/SATS/gorder.sats")
 val () = pervasive_load(PATSHOME, "prelude/SATS/gnumber.sats")
 val () = pervasive_load(PATSHOME, "prelude/SATS/grandom.sats")
+*)
+val () = pervasive_load(PATSHOME, "prelude/primary.sats")
 //
 (*
 //
@@ -1003,7 +1009,7 @@ val () = pervasive_load(PATSHOME, "prelude/SATS/unsafe.sats")
 //
 *)
 //
-val () = pervasive_load(PATSHOME, "prelude/SATS/checkast.sats")
+//val () = pervasive_load(PATSHOME, "prelude/SATS/checkast.sats")
 //
 (*
 //
@@ -1011,6 +1017,7 @@ val () = pervasive_load(PATSHOME, "prelude/SATS/checkast.sats")
 //
 *)
 //
+(*
 val () = pervasive_load(PATSHOME, "prelude/SATS/list.sats")
 val () = pervasive_load(PATSHOME, "prelude/SATS/list_vt.sats")
 //
@@ -1037,6 +1044,8 @@ val () = pervasive_load(PATSHOME, "prelude/SATS/tostring.sats")
 val () = pervasive_load(PATSHOME, "prelude/SATS/parray.sats") // null-terminated
 //
 val () = pervasive_load(PATSHOME, "prelude/SATS/extern.sats") // interfacing externs
+*)
+val () = pervasive_load(PATSHOME, "prelude/secondary.sats")
 //
 (*
 val () = pervasive_load(PATSHOME, "prelude/SATS/giterator.sats")

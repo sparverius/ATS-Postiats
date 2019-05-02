@@ -95,7 +95,7 @@ fun atscc_outname(flag: int, path: string): string
 //
 (* ****** ****** *)
 
-fun atsccproc_commline{n:int}(int n, !argv(n)): commarglst
+fun atsccproc_commline{n:int}(Int n, !argv(n)): commarglst
 
 (* ****** ****** *)
 //
@@ -135,7 +135,7 @@ atsoptline_exec
 fun
 atsoptline_exec_all
 ( flag: int
-, atsopt: string, args: List_vt (stringlst_vt)): int(*status*)
+, atsopt: string, args: List_vt_1 (stringlst_vt)): int(*status*)
 //
 (* ****** ****** *)
 //

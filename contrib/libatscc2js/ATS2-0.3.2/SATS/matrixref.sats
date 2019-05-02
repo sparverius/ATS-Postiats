@@ -28,8 +28,8 @@ fun
 matrixref_uninitized
   {a:vt0p}
   {m,n:nat}
-  ( nrow: int(m)
-  , ncol: int(n) ) : matrixref(a?, m, n) = "mac#%"
+  ( nrow: Int(m)
+  , ncol: Int(n) ) : matrixref(a?, m, n) = "mac#%"
 //
 (* ****** ****** *)
 

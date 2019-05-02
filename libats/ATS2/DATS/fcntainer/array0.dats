@@ -62,7 +62,7 @@ val p0 = arrayref2ptr(p0)
 //
 fun
 loop
-(p0: ptr, i: Size): bool =
+(p0: ptr, i: Size_1): bool =
 (
 if
 i >= n0
@@ -101,7 +101,7 @@ ptr0_add_guint<a>(p0, n0)
 //
 fun
 loop
-(pz: ptr, i: Size): bool =
+(pz: ptr, i: Size_1): bool =
 (
 if
 i >= n0

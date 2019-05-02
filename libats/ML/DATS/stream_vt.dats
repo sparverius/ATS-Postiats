@@ -55,7 +55,7 @@ stream2list0_vt
   (xs) =
 (
 list0_vt2t
-(g0ofg1(stream2list_vt<a>(xs)))
+(g0ofg1(stream2List_vt<a>(xs)))
 )
 //
 (* ****** ****** *)

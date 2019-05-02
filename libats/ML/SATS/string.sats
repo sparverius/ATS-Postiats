@@ -101,9 +101,9 @@ string_copy(str: NSH(string)):<> string
 (* ****** ****** *)
 //
 fun{}
-string_make_list(cs: List(char)):<> string
+string_make_list(cs: List_1(char)):<> string
 fun{}
-string_make_rlist(cs: List(char)):<> string
+string_make_rlist(cs: List_1(char)):<> string
 //
 fun{}
 string_make_list0(cs: list0(char)):<> string
@@ -113,9 +113,9 @@ string_make_rlist0(cs: list0(char)):<> string
 (* ****** ****** *)
 //
 fun{}
-string_make_list_vt(List_vt(char)):<!wrt> string
+string_make_list_vt(List_vt_1(char)):<!wrt> string
 fun{}
-string_make_rlist_vt(List_vt(char)):<!wrt> string
+string_make_rlist_vt(List_vt_1(char)):<!wrt> string
 //
 (* ****** ****** *)
 
@@ -210,7 +210,7 @@ fun{}
 string_tabulate
   {n:int}
 (
-  n0: size_t(n)
+  n0: Size_t(n)
 , fopr: (sizeLt(n)) -<cloref1> charNZ
 ) : string // end of [string_tabulate]
 //

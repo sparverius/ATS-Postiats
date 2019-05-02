@@ -240,11 +240,11 @@ vtypedef Fildes0 = [fd:int | fd >= 0] fildes (fd)
 
 castfn
 fildes_decode
-  {fd:nat} (fd: fildes (fd)):<> (fildes_v (fd) | int fd)
+  {fd:nat} (fd: fildes (fd)):<> (fildes_v (fd) | Int fd)
 // end of [fildes_decode]
 
 castfn fildes_encode
-  {fd:nat} (pf: fildes_v (fd) | fd: int fd):<> fildes (fd)
+  {fd:nat} (pf: fildes_v (fd) | fd: Int fd):<> fildes (fd)
 // end of [fildes_encode]
 
 (* ****** ****** *)

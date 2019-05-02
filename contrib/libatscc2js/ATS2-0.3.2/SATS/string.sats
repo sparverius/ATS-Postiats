@@ -18,7 +18,7 @@ ATS_EXTERN_PREFIX "ats2jspre_"
 (* ****** ****** *)
 //
 typedef char = int
-typedef strchr = string(1)
+typedef strchr = String(1)
 //
 (* ****** ****** *)
 //
@@ -32,7 +32,7 @@ string_get_at
 {n:int}
 {i:nat | i < n}
 (
-  str: string(n), i0: int(i)
+  str: String(n), i0: Int(i)
 ) : strchr = "mac#%" // end-of-fun
 //
 overload [] with string_get_at of 100
@@ -44,8 +44,8 @@ string_fset_at
 {n:int}
 {i:nat | i < n}
 (
-  str: string(n), i0: int(i), c0: strchr
-) : string(n) = "mac#%" // end-of-fun
+  str: String(n), i0: Int(i), c0: strchr
+) : String(n) = "mac#%" // end-of-fun
 //
 (* ****** ****** *)
 //
@@ -55,8 +55,8 @@ string_substring_beg_end
 {i,j:int |
  0 <= i; i <= j; j <= n}
 (
-  str: string(n), i0: int(i), j0: int(j)
-) : string(j-i) = "mac#%" // end-of-fun
+  str: String(n), i0: Int(i), j0: Int(j)
+) : String(j-i) = "mac#%" // end-of-fun
 //
 //
 fun
@@ -64,14 +64,14 @@ string_substring_beg_len
 {n:int}
 {i,len:nat | i + len <= n}
 (
-  str: string(n), i0: int(i), len: int(len)
-) : string(len) = "mac#%" // end-of-fun
+  str: String(n), i0: Int(i), len: Int(len)
+) : String(len) = "mac#%" // end-of-fun
 //
 (* ****** ****** *)
 //
 fun
 string_length
-  {n:int}(string(n)): int(n) = "mac#%"
+  {n:int}(String(n)): Int(n) = "mac#%"
 //
 overload length with string_length of 100
 //
@@ -86,10 +86,10 @@ string0_isnot_empty
 //
 fun
 string1_is_empty
-  {n:int}(string(n)): bool(n==0) = "mac#%"
+  {n:int}(String(n)): Bool(n==0) = "mac#%"
 fun
 string1_isnot_empty
-  {n:int}(string(n)): bool(n > 0) = "mac#%"
+  {n:int}(String(n)): Bool(n > 0) = "mac#%"
 //
 overload iseqz with string0_is_empty of 100
 overload iseqz with string1_is_empty of 100
@@ -137,10 +137,10 @@ compare with compare_string_string of 100
 //
 fun
 string_charAt{n:int}
-  (str: string(n), i: natLt(n)): strchr = "mac#%"
+  (str: String(n), i: natLt(n)): strchr = "mac#%"
 fun
 string_charCodeAt{n:int}
-  (str: string(n), index: natLt(n)): int = "mac#%"
+  (str: String(n), index: natLt(n)): int = "mac#%"
 //
 overload .charAt with string_charCodeAt of 100
 overload .charCodeAt with string_charCodeAt of 100
@@ -149,22 +149,22 @@ overload .charCodeAt with string_charCodeAt of 100
 //
 fun
 string_fromCharCode_1
-  (c1: int): string(1) = "mac#%"
+  (c1: int): String(1) = "mac#%"
 fun
 string_fromCharCode_2
-  (c1: int, c2: int): string(2) = "mac#%"
+  (c1: int, c2: int): String(2) = "mac#%"
 fun
 string_fromCharCode_3
-  (c1: int, c2: int, c3: int): string(3) = "mac#%"
+  (c1: int, c2: int, c3: int): String(3) = "mac#%"
 fun
 string_fromCharCode_4
-  (c1: int, c2: int, c3: int, c4: int): string(4) = "mac#%"
+  (c1: int, c2: int, c3: int, c4: int): String(4) = "mac#%"
 fun
 string_fromCharCode_5
-  (c1: int, c2: int, c3: int, c4: int, c5: int): string(5) = "mac#%"
+  (c1: int, c2: int, c3: int, c4: int, c5: int): String(5) = "mac#%"
 fun
 string_fromCharCode_6
-  (c1: int, c2: int, c3: int, c4: int, c5: int, c6: int): string(6) = "mac#%"
+  (c1: int, c2: int, c3: int, c4: int, c5: int, c6: int): String(6) = "mac#%"
 //
 symintr string_fromCharCode
 overload
@@ -300,8 +300,8 @@ fun
 string_tabulate_cloref
   {n:nat}
 (
-n0: int(n), fopr: cfun(natLt(n), charNZ)
-) : string(n) = "mac#%" // string_tabulate_cloref
+n0: Int(n), fopr: cfun(natLt(n), charNZ)
+) : String(n) = "mac#%" // string_tabulate_cloref
 //
 (* ****** ****** *)
 //

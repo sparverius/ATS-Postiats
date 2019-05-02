@@ -62,7 +62,7 @@ f(n:int):<!laz> stream(int) =
 implement
 {a}(*tmp*)
 stream2list0(xs) =
-list0_of_list_vt(stream2list(xs))
+list0_of_list_vt(stream2List(xs))
 //
 (* ****** ****** *)
 

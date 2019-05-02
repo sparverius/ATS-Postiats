@@ -13,7 +13,7 @@ staload "./../basics.sats"
 fun
 matrixref_make_elt
   {a:t@ype}{m,n:nat}
-  (int(m), int(n), a): matrixref(a, m, n) = "mac#%"
+  (Int(m), Int(n), a): matrixref(a, m, n) = "mac#%"
 //
 (* ****** ****** *)
 //
@@ -21,14 +21,14 @@ fun
 matrixref_get_at
   {a:t@ype}{m,n:int}
 (
-  matrixref(a, m, n), natLt(m), int(n), natLt(n)
+  matrixref(a, m, n), natLt(m), Int(n), natLt(n)
 ) : a = "mac#%" // end-of-function
 //
 fun
 matrixref_set_at
   {a:t@ype}{m,n:int}
 (
-  matrixref(a, m, n), natLt(m), int(n), natLt(n), a
+  matrixref(a, m, n), natLt(m), Int(n), natLt(n), a
 ) : void = "mac#%" // end-of-function
 //
 (* ****** ****** *)
@@ -42,7 +42,7 @@ fun
 matrixref_exists_cloref
   {a:vt@ype}{m,n:int}
 (
-  matrixref(a, m, n), int(m), int(n)
+  matrixref(a, m, n), Int(m), Int(n)
 , ftest: (natLt(m), natLt(n)) -<cloref1> bool
 ) : bool = "mac#%" // end-of-fun
 //
@@ -50,7 +50,7 @@ fun
 matrixref_forall_cloref
   {a:vt@ype}{m,n:int}
 (
-  matrixref(a, m, n), int(m), int(n)
+  matrixref(a, m, n), Int(m), Int(n)
 , ftest: (natLt(m), natLt(n)) -<cloref1> bool
 ) : bool = "mac#%" // end-of-fun
 //
@@ -60,7 +60,7 @@ fun
 matrixref_foreach_cloref
   {a:vt@ype}{m,n:int}
 (
-  matrixref(a, m, n), int(m), int(n)
+  matrixref(a, m, n), Int(m), Int(n)
 , fwork: (natLt(m), natLt(n)) -<cloref1> void
 ) : void = "mac#%" // end-of-fun
 //
@@ -70,7 +70,7 @@ fun
 matrixref_tabulate_cloref
   {a:vt@ype}{m,n:nat}
 (
-  int(m), int(n), fopr: (natLt(m), natLt(n)) -<cloref1> a
+  Int(m), Int(n), fopr: (natLt(m), natLt(n)) -<cloref1> a
 ) : matrixref(a, m, n) = "mac#%" // end-of-fun
 //
 (* ****** ****** *)
@@ -80,13 +80,13 @@ cbind_matrixref_matrixref
   {a:t@ype}{m0,n1,n2:int}
 ( M1: matrixref(a, m0, n1)
 , M2: matrixref(a, m0, n2)
-, m0: int(m0), n1: int(n1), n2: int(n2)): matrixref(a, m0, n1+n2) = "mac#%"
+, m0: Int(m0), n1: Int(n1), n2: Int(n2)): matrixref(a, m0, n1+n2) = "mac#%"
 fun
 rbind_matrixref_matrixref
   {a:t@ype}{m1,m2,n0:int}
 ( M1: matrixref(a, m1, n0)
 , M2: matrixref(a, m2, n0)
-, m1: int(m1), m2: int(m2), n0: int(n0)): matrixref(a, m1+m2, n0) = "mac#%"
+, m1: Int(m1), m2: Int(m2), n0: Int(n0)): matrixref(a, m1+m2, n0) = "mac#%"
 //
 overload cbind with cbind_matrixref_matrixref
 overload rbind with rbind_matrixref_matrixref
@@ -100,7 +100,7 @@ overload rbind with rbind_matrixref_matrixref
 fun
 mtrxszref_make_elt
   {a:t0p}{m,n:nat}
-  (int(m), int(n), x0: a): mtrxszref(a) = "mac#%"
+  (Int(m), Int(n), x0: a): mtrxszref(a) = "mac#%"
 //
 (* ****** ****** *)
 //
@@ -128,7 +128,7 @@ mtrxszref_get_matrixref
 fun
 mtrxszref_make_matrixref
   {a:t0p}{m,n:int}
-  (matrixref(a, m, n), int(m), int(n)): mtrxszref(a) = "mac#%"
+  (matrixref(a, m, n), Int(m), Int(n)): mtrxszref(a) = "mac#%"
 // end of [mtrxszref_make_matrixref]
 //
 (* ****** ****** *)
@@ -258,7 +258,7 @@ overload
 fun
 mtrxszref_tabulate_cloref
   {a:vt0p}{m,n:nat}
-( nrow: int(m), ncol: int(n)
+( nrow: Int(m), ncol: Int(n)
 , fopr: (natLt(m), natLt(n)) -<cloref1> (a)): mtrxszref(a) = "mac#%"
 //
 (* ****** ****** *)

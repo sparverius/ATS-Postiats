@@ -153,7 +153,7 @@ gvector_foreach_env
 fun loop
   {i:nat | i <= n}
 (
-  p: ptr, i: int i, env: &env >> _
+  p: ptr, i: Int i, env: &env >> _
 ) : natLte(n) = let
 in
 //
@@ -204,7 +204,7 @@ gvector_foreach2_env
 fun loop
   {i:nat | i <= n}
 (
-  p1: ptr, p2: ptr, i: int i, env: &env >> _
+  p1: ptr, p2: ptr, i: Int i, env: &env >> _
 ) : natLte(n) = let
 in
 //

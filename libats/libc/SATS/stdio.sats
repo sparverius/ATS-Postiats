@@ -121,11 +121,11 @@ overload ptrcast with FILEptr2ptr
 fun // macro
 FILEptr_is_null
   {l:addr}{m:fm}
-  (filp: !FILEptr(l, m)):<> bool(l == null) = "mac#%"
+  (filp: !FILEptr(l, m)):<> Bool(l == null) = "mac#%"
 fun // macro
 FILEptr_isnot_null
   {l:addr}{m:fm}
-  (filp: !FILEptr(l, m)):<> bool(l != null) = "mac#%"
+  (filp: !FILEptr(l, m)):<> Bool(l != null) = "mac#%"
 //
 overload iseqz with FILEptr_is_null
 overload isneqz with FILEptr_isnot_null
@@ -251,7 +251,7 @@ fclose1
 ) :<!wrt>
   [i:int | i <= 0]
 (
-  option_v (FILE_v (l, m), i < 0) | int i
+  option_v (FILE_v (l, m), i < 0) | Int i
 ) = "mac#%" // endfun
 //
 overload fclose with fclose0
@@ -472,7 +472,7 @@ fun
 fflush1{m:fm}
 (
   pf: fmlte(m, w) | out: !FILEptr1(m)
-) :<!wrt> [i:int | i <= 0] int(i) = "mac#%"
+) :<!wrt> [i:int | i <= 0] Int(i) = "mac#%"
 //
 fun
 fflush0_exn
@@ -522,7 +522,7 @@ macdef getc = fgetc
 fun
 getchar0():<!wrt> int = "mac#%"
 fun
-getchar1():<!wrt> [i:int|i <= UCHAR_MAX] int(i) = "mac#%"
+getchar1():<!wrt> [i:int|i <= UCHAR_MAX] Int(i) = "mac#%"
 
 (* ****** ****** *)
 //
@@ -530,14 +530,14 @@ fun
 fgets0
 {sz:int}{n0:pos | n0 <= sz}
 (
-  buf: &b0ytes(sz) >> bytes(sz), n0: int n0, inp: FILEref
+  buf: &b0ytes(sz) >> bytes(sz), n0: Int n0, inp: FILEref
 ) :<!wrt> Ptr0 = "mac#%" // = addr@(buf) or NULL
 fun
 fgets1
 {sz:int}{n0:pos | n0 <= sz}{m:fm}
 (
   pfm: fmlte (m, r)
-| buf: &b0ytes(sz) >> bytes(sz), n0: int n0, inp: !FILEptr1(m)
+| buf: &b0ytes(sz) >> bytes(sz), n0: Int n0, inp: !FILEptr1(m)
 ) :<!wrt> Ptr0 = "mac#%" // = addr@(buf) or NULL
 //
 symintr fgets
@@ -566,7 +566,7 @@ fgets1_err
 (
   pf_mod: fmlte(m, r)
 , pf_buf: b0ytes(sz)@l0
-| p0: ptr(l0), n0: int(n0), inp: !FILEptr1(m)
+| p0: ptr(l0), n0: Int(n0), inp: !FILEptr1(m)
 ) :<> [l1:addr] (fgets_v(sz, n0, l0, l1) | ptr(l1)) = "mac#%"
 // end of [fgets_err]
 //
@@ -605,11 +605,11 @@ fun
 fgetpos0
 (
   filp: FILEref, pos: &fpos_t? >> opt (fpos_t, i==0)
-) :<!wrt> #[i:int | i <= 0] int (i) = "mac#%"
+) :<!wrt> #[i:int | i <= 0] Int (i) = "mac#%"
 fun fgetpos1
 (
   filp: !FILEptr1, pos: &fpos_t? >> opt (fpos_t, i==0)
-) :<!wrt> #[i:int | i <= 0] int (i) = "mac#%"
+) :<!wrt> #[i:int | i <= 0] Int (i) = "mac#%"
 //
 fun
 fgetpos0_exn 
@@ -679,7 +679,7 @@ fun
 putchar0 (c: int):<!wrt> int = "mac#%"
 fun
 putchar1
-  (c: int):<!wrt> [i:int|i <= UCHAR_MAX] int(i) = "mac#%"
+  (c: int):<!wrt> [i:int|i <= UCHAR_MAX] Int(i) = "mac#%"
 // end of [putchar1]
 //
 (* ****** ****** *)
@@ -745,7 +745,7 @@ fread0 // [isz]: the size of each item
   {n:int | n*isz <= nbf}
 (
   buf: &bytes(nbf) >> _
-, isz: size_t isz, n: size_t n
+, isz: Size_t isz, n: Size_t n
 , inp: FILEref(*none*)
 ) :<!wrt> sizeLte n = "mac#%"
 fun
@@ -757,7 +757,7 @@ fread1 // [isz]: the size of each item
 (
   pfm: fmlte (m, r)
 | buf: &bytes(nbf) >> _
-, isz: size_t isz, n: size_t n
+, isz: Size_t isz, n: Size_t n
 , inp: !FILEptr1 (m)
 ) :<!wrt> sizeLte n = "mac#%"
 //
@@ -767,7 +767,7 @@ fread0_exn // [isz]: the size of each item
 {nbf:int}
 {n:int | n*isz <= nbf}
 (
-  buf: &bytes(nbf) >> _, isz: size_t isz, n: size_t n, inp: FILEref
+  buf: &bytes(nbf) >> _, isz: Size_t isz, n: Size_t n, inp: FILEref
 ) :<!exnwrt> sizeLte n = "ext#%" // endfun
 //
 symintr fread
@@ -798,7 +798,7 @@ fwrite0 // [isz]: the size of each item
   {n:int | n*isz <= nbf}
 (
   buf: &RD(bytes(nbf))
-, isz: size_t isz, n: size_t n
+, isz: Size_t isz, n: Size_t n
 , out: FILEref
 ) :<!wrt> sizeLte (n) = "mac#%"
 fun
@@ -810,7 +810,7 @@ fwrite1 // [isz]: the size of each item
 (
   pfm: fmlte(m, w())
 | buf: &RD(bytes(nbf))
-, isz: size_t isz, n: size_t n
+, isz: Size_t isz, n: Size_t n
 , out: !FILEptr1 (m)
 ) :<!wrt> sizeLte (n) = "mac#%"
 //
@@ -821,7 +821,7 @@ fwrite0_exn // [isz]: the size of each item
   {n:int | n*isz <= nbf}
 (
   buf: &RD(bytes(nbf))
-, isz: size_t isz, n: size_t n
+, isz: Size_t isz, n: Size_t n
 , out: FILEref(*none*)
 ) :<!exnwrt> sizeLte (n) = "ext#%"
 //
@@ -1050,7 +1050,7 @@ ungetc1
   {l:agz}{m:fm}
 (
   pfm: fmlte (m, rw()) | c: char, f: !FILEptr (l, m)
-) :<!wrt> [i:int | i <= UCHAR_MAX] int (i) = "mac#%"
+) :<!wrt> [i:int | i <= UCHAR_MAX] Int (i) = "mac#%"
 //
 fun
 ungetc0_exn
@@ -1069,7 +1069,7 @@ BUFSIZ : int
 //
 praxi BUFSIZ_gtez (): [BUFSIZ >= 0] void
 //
-macdef BUFSIZ = $extval(int(BUFSIZ), "BUFSIZ")
+macdef BUFSIZ = $extval(Int(BUFSIZ), "BUFSIZ")
 //
 (* ****** ****** *)
 //
@@ -1105,7 +1105,7 @@ setbuffer0
 {n1,n2:nat | n2 <= n1}{l:addr}
 (
   pf_buf: !b0ytes(n1)@l
-| filr: FILEref, p_buf: ptr(l), n2: size_t(n2)
+| filr: FILEref, p_buf: ptr(l), n2: Size_t(n2)
 ) : void = "mac#%"
 //
 fun
@@ -1116,7 +1116,7 @@ setbuffer1
 }{lbf:addr}
 (
   pf_buf: !b0ytes(n1)@lbf
-| filp: !FILEptr1(*none*), p_buf: ptr(lbf), n2: size_t(n2)
+| filp: !FILEptr1(*none*), p_buf: ptr(lbf), n2: Size_t(n2)
 ) : void = "mac#%"
 //
 symintr setbuffer
@@ -1160,7 +1160,7 @@ setvbuf0
 }{lbf:addr}
 (
   pf: !b0ytes(n1)@lbf
-| filr: FILEref, mode: bufmode_t, n2: size_t(n2)
+| filr: FILEref, mode: bufmode_t, n2: Size_t(n2)
 ) : int = "mac#%"
 fun
 setvbuf1
@@ -1170,7 +1170,7 @@ setvbuf1
 }{lbf:addr}
 (
   pf: !b0ytes(n1) @ lbf
-| filp: !FILEptr1(*none*), mode: bufmode_t, n2: size_t(n2)
+| filp: !FILEptr1(*none*), mode: bufmode_t, n2: Size_t(n2)
 ) : int = "mac#%"
 //
 symintr setvbuf

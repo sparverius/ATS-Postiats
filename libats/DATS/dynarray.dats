@@ -67,7 +67,7 @@ local
 datavtype
 dynarray (a:vt@ype+) =
   {m,n:int | m > 0; m >= n}
-  DYNARRAY of (arrayptr (a, m), size_t m, size_t n)
+  DYNARRAY of (arrayptr (a, m), Size_t m, Size_t n)
 // end of [dynarray]
 
 assume
@@ -436,7 +436,7 @@ val+DYNARRAY(_, _, n) = DA
 in
 //
 if n > 0
-  then dynarray_takeout_at_opt<a>(DA, pred(n)) else None_vt{a}()
+  then dynarray_takeout_at_opt<a>(DA, pred(n)) else None1_vt{a}()
 //
 end // end of [dynarray_takeout_atend_opt]
 
@@ -493,7 +493,7 @@ prval () =
   lemma_array_v_param(pf)
 //
 val xs =
-  array_copy_to_list_vt<a>(!p0, asz)
+  array_copy_to_List_vt<a>(!p0, asz)
 //
 prval ((*returned*)) = $UN.cast2void((pf, fpf | p0))
 //
@@ -516,7 +516,7 @@ val (pf, fpf | p0) =
 prval () =
   lemma_array_v_param(pf)
 //
-val xs = array_copy_to_list_vt<a>(!p0, asz)
+val xs = array_copy_to_List_vt<a>(!p0, asz)
 //
 prval ((*returned*)) = fpf(pf)
 //
@@ -744,7 +744,7 @@ val ans =
   dynarray_insert_at<a>(DA, i, x, res)
 //
 in
-  option_vt_make_opt<a>(ans, res)
+  Option_vt_make_opt<a>(ans, res)
 end (* end of [dynarray_insert_at_opt] *)
 
 (* ****** ****** *)
@@ -794,7 +794,7 @@ var res: a?
 val ans = dynarray_takeout_at<a>(DA, i, res)
 //
 in
-  option_vt_make_opt<a>(ans, res)
+  Option_vt_make_opt<a>(ans, res)
 end // end of [dynarray_takeout_at_opt]
 
 (* ****** ****** *)

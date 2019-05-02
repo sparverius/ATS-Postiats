@@ -66,10 +66,10 @@ fun{a:vt0p}
 refcnt_decref
 (
   rfc: refcnt(a), x: &a? >> opt(a, b)
-) : #[b:bool] bool(b) // end-of-fun
+) : #[b:bool] Bool(b) // end-of-fun
 
 fun{a:vt0p}
-refcnt_decref_opt (rfc: refcnt(a)): Option_vt(a)
+refcnt_decref_opt (rfc: refcnt(a)): Option_vt_1(a)
 
 (* ****** ****** *)
 

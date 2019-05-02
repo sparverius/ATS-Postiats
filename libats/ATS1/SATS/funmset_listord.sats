@@ -71,12 +71,12 @@ funmset_make_pair
   (x1: a, x2: a, cmp: cmp a): mset (a)
 //
 fun{a:t@ype}
-funmset_make_list(xs: List a, cmp: cmp a): mset (a)
+funmset_make_list(xs: List_1 a, cmp: cmp a): mset (a)
 //
 (* ****** ****** *)
 
 fun{a:t@ype}
-funmset_size(xs: mset(INV(a))):<> Size
+funmset_size(xs: mset(INV(a))):<> Size_1
 
 (* ****** ****** *)
 

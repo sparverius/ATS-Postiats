@@ -76,7 +76,7 @@ fun{} funheap_make_nil{a:t0p} ():<> heap (a)
 (* ****** ****** *)
 //
 fun{a:t0p}
-funheap_size (heap(INV(a))):<> Size
+funheap_size (heap(INV(a))):<> Size_1
 //
 (* ****** ****** *)
 //
@@ -96,11 +96,11 @@ funheap_insert
 fun{a:t@ype}
 funheap_getmin (
   hp: heap (INV(a)), cmp: cmp a, res: &a? >> opt (a, b)
-) :<!wrt> #[b:bool] bool b // end of [funheap_getmin]
+) :<!wrt> #[b:bool] Bool b // end of [funheap_getmin]
 
 fun{a:t0p}
 funheap_getmin_opt
-  (hp: heap(INV(a)), cmp: cmp a):<!wrt> Option_vt (a)
+  (hp: heap(INV(a)), cmp: cmp a):<!wrt> Option_vt_1 (a)
 // end of [funheap_getmin_opt]
 
 (* ****** ****** *)
@@ -108,11 +108,11 @@ funheap_getmin_opt
 fun{a:t0p}
 funheap_delmin (
   hp: &heap(INV(a)) >> _, cmp: cmp a, res: &a? >> opt (a, b)
-) :<!wrt> #[b:bool] bool b // end of [funheap_delim]
+) :<!wrt> #[b:bool] Bool b // end of [funheap_delim]
 
 fun{a:t0p}
 funheap_delmin_opt
-  (hp: &heap(INV(a)) >> _, cmp: cmp a):<!wrt> Option_vt (a)
+  (hp: &heap(INV(a)) >> _, cmp: cmp a):<!wrt> Option_vt_1 (a)
 // end of [funheap_delmin_opt]
 
 (* ****** ****** *)

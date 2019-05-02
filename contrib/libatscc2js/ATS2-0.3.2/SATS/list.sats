@@ -26,14 +26,14 @@ LIBATSCC_targetloc
 //
 fun{a:t0p}
 fprint_list
-  (JSfilr, List(INV(a))): void = "mac#%"
+  (JSfilr, List_1(INV(a))): void = "mac#%"
 //
 fun{}
 fprint_list$sep(out: JSfilr): void = "mac#%"
 //
 fun{a:t0p}
 fprint_list_sep
-  (JSfilr, List(INV(a)), sep: string): void = "mac#%"
+  (JSfilr, List_1(INV(a)), sep: string): void = "mac#%"
 //
 overload fprint with fprint_list of 100
 //

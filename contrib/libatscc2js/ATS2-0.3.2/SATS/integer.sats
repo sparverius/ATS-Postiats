@@ -27,7 +27,7 @@ fun
 neg_int0 : int -<fun> int = "mac#%"
 //
 fun neg_int1
-  : {i:int} int(i) -<fun> int(~i) = "mac#%"
+  : {i:int} Int(i) -<fun> Int(~i) = "mac#%"
 //
 overload ~ with neg_int0 of 100
 overload ~ with neg_int1 of 110
@@ -40,9 +40,9 @@ fun succ_int0 : int -<fun> int = "mac#%"
 fun pred_int0 : int -<fun> int = "mac#%"
 //
 fun succ_int1
-  : {i:int} int(i) -<fun> int(i+1) = "mac#%"
+  : {i:int} Int(i) -<fun> Int(i+1) = "mac#%"
 fun pred_int1
-  : {i:int} int(i) -<fun> int(i-1) = "mac#%"
+  : {i:int} Int(i) -<fun> Int(i-1) = "mac#%"
 //
 overload succ with succ_int0 of 100
 overload pred with pred_int0 of 100
@@ -53,7 +53,7 @@ overload pred with pred_int1 of 110
 (* ****** ****** *)
 //
 fun half_int0 : int -<fun> int = "mac#%"
-fun half_int1 : {i:int} int(i) -<fun> int(i/2) = "mac#%"
+fun half_int1 : {i:int} Int(i) -<fun> Int(i/2) = "mac#%"
 //
 overload half with half_int0 of 100
 overload half with half_int1 of 110
@@ -67,13 +67,13 @@ fun div_int0_int0 : (int, int) -<fun> int = "mac#%"
 fun mod_int0_int0 : (int, int) -<fun> int = "mac#%"
 //
 fun add_int1_int1
-  : {i,j:int} (int(i), int(j)) -<fun> int(i+j) = "mac#%"
+  : {i,j:int} (Int(i), Int(j)) -<fun> Int(i+j) = "mac#%"
 fun sub_int1_int1
-  : {i,j:int} (int(i), int(j)) -<fun> int(i-j) = "mac#%"
+  : {i,j:int} (Int(i), Int(j)) -<fun> Int(i-j) = "mac#%"
 fun mul_int1_int1
-  : {i,j:int} (int(i), int(j)) -<fun> int(i*j) = "mac#%"
+  : {i,j:int} (Int(i), Int(j)) -<fun> Int(i*j) = "mac#%"
 fun div_int1_int1
-  : {i,j:int} (int(i), int(j)) -<fun> int(i/j) = "mac#%"
+  : {i,j:int} (Int(i), Int(j)) -<fun> Int(i/j) = "mac#%"
 //
 (* ****** ****** *)
 //
@@ -81,7 +81,7 @@ fun
 nmod_int1_int1
 { i,j:int
 | i >= 0; j > 0
-} (i: int(i), j: int(j)):<fun> int(nmod(i, j)) = "mac#%"
+} (i: Int(i), j: Int(j)):<fun> Int(nmod(i, j)) = "mac#%"
 //
 (* ****** ****** *)
 //
@@ -146,18 +146,18 @@ fun neq_int0_int0: (int, int) -<fun> bool = "mac#%"
 fun compare_int0_int0: (int, int) -<fun> int = "mac#%"
 //
 fun lt_int1_int1
-  : {i,j:int} (int(i), int(j)) -<fun> bool(i < j) = "mac#%"
+  : {i,j:int} (Int(i), Int(j)) -<fun> Bool(i < j) = "mac#%"
 fun lte_int1_int1
-  : {i,j:int} (int(i), int(j)) -<fun> bool(i <= j) = "mac#%"
+  : {i,j:int} (Int(i), Int(j)) -<fun> Bool(i <= j) = "mac#%"
 fun gt_int1_int1
-  : {i,j:int} (int(i), int(j)) -<fun> bool(i > j) = "mac#%"
+  : {i,j:int} (Int(i), Int(j)) -<fun> Bool(i > j) = "mac#%"
 fun gte_int1_int1
-  : {i,j:int} (int(i), int(j)) -<fun> bool(i >= j) = "mac#%"
+  : {i,j:int} (Int(i), Int(j)) -<fun> Bool(i >= j) = "mac#%"
 //
 fun eq_int1_int1
-  : {i,j:int} (int(i), int(j)) -<fun> bool(i == j) = "mac#%"
+  : {i,j:int} (Int(i), Int(j)) -<fun> Bool(i == j) = "mac#%"
 fun neq_int1_int1
-  : {i,j:int} (int(i), int(j)) -<fun> bool(i != j) = "mac#%"
+  : {i,j:int} (Int(i), Int(j)) -<fun> Bool(i != j) = "mac#%"
 //
 (* ****** ****** *)
 //
@@ -187,9 +187,9 @@ fun max_int0_int0: (int, int) -<fun> int = "mac#%"
 fun min_int0_int0: (int, int) -<fun> int = "mac#%"
 //
 fun max_int1_int1
-  : {i,j:int} (int(i), int(j)) -<fun> int(max(i,j)) = "mac#%"
+  : {i,j:int} (Int(i), Int(j)) -<fun> Int(max(i,j)) = "mac#%"
 fun min_int1_int1
-  : {i,j:int} (int(i), int(j)) -<fun> int(min(i,j)) = "mac#%"
+  : {i,j:int} (Int(i), Int(j)) -<fun> Int(min(i,j)) = "mac#%"
 //
 (* ****** ****** *)
 //

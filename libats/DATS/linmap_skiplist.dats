@@ -88,7 +88,7 @@ end // end of [linmap_skiplist_initize]
 extern
 fun
 linmap_random_lgN
-  {n:int | n >= 1} (lgMAX: int(n)): intBtwe(1, n)
+  {n:int | n >= 1} (lgMAX: Int(n)): intBtwe(1, n)
 // end of [linmap_random_lgN]
 
 (* ****** ****** *)
@@ -162,7 +162,7 @@ extern
 fun{
 } sknode_null
   {key:t0p;itm:vt0p}
-  {n:nat} (n: int n):<> sknode (key, itm, null, n)
+  {n:nat} (n: Int n):<> sknode (key, itm, null, n)
 implement{} sknode_null (n) = $UN.castvwtp0 (nullp)
 
 (* ****** ****** *)
@@ -173,7 +173,7 @@ fun
 ;itm:vt0p}
 sknode_make
   {lgN:int | lgN > 0}
-  (k0: key, x0: itm, lgN: int lgN): sknode1 (key, itm, lgN)
+  (k0: key, x0: itm, lgN: Int lgN): sknode1 (key, itm, lgN)
 // end of [sknode_make]
 extern
 fun
@@ -212,7 +212,7 @@ stadef sknodelst = sknodelst_type // HX: a shorthand
 extern
 fun{}
 sknodelst_make
-  {key:t0p;itm:vt0p}{n:nat} (n: int n):<!wrt> sknodelst (key, itm, n)
+  {key:t0p;itm:vt0p}{n:nat} (n: Int n):<!wrt> sknodelst (key, itm, n)
 // end of [sknodelst_make]
 
 (* ****** ****** *)
@@ -222,7 +222,7 @@ fun{}
 sknodelst_get_at
   {key:t0p;itm:vt0p}
   {n:int}{i:nat | i < n}
-  (nxa: sknodelst (key, INV(itm), n), i: int i):<> sknodeGt0 (key, itm, i)
+  (nxa: sknodelst (key, INV(itm), n), i: Int i):<> sknodeGt0 (key, itm, i)
 // end of [sknodelst_get_at]
 extern
 fun{}
@@ -230,7 +230,7 @@ sknodelst_set_at
   {key:t0p;itm:vt0p}
   {n:int}{i:nat | i < n}
 (
-  nxa: sknodelst (key, INV(itm), n), i: int i, nx0: sknodeGt0 (key, itm, i)
+  nxa: sknodelst (key, INV(itm), n), i: Int i, nx0: sknodeGt0 (key, itm, i)
 ) :<!wrt> void // end of [sknodelst_set_at]
 //
 overload [] with sknodelst_get_at
@@ -248,7 +248,7 @@ key:t0p;itm:vt0p
 extern
 fun{
 key:t0p;itm:vt0p
-} sknode_get_sknodelen{n:nat} (nx: sknode1 (key, INV(itm), n)):<> int (n)
+} sknode_get_sknodelen{n:nat} (nx: sknode1 (key, INV(itm), n)):<> Int (n)
 
 (* ****** ****** *)
 //
@@ -376,7 +376,7 @@ val len = p->sknodelen
 prval () = fpf (pf)
 //
 in
-  $UN.cast{int(n)}(len)
+  $UN.cast{Int(n)}(len)
 end // end of [sknode_get_sknodelen]
 
 (* ****** ****** *)
@@ -419,7 +419,7 @@ fun{
 key:t0p;itm:vt0p
 } sknode_get_next
   {n:int}{ni:nat | ni < n}
-  (nx: sknode1 (key, INV(itm), n), ni: int ni):<> sknodeGt0 (key, itm, ni)
+  (nx: sknode1 (key, INV(itm), n), ni: Int ni):<> sknodeGt0 (key, itm, ni)
 // end of [sknode_get_next]
 
 extern
@@ -427,7 +427,7 @@ fun{
 key:t0p;itm:vt0p
 } sknode_set_next
   {n,n1:int}{ni:nat | ni < n} (
-  nx: sknode1 (key, INV(itm), n), ni: int ni, nx0: sknodeGt0 (key, itm, ni)
+  nx: sknode1 (key, INV(itm), n), ni: Int ni, nx0: sknodeGt0 (key, itm, ni)
 ) :<!wrt> void // end of [sknode_set_next]
 
 (* ****** ****** *)
@@ -451,7 +451,7 @@ skiplist (
   key:t@ype, itm:vt@ype+
 ) = // HX: [lgN] is the *current* highest level
   | {N:nat}{lgN:nat | lgN <= lgMAX}
-    SKIPLIST (key, itm) of (size_t(N), int(lgN), sknodelst(key, itm, lgMAX))
+    SKIPLIST (key, itm) of (Size_t(N), Int(lgN), sknodelst(key, itm, lgMAX))
 // end of [skiplist]
 
 (* ****** ****** *)
@@ -607,13 +607,13 @@ extern
 fun{
 key:t0p;itm:vt0p
 } sknode_insert {n:int}{ni:nat | ni <= n} (
-  nx: sknode1 (key, INV(itm), n), k0: key, ni: int ni, nx0: sknode1 (key, itm)
+  nx: sknode1 (key, INV(itm), n), k0: key, ni: Int ni, nx0: sknode1 (key, itm)
 ) : void // end of [sknode_insert]
 extern
 fun{
 key:t0p;itm:vt0p
 } sknodelst_insert {n:int}{ni:nat | ni <= n} (
-  nxa: sknodelst (key, INV(itm), n), k0: key, ni: int ni, nx0: sknode1 (key, itm)
+  nxa: sknodelst (key, INV(itm), n), k0: key, ni: Int ni, nx0: sknode1 (key, itm)
 ) : void // end of [sknodelst_insert]
 //
 (* ****** ****** *)
@@ -775,14 +775,14 @@ fun{
 key:t0p;itm:vt0p
 } sknode_takeout
   {n:int}{ni:nat | ni <= n}
-  (nx: sknode1 (key, INV(itm), n), k0: key, ni: int ni): sknodeGt0 (key, itm, 0)
+  (nx: sknode1 (key, INV(itm), n), k0: key, ni: Int ni): sknodeGt0 (key, itm, 0)
 // end of [sknode_takeout]
 extern
 fun{
 key:t0p;itm:vt0p
 } sknodelst_takeout
   {n:int}{ni:nat | ni <= n}
-  (nxa: sknodelst (key, INV(itm), n), k0: key, ni: int ni): sknodeGt0 (key, itm, 0)
+  (nxa: sknodelst (key, INV(itm), n), k0: key, ni: Int ni): sknodeGt0 (key, itm, 0)
 // end of [sknodelst_takeout]
 //
 (* ****** ****** *)
@@ -875,7 +875,7 @@ case+ map of
       prval (
       ) = __assert (N) where
       {
-        extern praxi __assert {N:int} (N: size_t N): [N>0] void
+        extern praxi __assert {N:int} (N: Size_t N): [N>0] void
       } // end of [where] // end of [prval]
       val () = N := pred (N)
       prval () = fold@ (map)
@@ -1056,7 +1056,7 @@ fun loop
   {n:int}
   {i:int | 1 <= i; i <= n}
   .<n-i>. (
-  n: int n, i: int i, r: double
+  n: Int n, i: Int i, r: double
 ) :<> intBtwe (1, n) = let
 in
 //

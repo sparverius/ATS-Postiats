@@ -347,11 +347,11 @@ val opt =
 in
 //
 case+ opt of
-| ~None_vt() => ()
-| ~Some_vt(x0) =>
+| ~None1_vt() => ()
+| ~Some1_vt(x0) =>
   (
     let val () = assertloc(false) in (*void*) end
-  ) (* end of [Some_vt] *)
+  ) (* end of [Some1_vt] *)
 //  
 end // end of [gvdynarr_insert_atbeg]
 
@@ -365,8 +365,8 @@ val opt =
 in
 //
 case+ opt of
-| ~None_vt() => ()
-| ~Some_vt(x0) =>
+| ~None1_vt() => ()
+| ~Some1_vt(x0) =>
   let val () = assertloc(false) in (*void*) end
 //  
 end // end of [gvdynarr_insert_atend]
@@ -419,7 +419,7 @@ gvhashtbl_set_atkey
 val opt = hashtbl_insert(tbl, k0, x0)
 //
 in
-  case+ opt of ~None_vt() => () | ~Some_vt _ => ()
+  case+ opt of ~None1_vt() => () | ~Some1_vt _ => ()
 end // end of [gvhashtbl_set_atkey]
 
 implement
@@ -430,7 +430,7 @@ val opt = hashtbl_insert(tbl, k0, x0)
 //
 in
 //
-case+ opt of ~None_vt() => GVnil() | ~Some_vt(x1) => x1
+case+ opt of ~None1_vt() => GVnil() | ~Some1_vt(x1) => x1
 //
 end // end of [gvhashtbl_set_atkey]
 

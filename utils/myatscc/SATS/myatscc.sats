@@ -173,7 +173,7 @@ string_tokenize(inp: string): tokenlst
 (* ****** ****** *)
 
 fun
-tokenlst_tokenize(ts: List(token)): tokenlst
+tokenlst_tokenize(ts: List_1(token)): tokenlst
 
 (* ****** ****** *)
 //
@@ -211,7 +211,7 @@ prerr_myexp: myexp -> void
 fun
 fprint_myexp: fprint_type(myexp)
 fun
-fprint_myexplst: fprint_type(List(myexp))
+fprint_myexplst: fprint_type(List_1(myexp))
 //
 overload print with print_myexp
 overload prerr with prerr_myexp
@@ -235,7 +235,7 @@ the_name_i_env_initset
 fun
 the_name_i_env_initize
   {n:pos}
-  (argc: int(n), argv: !argv(n)): void
+  (argc: Int(n), argv: !argv(n)): void
 //
 (* ****** ****** *)
 //
@@ -249,7 +249,7 @@ local
 //
 assume
 myexpfun_type =
-  (List(gvalue)) -<cloref1> gvalue
+  (List_1(gvalue)) -<cloref1> gvalue
 //
 in
   // nothing
@@ -281,7 +281,7 @@ myatscc_evaldef((*void*)): string
 fun
 myatscc_main
   {n:pos}
-  (argc: int(n), argv: !argv(n)): int
+  (argc: Int(n), argv: !argv(n)): int
 //
 (* ****** ****** *)
 

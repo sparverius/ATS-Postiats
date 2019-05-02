@@ -81,9 +81,9 @@ macdef
 prelude_string0_copy = string0_copy
 //
 macdef
-prelude_string_make_list = string_make_list
+prelude_string_make_list = string_make_List
 macdef
-prelude_string_make_rlist = string_make_rlist
+prelude_string_make_rlist = string_make_rList
 //
 macdef
 prelude_string_make_substring = string_make_substring
@@ -284,8 +284,8 @@ string_make_list_vt
   (cs) = res where
 {
   val res =
-  string_make_list<>($UN.list_vt2t(cs))
-  val ((*freed*)) = list_vt_free<char>(cs)
+  string_make_list<>($UN.List_vt2t(cs))
+  val ((*freed*)) = List_vt_free<char>(cs)
 }
 //
 (* ****** ****** *)
@@ -317,8 +317,8 @@ string_make_rlist_vt
   (cs) = res where
 {
   val res =
-  string_make_rlist<>($UN.list_vt2t(cs))
-  val ((*freed*)) = list_vt_free<char>(cs)
+  string_make_rlist<>($UN.List_vt2t(cs))
+  val ((*freed*)) = List_vt_free<char>(cs)
 }
 //
 (* ****** ****** *)
@@ -484,7 +484,7 @@ fun
 loop
 {n:nat} .<n>.
 (
-p0: ptr, n: int(n)
+p0: ptr, n: Int(n)
 ) :<> void =
 (
 if

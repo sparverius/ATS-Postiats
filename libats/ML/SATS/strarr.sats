@@ -94,7 +94,7 @@ fun{}
 strarr_get_refsize
 (
 A0: strarr
-) :<> [n:nat] (arrayref (char, n), size_t (n))
+) :<> [n:nat] (arrayref (char, n), Size_t (n))
 // end of [strarr_get_refsize]
 //
 (* ****** ****** *)
@@ -232,7 +232,7 @@ fun
 strarr_tabulate
   {n:int}
 (
-  n: size_t(n), f: cfun(sizeLt(n), char)
+  n: Size_t(n), f: cfun(sizeLt(n), char)
 ) : strarr // end of [strarr_tabulate]
 //
 (* ****** ****** *)

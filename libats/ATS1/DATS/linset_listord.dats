@@ -75,19 +75,19 @@ set_t0ype_vtype (a:t0p) = List0_vt (a)
 (* ****** ****** *)
 
 implement{}
-linset_nil () = list_vt_nil ()
+linset_nil () = List_vt_nil ()
 implement{}
-linset_make_nil () = list_vt_nil ()
+linset_make_nil () = List_vt_nil ()
 
 (* ****** ****** *)
 
 implement{a}
-linset_make_sing (x) = list_make_sing<a> (x)
+linset_make_sing (x) = List_make_sing<a> (x)
 
 (* ****** ****** *)
 
 implement{a}
-linset_size (xs) = i2sz(list_vt_length (xs))
+linset_size (xs) = i2sz(List_vt_length (xs))
 
 (* ****** ****** *)
 
@@ -97,11 +97,11 @@ linset_is_member
 //
 fun loop
   {n:nat} .<n>. (
-  xs: !list_vt (a, n)
+  xs: !List_vt (a, n)
 ) :<cloref> bool =
 (
   case+ xs of
-  | list_vt_cons
+  | List_vt_cons
       (x, xs1) => let
       val sgn =
         compare_elt_elt<a> (x0, x, cmp)
@@ -111,7 +111,7 @@ fun loop
         then false else (if sgn < 0 then loop (xs1) else true)
       // end of [if]
     end // end of [list_vt_cons]
-  | list_vt_nil () => false
+  | List_vt_nil () => false
 ) (* end of [loop] *)
 //
 in
@@ -134,14 +134,14 @@ linset_is_subset
 fun loop
   {n1,n2:nat} .<n1+n2>.
 (
-  xs1: list (a, n1), xs2: list (a, n2)
+  xs1: List (a, n1), xs2: List (a, n2)
 ) :<cloref> bool =
 (
   case+ xs1 of
-  | list_cons
+  | List_cons
       (x1, xs11) => (
     case+ xs2 of
-    | list_cons
+    | List_cons
         (x2, xs21) => let
         val sgn =
           compare_elt_elt<a> (x1, x2, cmp)
@@ -151,13 +151,13 @@ fun loop
         else if sgn < 0 then loop (xs1, xs21)
         else loop (xs11, xs21)
       end
-    | list_nil ((*void*)) => false
+    | List_nil ((*void*)) => false
     ) // end of [list_cons]
-  | list_nil ((*void*)) => true
+  | List_nil ((*void*)) => true
 ) (* end of [loop] *)
 //
 in
-  loop ($UN.list_vt2t(xs1), $UN.list_vt2t(xs2))
+  loop ($UN.List_vt2t(xs1), $UN.List_vt2t(xs2))
 end // end of [linset_is_subset]
 
 (* ****** ****** *)
@@ -176,14 +176,14 @@ linset_is_equal
 fun loop
   {n1,n2:nat} .<n1+n2>.
 (
-  xs1: list (a, n1), xs2: list (a, n2)
+  xs1: List (a, n1), xs2: List (a, n2)
 ) :<cloref> bool =
 (
   case+ xs1 of
-  | list_cons
+  | List_cons
       (x1, xs11) => (
     case+ xs2 of
-    | list_cons
+    | List_cons
         (x2, xs21) => let
         val sgn =
           compare_elt_elt<a> (x1, x2, cmp)
@@ -191,23 +191,23 @@ fun loop
       in
         if sgn = 0 then loop (xs11, xs21) else false
       end // end of [list_cons]
-    | list_nil ((*void*)) => false
+    | List_nil ((*void*)) => false
     ) // end of [list_cons]
-  | list_nil ((*void*)) =>
+  | List_nil ((*void*)) =>
     (
-      case+ xs2 of list_cons _ => false | list_nil () => true
+      case+ xs2 of List_cons _ => false | List_nil () => true
     ) (* end of [list_nil] *)
 ) (* end of [loop] *)
 //
 in
-  loop ($UN.list_vt2t(xs1), $UN.list_vt2t(xs2))
+  loop ($UN.List_vt2t(xs1), $UN.List_vt2t(xs2))
 end // end of [linset_is_equal]
 
 (* ****** ****** *)
 //
-implement{a} linset_copy (xs) = list_vt_copy<a> (xs)
+implement{a} linset_copy (xs) = List_vt_copy<a> (xs)
 //
-implement{a} linset_free (xs) = list_vt_free<a> (xs)
+implement{a} linset_free (xs) = List_vt_free<a> (xs)
 //
 (* ****** ****** *)
 
@@ -216,11 +216,11 @@ linset_insert
   (xs, x0, cmp) = let
 //
 fun ins{n:nat} .<n>. ( // tail-recursive
-  xs: &list_vt (a, n) >> list_vt (a, n1)
+  xs: &List_vt (a, n) >> List_vt (a, n1)
 ) :<!wrt> #[n1:nat | n <= n1; n1 <= n+1] bool =
 (
   case+ xs of
-  | @list_vt_cons
+  | @List_vt_cons
       (x, xs1) => let
       val sgn =
         compare_elt_elt<a> (x0, x, cmp)
@@ -228,7 +228,7 @@ fun ins{n:nat} .<n>. ( // tail-recursive
     in
       if sgn > 0 then let
         prval () = fold@ (xs)
-        val () = xs := list_vt_cons{a}(x0, xs)
+        val () = xs := List_vt_cons{a}(x0, xs)
       in
         false
       end else if sgn < 0 then let
@@ -237,8 +237,8 @@ fun ins{n:nat} .<n>. ( // tail-recursive
         prval () = fold@ (xs) in true // [x0] is already in [xs]
       end // end of [if]
     end (* end of [list_vt_cons] *)
-  | ~list_vt_nil () => let
-      val () = xs := list_make_sing<a> (x0) in false
+  | ~List_vt_nil () => let
+      val () = xs := List_make_sing<a> (x0) in false
     end // end of [list_vt_nil]
 ) (* end of [ins] *)
 //
@@ -253,11 +253,11 @@ linset_remove
   (xs, x0, cmp) = let
 //
 fun rem {n:nat} .<n>. ( // tail-recursive
-  xs: &list_vt (a, n) >> list_vt (a, n1)
+  xs: &List_vt (a, n) >> List_vt (a, n1)
 ) :<!wrt> #[n1:nat | n1 <= n; n <= n1+1] bool =
 (
   case+ xs of
-  | @list_vt_cons
+  | @List_vt_cons
       (x, xs1) => let
       val sgn =
          compare_elt_elt<a> (x0, x, cmp)
@@ -275,7 +275,7 @@ fun rem {n:nat} .<n>. ( // tail-recursive
         true // [x0] is removed from [xs]
       end // end of [if]
     end (* end of [list_vt_cons] *)
-  | list_vt_nil ((*void*)) => false
+  | List_vt_nil ((*void*)) => false
 ) (* end of [rem] *)
 //
 in
@@ -294,14 +294,14 @@ linset_choose
 in
 //
 case+ xs of
-| list_vt_cons
+| List_vt_cons
     (x, xs1) => let
     val () = x0 := x
     prval () = opt_some{a}(x0)
   in
     true
   end // end of [list_vt_cons]
-| list_vt_nil () => let
+| List_vt_nil () => let
     prval () = opt_none{a}(x0)
   in
     false
@@ -321,9 +321,9 @@ val ans = linset_choose<a> (xs, x0)
 in
 //
 if ans then let
-  prval () = opt_unsome{a}(x0) in Some_vt{a}(x0)
+  prval () = opt_unsome{a}(x0) in Some1_vt{a}(x0)
 end else let
-  prval () = opt_unnone{a}(x0) in None_vt(*void*)
+  prval () = opt_unnone{a}(x0) in None1_vt(*void*)
 end (* end of [if] *)
 //
 end // end of [linset_choose_opt]
@@ -336,7 +336,7 @@ linset_chooseout
 in
 //
 case+ xs0 of
-| ~list_vt_cons
+| ~List_vt_cons
     (x, xs) => let
     val () = x0 := x
     prval () = opt_some{a}(x0)
@@ -344,7 +344,7 @@ case+ xs0 of
   in
     true
   end // end of [list_vt_cons]
-| list_vt_nil () => let
+| List_vt_nil () => let
     prval () = opt_none{a}(x0)
   in
     false
@@ -364,9 +364,9 @@ val ans = linset_chooseout<a> (xs, x0)
 in
 //
 if ans then let
-  prval () = opt_unsome{a}(x0) in Some_vt{a}(x0)
+  prval () = opt_unsome{a}(x0) in Some1_vt{a}(x0)
 end else let
-  prval () = opt_unnone{a}(x0) in None_vt(*void*)
+  prval () = opt_unnone{a}(x0) in None1_vt(*void*)
 end (* end of [if] *)
 //
 end // end of [linset_chooseout_opt]
@@ -383,15 +383,15 @@ vtypedef res = List0_vt (a)
 fun loop
   {n1,n2:nat} .<n1+n2>.
 (
-  xs1: list_vt (a, n1)
-, xs2: list_vt (a, n2), res: &res? >> res
+  xs1: List_vt (a, n1)
+, xs2: List_vt (a, n2), res: &res? >> res
 ) :<!wrt> void =
 (
   case+ xs1 of
-  | @list_vt_cons
+  | @List_vt_cons
       (x1, xs11) => (
     case+ xs2 of
-    | @list_vt_cons
+    | @List_vt_cons
         (x2, xs21) => let
         val sgn =
           compare_elt_elt<a> (x1, x2, cmp)
@@ -421,10 +421,10 @@ fun loop
           res := xs1
         end // end of [if]
       end // end of [list_vt_cons]
-    | ~list_vt_nil ((*void*)) =>
+    | ~List_vt_nil ((*void*)) =>
         let prval () = fold@{a}(xs1) in res := xs1 end
     ) // end of [list_vt_cons]
-  | ~list_vt_nil ((*void*)) => (res := xs2)
+  | ~List_vt_nil ((*void*)) => (res := xs2)
 ) (* end of [loop] *)
 //
 var res: res // uninitialized
@@ -438,7 +438,7 @@ end // end of [linset_union]
 
 implement{a}
 fprint_linset_sep
-  (out, xs, sep) = fprint_list_vt_sep (out, xs, sep)
+  (out, xs, sep) = fprint_List_vt_sep (out, xs, sep)
 // end of [fprint_linset_sep]
 
 (* ****** ****** *)
@@ -455,9 +455,9 @@ fun loop
 ) : void = (
 //
 case+ xs of
-| list_vt_cons (x, xs) =>
+| List_vt_cons (x, xs) =>
     (f (pf | x, env); loop (pf | xs, f, env))
-| list_vt_nil ((*void*)) => ()
+| List_vt_nil ((*void*)) => ()
 //
 ) (* end of [loop] *)
 //
@@ -472,7 +472,7 @@ implement{a} linset_listize (xs) = xs
 (* ****** ****** *)
 
 implement{a}
-linset_listize1 (xs) = list_vt_copy<a> (xs)
+linset_listize1 (xs) = List_vt_copy<a> (xs)
 
 (* ****** ****** *)
 

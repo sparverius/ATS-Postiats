@@ -73,8 +73,8 @@ val opt =
 in
 //
 case+ opt of
-| ~Some_vt(x) => x
-| ~None_vt((*void*)) => StreamSubscriptExn_throw()
+| ~Some1_vt(x) => x
+| ~None1_vt((*void*)) => StreamSubscriptExn_throw()
 //
 end // end of [stream_nth_exn]
 

@@ -121,7 +121,7 @@ gmatcol_v_split_2x1
   {m,n:int}{ld:int}
   {i,j:nat | i <= m}
 (
-  GMC(a, l, m, n, ld), int i
+  GMC(a, l, m, n, ld), Int i
 ) :
 (
   GMC(a, l            , i  , n, ld)
@@ -145,7 +145,7 @@ gmatcol_v_split1x2
   {m,n:int}{ld:int}
   {j:nat | j <= n}
 (
-  GMC(a, l, m, n, ld), int j
+  GMC(a, l, m, n, ld), Int j
 ) :
 (
   GMC(a, l               , m, j  , ld)
@@ -169,7 +169,7 @@ gmatcol_v_split_2x2
   {m,n:int}{ld:int}
   {i,j:nat | i <= m; j <= n}
 (
-  GMC(a, l, m, n, ld), int i, int j
+  GMC(a, l, m, n, ld), Int i, Int j
 ) :
 (
   GMC(a, l                           , i  , j  , ld)
@@ -195,13 +195,13 @@ fun{a:t0p}
 gmatcol_get_at
   {m,n:int}{ld:int}
 (
-  M: &GMC(a, m, n, ld), int(ld), i: natLt(m), j: natLt(n)
+  M: &GMC(a, m, n, ld), Int(ld), i: natLt(m), j: natLt(n)
 ) : (a) // end of [gmatcol_get_at]
 fun{a:t0p}
 gmatcol_set_at
   {m,n:int}{ld:int}
 (
-  M: &GMC(a, m, n, ld), int(ld), i: natLt(m), j: natLt(n), x: a
+  M: &GMC(a, m, n, ld), Int(ld), i: natLt(m), j: natLt(n), x: a
 ) : void // end of [gmatcol_set_at]
 
 (* ****** ****** *)
@@ -210,7 +210,7 @@ fun{a:t0p}
 gmatcol_getref_at
   {m,n:int}{ld:int}
 (
-  M: &GMC(a, m, n, ld), int(ld), i: natLt(m), j: natLt(n)
+  M: &GMC(a, m, n, ld), Int(ld), i: natLt(m), j: natLt(n)
 ) : cPtr1(a) // end of [gmatcol_getref_at]
 
 (* ****** ****** *)
@@ -219,14 +219,14 @@ fun{a:t0p}
 gmatcol_getref_row_at
   {m,n:int}{ld:int}
 (
-  M: &GMC(a, m, n, ld), int(ld), i: natLt(m)
+  M: &GMC(a, m, n, ld), Int(ld), i: natLt(m)
 ) : cPtr1(GVT(a, n, ld)) // endfun
 
 fun{a:t0p}
 gmatcol_getref_col_at
   {m,n:int}{ld:int}
 (
-  M: &GMC(a, m, n, ld), int(ld), j: natLt(n)
+  M: &GMC(a, m, n, ld), Int(ld), j: natLt(n)
 ) : cPtr1(GVT(a, m, 1(*d*))) // endfun
 
 (* ****** ****** *)
@@ -236,14 +236,14 @@ gmatcol_interchange_row
   {m,n:int}{ld:int}
 (
   M: &GMC(a, m, n, ld)
-, n: int n, int(ld), i1: natLt(m), i2: natLt(m)
+, n: Int n, Int(ld), i1: natLt(m), i2: natLt(m)
 ) : void // end of [gmatcol_interchange_row]
 fun{a:t0p}
 gmatcol_interchange_col
   {m,n:int}{ld:int}
 (
   M: &GMC(a, m, n, ld)
-, m: int m, int(ld), j1: natLt(n), j2: natLt(n)
+, m: Int m, Int(ld), j1: natLt(n), j2: natLt(n)
 ) : void // end of [gmatcol_interchange_col]
 
 (* ****** ****** *)
@@ -254,7 +254,7 @@ gmatcol_copyto
 (
   M1: &GMC(a, m, n, ld1)
 , M2: &GMC(a?, m, n, ld2) >> GMC(a, m, n, ld2)
-, int(m), int(n), int(ld1), int(ld2)
+, Int(m), Int(n), Int(ld1), Int(ld2)
 ) : void // end of [gmatcol_copyto]
 
 fun{a:t0p}
@@ -263,7 +263,7 @@ gmatcol_transpto
 (
   M1: &GMC(a, m, n, ld1)
 , M2: &GMC(a?, n, m, ld2) >> GMC(a, n, m, ld2)
-, int(m), int(n), int(ld1), int(ld2)
+, Int(m), Int(n), Int(ld1), Int(ld2)
 ) : void // end of [gmatcol_transpto]
 
 (* ****** ****** *)
@@ -274,7 +274,7 @@ gmatcol_ptr_split_2x2
   {m,n:int}{ld:int}
   {i,j:nat | i <= m; j <= n}
 (
-  pf: GMC(a, l, m, n, ld) | ptr(l), int(ld), int(i), int(j)
+  pf: GMC(a, l, m, n, ld) | ptr(l), Int(ld), Int(i), Int(j)
 ) : [l01,l10,l11:addr]
 (
   GMC(a, l  , i  , j  , ld)
@@ -296,20 +296,20 @@ fun{
 a:t0p}{env:vt0p
 } gmatcol_foreachcol$fwork{m:int}
 (
-  col: &GVT (a, m, 1) >> _, m: int m, env: &(env) >> _
+  col: &GVT (a, m, 1) >> _, m: Int m, env: &(env) >> _
 ) : void // end of [gmatcol_foreachcol$fwork]
 
 fun{
 a:t0p
 } gmatcol_foreachcol{m,n:int}{ld:int}
 (
-  M: &gmatcol(a, m, n, ld) >> _, int(m), int(n), int(ld)
+  M: &gmatcol(a, m, n, ld) >> _, Int(m), Int(n), Int(ld)
 ) : void // end of [gmatcol_foreachcol]
 fun{
 a:t0p}{env:vt0p
 } gmatcol_foreachcol_env{m,n:int}{ld:int}
 (
-  M: &gmatcol(a, m, n, ld) >> _, int(m), int(n), int(ld), env: &(env) >> _
+  M: &gmatcol(a, m, n, ld) >> _, Int(m), Int(n), Int(ld), env: &(env) >> _
 ) : void // end of [gmatcol_foreachcol_env]
 
 (* ****** ****** *)
@@ -320,7 +320,7 @@ a1,a2:t0p}{env:vt0p
 (
   col1: &GVT (a1, m, 1) >> _
 , col2: &GVT (a2, m, 1) >> _
-, m: int (m), env: &(env) >> _
+, m: Int (m), env: &(env) >> _
 ) : void // end of [gmatcol_foreachcol$fwork]
 
 fun{
@@ -330,7 +330,7 @@ a1,a2:t0p
 (
   M1: &gmatcol(a1, m, n, ld1) >> _
 , M2: &gmatcol(a2, m, n, ld2) >> _
-, int(m), int(n), int(ld1), int(ld2)
+, Int(m), Int(n), Int(ld1), Int(ld2)
 ) : void // end of [gmatcol_foreachcol]
 fun{
 a1,a2:t0p}{env:vt0p
@@ -339,7 +339,7 @@ a1,a2:t0p}{env:vt0p
 (
   M1: &gmatcol(a1, m, n, ld1) >> _
 , M2: &gmatcol(a2, m, n, ld2) >> _
-, int(m), int(n), int(ld1), int(ld2)
+, Int(m), Int(n), Int(ld1), Int(ld2)
 , env: &(env) >> _
 ) : void // end of [gmatcol_foreachcol2_env]
 

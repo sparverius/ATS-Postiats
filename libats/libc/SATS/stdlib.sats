@@ -139,7 +139,7 @@ char *l64a(long value); // not defined for a negative value
 fun l64a
   {i:nat}
 (
-  x: lint i
+  x: Lint i
 ) :<!refwrt> [l:agz] vttakeout0(strptr(l)) = "mac#%"
 // end of [l64a]
 
@@ -464,7 +464,7 @@ fun bsearch
 (
   key: &RD(a)
 , arr: &RD(@[INV(a)][n])
-, asz: size_t (n), tsz: sizeof_t (a)
+, asz: Size_t (n), tsz: sizeof_t (a)
 , cmp: cmpref (a)
 ) :<> Ptr0 = "mac#%" // end of [bsearch]
 
@@ -479,7 +479,7 @@ void qsort
 fun qsort
   {a:vt0p}{n:int}
 (
-  A: &(@[INV(a)][n]), asz: size_t (n), tsz: sizeof_t (a), cmp: cmpref (a)
+  A: &(@[INV(a)][n]), asz: Size_t (n), tsz: sizeof_t (a), cmp: cmpref (a)
 ) :<!wrt> void = "mac#%" // end of [qsort]
 
 (* ****** ****** *)
@@ -561,7 +561,7 @@ fun
 malloc_libc
   {n:int}
 (
-  bsz: size_t n
+  bsz: Size_t n
 ) :<!wrt>
 [
   l:addr
@@ -573,7 +573,7 @@ fun
 malloc_libc_exn
   {n:int}
 (
-  bsz: size_t(n)
+  bsz: Size_t(n)
 ) :<!wrt>
 [
   l:addr | l > null

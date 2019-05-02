@@ -96,10 +96,10 @@ list0(a:t@ype) = list0_t0ype_type(a)
 //
 castfn
 g0ofg1_list : 
-  {a:t0p}(List(a)) -<fun> list0(a)
+  {a:t0p}(List_1(a)) -<fun> list0(a)
 castfn
 list0_of_list :
-  {a:t0p}(List(a)) -<fun> list0(a)
+  {a:t0p}(List_1(a)) -<fun> list0(a)
 //
 castfn
 g1ofg0_list : 
@@ -115,10 +115,10 @@ overload g1ofg0 with g1ofg0_list of 100
 //
 castfn
 g0ofg1_list_vt :
-  {a:t0p}(List_vt(a)) -<fun> list0(a)
+  {a:t0p}(List_vt_1(a)) -<fun> list0(a)
 castfn
 list0_of_list_vt :
-  {a:t0p}(List_vt(a)) -<fun> list0(a)
+  {a:t0p}(List_vt_1(a)) -<fun> list0(a)
 //
 overload g0ofg1 with g0ofg1_list_vt of 100
 //
@@ -137,10 +137,10 @@ where option0 = option0_t0ype_type
 //
 castfn
 g0ofg1_option :
-  {a:t0p}(Option(a)) -<fun> option0(a)
+  {a:t0p}(Option_1(a)) -<fun> option0(a)
 castfn
 option0_of_option :
-  {a:t0p}(Option(a)) -<fun> option0(a)
+  {a:t0p}(Option_1(a)) -<fun> option0(a)
 //
 overload g0ofg1 with g0ofg1_option of 100
 //
@@ -148,10 +148,10 @@ overload g0ofg1 with g0ofg1_option of 100
 //
 castfn
 g0ofg1_option_vt :
-  {a:t0p}(Option_vt(a)) -<fun> option0(a)
+  {a:t0p}(Option_vt_1(a)) -<fun> option0(a)
 castfn
 option0_of_option_vt :
-  {a:t0p}(Option_vt(a)) -<fun> option0(a)
+  {a:t0p}(Option_vt_1(a)) -<fun> option0(a)
 //
 overload g0ofg1 with g0ofg1_option_vt of 100
 //

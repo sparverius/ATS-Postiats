@@ -20,8 +20,8 @@ extern
 fun{
 x:t0p}{y:vt0p
 } list_map_fun{n:int}
-( xs: list(x, n)
-, f0: (x) -<fun1> y): list_vt(y, n)
+( xs: List(x, n)
+, f0: (x) -<fun1> y): List_vt(y, n)
 implement
 {x}{y}(*tmp*)
 list_map_fun
@@ -29,11 +29,11 @@ list_map_fun
 //
 implement
 {x2}{y2}
-list_map$fopr(x2) =
+List_map$fopr(x2) =
   $UN.castvwtp0{y2}(fopr($UN.cast{x}(x2)))
 //
 in
-  list_map<x><y>(xs)
+  List_map<x><y>(xs)
 end // end of [list_map_fun]
 //
 (* ****** ****** *)
@@ -102,7 +102,7 @@ auxmain
 ) : stream(@(int, char)) = $delay
 (
 let
-  val c = $UN.ptr0_get<Char>(p) 
+  val c = $UN.ptr0_get<Char_1>(p) 
 in
   if
   iseqz(c)
@@ -264,8 +264,8 @@ ident_make
     ) : int =
     (
       case+ ics of
-      | list_nil() => p0+1
-      | list_cons
+      | List_nil() => p0+1
+      | List_cons
           (ic, ics) => loop(ic.pos(), ics)
         // list_cons
     )
@@ -274,12 +274,12 @@ ident_make
   val cs =
     list_map_fun<ichar><char>
       (ics, lam ic => ic.char())
-  val cs = list_vt_cons(c0, cs)
+  val cs = List_vt_cons(c0, cs)
   val cs =
     $UN.castvwtp0{List0_vt(charNZ)}(cs)
   val ide =
-    string_make_list($UN.list_vt2t{charNZ}(cs))
-  val ((*freed*)) = list_vt_free<char>(cs)
+    string_make_List($UN.List_vt2t{charNZ}(cs))
+  val ((*freed*)) = List_vt_free<char>(cs)
 in
   token_make_ide(p0, p1, strnptr2string(ide))
 end // end of [ident_make]
@@ -327,7 +327,7 @@ integer_make
   ics: List1(ichar)
 ) : token = let
 //
-  val+list_cons(ic, ics) = ics
+  val+List_cons(ic, ics) = ics
 //
   val p0 = ic.pos()
   val p1 = loop(p0, ics) where
@@ -339,22 +339,22 @@ integer_make
     ) : int =
     (
       case+ ics of
-      | list_nil() => p0+1
-      | list_cons
+      | List_nil() => p0+1
+      | List_cons
           (ic, ics) => loop(ic.pos(), ics)
         // list_cons
     )
   }
 //
   implement
-  list_foldleft$fopr<int><ichar>
+  List_foldleft$fopr<int><ichar>
     (res, ic) = 10 * res + (ic.char()-'0')
   // end of [list_foldleft$fopr]
 in
 //
 token_make_int
 ( p0, p1
-, list_foldleft<int><ichar>(ics, ic.char()-'0')
+, List_foldleft<int><ichar>(ics, ic.char()-'0')
 )
 //
 end (* end of [integer_make] *)
@@ -426,26 +426,26 @@ tokenlst_tokenize
 fun
 trans1
 (
-ts: List(token), res: tokenlst_vt
+ts: List_1(token), res: tokenlst_vt
 ) : tokenlst_vt =
 (
 case+ ts of
-| list_nil() => res
-| list_cons(t, ts) =>
+| List_nil() => res
+| List_cons(t, ts) =>
   (
     case-
     t.token_node
     of (*case-*)
     | TOKide _ =>
-      trans1(ts, cons_vt(t, res))
+      trans1(ts, Cons_vt(t, res))
     | TOKint _ => 
-      trans1(ts, cons_vt(t, res))
+      trans1(ts, Cons_vt(t, res))
     | TOKspchr(c) =>
       (
         ifcase
         | c = '$' => trans2(t, ts, res)
         | c = '\\' => trans3(t, ts, res)
-        | _(*else*) => trans1(ts, cons_vt(t, res))
+        | _(*else*) => trans1(ts, Cons_vt(t, res))
       )
   )
 ) (* end of [trans1] *)
@@ -454,13 +454,13 @@ and
 trans2
 (
 t0: token,
-ts1: List(token), res: tokenlst_vt
+ts1: List_1(token), res: tokenlst_vt
 ) : tokenlst_vt =
 (
 case+ ts1 of
-| list_nil() =>
-  cons_vt(t0, res)
-| list_cons(t1, ts2) =>
+| List_nil() =>
+  Cons_vt(t0, res)
+| List_cons(t1, ts2) =>
   (
     case+
     t1.token_node
@@ -471,7 +471,7 @@ case+ ts1 of
         val t01 =
         token_make_node(loc, TOKname_s(ide))
       in
-        trans1(ts2, cons_vt(t01, res))
+        trans1(ts2, Cons_vt(t01, res))
       end
     | TOKint(int) => let
         val loc =
@@ -479,10 +479,10 @@ case+ ts1 of
         val t01 =
         token_make_node(loc, TOKname_i(int))
       in
-        trans1(ts2, cons_vt(t01, res))
+        trans1(ts2, Cons_vt(t01, res))
       end
     | _(*rest-of-token*) =>
-        trans1(ts1, cons_vt(t0, res))
+        trans1(ts1, Cons_vt(t0, res))
   )
 )
 //
@@ -490,13 +490,13 @@ and
 trans3
 (
 t0: token,
-ts1: List(token), res: tokenlst_vt
+ts1: List_1(token), res: tokenlst_vt
 ) : tokenlst_vt =
 (
 case+ ts1 of
-| list_nil() =>
-  cons_vt(t0, res)
-| list_cons(t1, ts2) =>
+| List_nil() =>
+  Cons_vt(t0, res)
+| List_cons(t1, ts2) =>
   (
     case+
     t1.token_node
@@ -507,15 +507,15 @@ case+ ts1 of
         val t01 =
         token_make_node(loc, t1.token_node)
       in
-        trans1(ts2, cons_vt(t01, res))
+        trans1(ts2, Cons_vt(t01, res))
       end
     | _(*rest-of-token*) =>
-        trans1(ts1, cons_vt(t0, res))
+        trans1(ts1, Cons_vt(t0, res))
   )
 )
 //
 in
-  list_vt2t(list_vt_reverse(trans1(ts, list_vt_nil())))
+  List_vt2t(List_vt_reverse(trans1(ts, List_vt_nil())))
 end // end of [tokenlst_tokenize]
 
 (* ****** ****** *)

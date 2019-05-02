@@ -59,34 +59,34 @@ set_vtype (elt:t@ype) = List0_vt (elt)
 (* ****** ****** *)
 
 implement{}
-linset_nil () = list_vt_nil ()
+linset_nil () = List_vt_nil ()
 implement{}
-linset_make_nil () = list_vt_nil ()
+linset_make_nil () = List_vt_nil ()
 
 (* ****** ****** *)
 
 implement
 {a}(*tmp*)
 linset_sing
-  (x) = list_vt_cons{a}(x, list_vt_nil)
+  (x) = List_vt_cons{a}(x, List_vt_nil)
 // end of [linset_sing]
 implement{a}
 linset_make_sing
-  (x) = list_vt_cons{a}(x, list_vt_nil)
+  (x) = List_vt_cons{a}(x, List_vt_nil)
 // end of [linset_make_sing]
 
 (* ****** ****** *)
 
 implement{}
-linset_is_nil (xs) = list_vt_is_nil (xs)
+linset_is_nil (xs) = List_vt_is_nil (xs)
 implement{}
-linset_isnot_nil (xs) = list_vt_is_cons (xs)
+linset_isnot_nil (xs) = List_vt_is_cons (xs)
 
 (* ****** ****** *)
 
 implement{a}
 linset_size (xs) =
-  let val n = list_vt_length(xs) in i2sz(n) end
+  let val n = List_vt_length(xs) in i2sz(n) end
 // end of [linset_size]
 
 (* ****** ****** *)
@@ -98,16 +98,16 @@ linset_is_member
 fun aux
   {n:nat} .<n>.
 (
-  xs: !list_vt (a, n)
+  xs: !List_vt (a, n)
 ) :<> bool = let
 in
 //
 case+ xs of
-| list_vt_cons (x, xs) => let
+| List_vt_cons (x, xs) => let
     val sgn = compare_elt_elt<a> (x0, x) in
     if sgn > 0 then false else (if sgn < 0 then aux (xs) else true)
   end // end of [list_vt_cons]
-| list_vt_nil ((*void*)) => false
+| List_vt_nil ((*void*)) => false
 //
 end // end of [aux]
 //
@@ -118,9 +118,9 @@ end // end of [linset_is_member]
 (* ****** ****** *)
 
 implement{a}
-linset_copy (xs) = list_vt_copy<a> (xs)
+linset_copy (xs) = List_vt_copy<a> (xs)
 implement{a}
-linset_free (xs) = list_vt_free<a> (xs)
+linset_free (xs) = List_vt_free<a> (xs)
 
 (* ****** ****** *)
 
@@ -132,12 +132,12 @@ fun
 mynode_cons
   {n:nat} .<>.
 (
-  nx: mynode1 (a), xs: list_vt (a, n)
-) : list_vt (a, n+1) = let
+  nx: mynode1 (a), xs: List_vt (a, n)
+) : List_vt (a, n+1) = let
 //
 val xs1 =
 $UN.castvwtp0{List1_vt(a)}(nx)
-val+@list_vt_cons (_, xs2) = xs1
+val+@List_vt_cons (_, xs2) = xs1
 prval () = $UN.cast2void (xs2); val () = (xs2 := xs)
 //
 in
@@ -147,11 +147,11 @@ end // end of [mynode_cons]
 fun ins
   {n:nat} .<n>. // tail-recursive
 (
-  xs: &list_vt (a, n) >> list_vt (a, n1)
+  xs: &List_vt (a, n) >> List_vt (a, n1)
 ) : #[n1:nat | n <= n1; n1 <= n+1] bool =
 (
 case+ xs of
-| @list_vt_cons
+| @List_vt_cons
     (x, xs1) => let
     val sgn =
       compare_elt_elt<a> (x0, x)
@@ -174,7 +174,7 @@ case+ xs of
       true (* [x0] in [xs] *)
     end (* end of [if] *)
   end // end of [list_vt_cons]
-| list_vt_nil () => let
+| List_vt_nil () => let
     val nx = mynode_make_elt<a> (x0)
     val ((*void*)) = xs := mynode_cons (nx, xs)
   in
@@ -246,14 +246,14 @@ linset_choose
 in
 //
 case+ xs of
-| list_vt_cons
+| List_vt_cons
     (x, xs1) => let
     val () = x0 := x
     prval () = opt_some{a}(x0)
   in
     true
   end // end of [list_vt_cons]
-| list_vt_nil () => let
+| List_vt_nil () => let
     prval () = opt_none{a}(x0)
   in
     false
@@ -268,11 +268,11 @@ implement
 linset_foreach_env (xs, env) = let
 //
 implement
-list_vt_foreach$fwork<a><env>
+List_vt_foreach$fwork<a><env>
   (x, env) = linset_foreach$fwork<a><env> (x, env)
 //
 in
-  list_vt_foreach_env<a><env> (xs, env)
+  List_vt_foreach_env<a><env> (xs, env)
 end // end of [linset_foreach_env]
 
 (* ****** ****** *)
@@ -283,7 +283,7 @@ linset_listize (xs) = xs
 (* ****** ****** *)
 
 implement{a}
-linset_listize1 (xs) = list_vt_copy (xs)
+linset_listize1 (xs) = List_vt_copy (xs)
 
 (* ****** ****** *)
 //
@@ -303,7 +303,7 @@ implement
 mynode_make_elt
   (x) = let
 //
-val nx = list_vt_cons{a}{0}(x, _ )
+val nx = List_vt_cons{a}{0}(x, _ )
 //
 in
   $UN.castvwtp0{mynode1(a)}(nx)
@@ -317,7 +317,7 @@ implement{
 val nx =
   $UN.castvwtp0{List1_vt(a)}(nx)
 //
-val+~list_vt_cons (_, nx2) = nx
+val+~List_vt_cons (_, nx2) = nx
 //
 prval ((*void*)) = $UN.cast2void (nx2)
 //
@@ -333,7 +333,7 @@ mynode_get_elt
 val nx1 =
   $UN.castvwtp1{List1_vt(a)}(nx)
 //
-val+list_vt_cons (x, _) = nx1
+val+List_vt_cons (x, _) = nx1
 //
 prval ((*void*)) = $UN.cast2void (nx1)
 //
@@ -350,7 +350,7 @@ mynode_set_elt
 val nx1 =
   $UN.castvwtp1{List1_vt(a)}(nx)
 //
-val+@list_vt_cons (x, _) = nx1
+val+@List_vt_cons (x, _) = nx1
 //
 val () = x := x0
 //
@@ -374,7 +374,7 @@ mynode_getfree_elt
 val nx =
   $UN.castvwtp0{List1_vt(a)}(nx)
 //
-val+~list_vt_cons (x, nx2) = nx
+val+~List_vt_cons (x, nx2) = nx
 //
 prval ((*void*)) = $UN.cast2void (nx2)
 //
@@ -400,7 +400,7 @@ fun takeout
 in
 //
 case+ xs of
-| @list_vt_cons
+| @List_vt_cons
     (x, xs1) => let
     prval pf_x = view@x
     prval pf_xs1 = view@xs1
@@ -425,7 +425,7 @@ case+ xs of
       res // [x0] in [xs]
     end (* end of [if] *)
   end // end of [list_vt_cons]
-| list_vt_nil () => mynode_null{a}((*void*))
+| List_vt_nil () => mynode_null{a}((*void*))
 //
 end (* end of [takeout] *)
 //
@@ -442,7 +442,7 @@ linset_takeoutmax_ngc
 in
 //
 case+ xs of
-| @list_vt_cons
+| @List_vt_cons
     (x, xs1) => let
     prval pf_x = view@x
     prval pf_xs1 = view@xs1
@@ -451,7 +451,7 @@ case+ xs of
   in
     $UN.castvwtp0{mynode1(a)}((pf_x, pf_xs1 | xs_))
   end // end of [list_vt_cons]
-| @list_vt_nil () => let
+| @List_vt_nil () => let
     prval () = fold@ (xs)
   in
     mynode_null{a}((*void*))
@@ -469,22 +469,22 @@ linset_takeoutmin_ngc
 fun unsnoc
   {n:pos} .<n>.
 (
-  xs: &list_vt (a, n) >> list_vt (a, n-1)
+  xs: &List_vt (a, n) >> List_vt (a, n-1)
 ) :<!wrt> mynode1 (a) = let
 //
-val+@list_vt_cons (x, xs1) = xs
+val+@List_vt_cons (x, xs1) = xs
 //
 prval pf_x = view@x and pf_xs1 = view@xs1
 //
 in
 //
 case+ xs1 of
-| list_vt_cons _ =>
+| List_vt_cons _ =>
     let val res = unsnoc(xs1) in fold@xs; res end
   // end of [list_vt_cons]
-| list_vt_nil () => let
+| List_vt_nil () => let
     val xs_ = xs
-    val () = xs := list_vt_nil{a}()
+    val () = xs := List_vt_nil{a}()
   in
     $UN.castvwtp0{mynode1(a)}((pf_x, pf_xs1 | xs_))
   end // end of [list_vt_nil]
@@ -494,8 +494,8 @@ end // end of [unsnoc]
 in
 //
 case+ xs of
-| list_vt_cons _ => unsnoc (xs)
-| list_vt_nil () => mynode_null{a}((*void*))
+| List_vt_cons _ => unsnoc (xs)
+| List_vt_nil () => mynode_null{a}((*void*))
 //
 end // end of [linset_takeoutmin_ngc]
 

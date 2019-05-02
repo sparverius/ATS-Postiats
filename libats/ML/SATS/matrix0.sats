@@ -121,7 +121,7 @@ matrix0_get_refsize
   {a:vt0p}
 (
 M : matrix0(a)
-) :<> [m,n:nat] (matrixref(a, m, n), size_t(m), size_t(n))
+) :<> [m,n:nat] (matrixref(a, m, n), Size_t(m), Size_t(n))
 //
 (* ****** ****** *)
 //
@@ -190,8 +190,8 @@ fun
 {a:vt0p}
 matrix0_tabulate
   {m,n:int}
-( nrow: size_t(m)
-, ncol: size_t(n)
+( nrow: Size_t(m)
+, ncol: Size_t(n)
 , fopr: cfun(sizeLt(m), sizeLt(n), a)
 ) : matrix0(a) // end of [matrix0_tabulate]
 //
@@ -201,16 +201,16 @@ fun
 {a:vt0p}
 matrix0_tabulate_method_int
   {m,n:nat}
-( nrow: int(m)
-, ncol: int(n))(fopr: cfun(natLt(m), natLt(n), a)
+( nrow: Int(m)
+, ncol: Int(n))(fopr: cfun(natLt(m), natLt(n), a)
 ) : matrix0(a) // end of [matrix0_tabulate_method_int]
 //
 fun
 {a:vt0p}
 matrix0_tabulate_method_size
   {m,n:int}
-( nrow: size_t(m)
-, ncol: size_t(n))(fopr: cfun(sizeLt(m), sizeLt(n), a)
+( nrow: Size_t(m)
+, ncol: Size_t(n))(fopr: cfun(sizeLt(m), sizeLt(n), a)
 ) : matrix0(a) // end of [matrix0_tabulate_method_size]
 //
 overload

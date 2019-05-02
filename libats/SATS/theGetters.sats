@@ -50,7 +50,7 @@ ATS_PACKNAME "ATSLIB.libats.theGetters"
 fun
 {a:vt0p}
 the_get_elt
-  (&a? >> opt(a,b)): #[b:bool] bool(b)
+  (&a? >> opt(a,b)): #[b:bool] Bool(b)
 //
 (* ****** ****** *)
 //
@@ -68,7 +68,7 @@ fun{a:vt0p}
 the_getall_list(): List0_vt(a)
 fun{a:vt0p}
 the_getall_arrayptr
-  (asz: &size_t? >> size_t(n)): #[n:int] arrayptr(a, n)
+  (asz: &size_t? >> Size_t(n)): #[n:int] arrayptr(a, n)
 //
 (* ****** ****** *)
 //
@@ -81,7 +81,7 @@ the_getall_rlist_exn(): List0_vt(a)
 //
 fun{a:vt0p}
 the_getall_arrayptr_exn
-  (asz: &size_t? >> size_t(n)): #[n:int] arrayptr(a, n)
+  (asz: &size_t? >> Size_t(n)): #[n:int] arrayptr(a, n)
 //
 (* ****** ****** *)
 

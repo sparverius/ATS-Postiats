@@ -74,14 +74,14 @@ setenv_err
 // is based on STDLIB.random
 //
 fun{}
-randint{n:pos}(n: int(n)): natLt(n)
+randint{n:pos}(n: Int(n)): natLt(n)
 //
 (* ****** ****** *)
 //
 fun{}
 streamize_random((*void*)): stream_vt(intGte(0))
 fun{}
-streamize_randint{n:pos}(int(n)): stream_vt(natLt(n))
+streamize_randint{n:pos}(Int(n)): stream_vt(natLt(n))
 //
 (* ****** ****** *)
 //

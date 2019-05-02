@@ -141,7 +141,7 @@ gmatrow_v_split1x2
   {m,n:int}{ld:int}
   {j:nat | j <= n}
 (
-  GMR(a, l, m, n, ld), int j
+  GMR(a, l, m, n, ld), Int j
 ) :
 (
   GMR(a, l            , m, j  , ld)
@@ -165,7 +165,7 @@ gmatrow_v_split_2x1
   {m,n:int}{ld:int}
   {i,j:nat | i <= m}
 (
-  GMR(a, l, m, n, ld), int i
+  GMR(a, l, m, n, ld), Int i
 ) :
 (
   GMR(a, l               , i  , n, ld)
@@ -189,7 +189,7 @@ gmatrow_v_split_2x2
   {m,n:int}{ld:int}
   {i,j:nat | i <= m; j <= n}
 (
-  GMR(a, l, m, n, ld), int i, int j
+  GMR(a, l, m, n, ld), Int i, Int j
 ) :
 (
   GMR(a, l                           , i  , j  , ld)
@@ -215,13 +215,13 @@ fun{a:t0p}
 gmatrow_get_at
   {m,n:int}{ld:int}
 (
-  M: &GMR(a, m, n, ld), int(ld), i: natLt(m), j: natLt(n)
+  M: &GMR(a, m, n, ld), Int(ld), i: natLt(m), j: natLt(n)
 ) : (a) // end of [gmatrow_get_at]
 fun{a:t0p}
 gmatrow_set_at
   {m,n:int}{ld:int}
 (
-  M: &GMR(a, m, n, ld), int(ld), i: natLt(m), j: natLt(n), x: a
+  M: &GMR(a, m, n, ld), Int(ld), i: natLt(m), j: natLt(n), x: a
 ) : void // end of [gmatrow_set_at]
 
 (* ****** ****** *)
@@ -230,7 +230,7 @@ fun{a:t0p}
 gmatrow_getref_at
   {m,n:int}{ld:int}
 (
-  M: &GMR(a, m, n, ld), int(ld), i: natLt(m), j: natLt(n)
+  M: &GMR(a, m, n, ld), Int(ld), i: natLt(m), j: natLt(n)
 ) : cPtr1(a) // end of [gmatrow_getref_at]
 
 (* ****** ****** *)
@@ -239,14 +239,14 @@ fun{a:t0p}
 gmatrow_getref_row_at
   {m,n:int}{ld:int}
 (
-  M: &GMR(a, m, n, ld), int(ld), i: natLt(m)
+  M: &GMR(a, m, n, ld), Int(ld), i: natLt(m)
 ) : cPtr1(GVT(a, n, 1(*d*))) // endfun
 
 fun{a:t0p}
 gmatrow_getref_col_at
   {m,n:int}{ld:int}
 (
-  M: &GMR(a, m, n, ld), int(ld), j: natLt(n)
+  M: &GMR(a, m, n, ld), Int(ld), j: natLt(n)
 ) : cPtr1(GVT(a, m, ld)) // endfun
 
 (* ****** ****** *)
@@ -256,14 +256,14 @@ gmatrow_interchange_row
   {m,n:int}{ld:int}
 (
   M: &GMR(a, m, n, ld)
-, n: int n, int(ld), i1: natLt(m), i2: natLt(m)
+, n: Int n, Int(ld), i1: natLt(m), i2: natLt(m)
 ) : void // end of [gmatrow_interchange_row]
 fun{a:t0p}
 gmatrow_interchange_col
   {m,n:int}{ld:int}
 (
   M: &GMR(a, m, n, ld)
-, m: int m, int(ld), j1: natLt(n), j2: natLt(n)
+, m: Int m, Int(ld), j1: natLt(n), j2: natLt(n)
 ) : void // end of [gmatrow_interchange_col]
 
 (* ****** ****** *)
@@ -274,7 +274,7 @@ gmatrow_copyto
 (
   M1: &GMR(a, m, n, ld1)
 , M2: &GMR(a?, m, n, ld2) >> GMR(a, m, n, ld2)
-, int(m), int(n), int(ld1), int(ld2)
+, Int(m), Int(n), Int(ld1), Int(ld2)
 ) : void // end of [gmatrow_copyto]
 
 fun{a:t0p}
@@ -283,7 +283,7 @@ gmatrow_transpto
 (
   M1: &GMR(a, m, n, ld1)
 , M2: &GMR(a?, n, m, ld2) >> GMR(a, n, m, ld2)
-, int(m), int(n), int(ld1), int(ld2)
+, Int(m), Int(n), Int(ld1), Int(ld2)
 ) : void // end of [gmatrow_transpto]
 
 (* ****** ****** *)
@@ -294,7 +294,7 @@ gmatrow_ptr_split_2x2
   {m,n:int}{ld:int}
   {i,j:nat | i <= m; j <= n}
 (
-  pf: GMR(a, l, m, n, ld) | ptr(l), int(ld), int(i), int(j)
+  pf: GMR(a, l, m, n, ld) | ptr(l), Int(ld), Int(i), Int(j)
 ) : [l01,l10,l11:addr]
 (
   GMR(a, l  , i  , j  , ld)
@@ -316,20 +316,20 @@ fun{
 a:t0p}{env:vt0p
 } gmatrow_foreachrow$fwork{n:int}
 (
-  row: &GVT (a, n, 1) >> _, n: int n, env: &(env) >> _
+  row: &GVT (a, n, 1) >> _, n: Int n, env: &(env) >> _
 ) : void // end of [gmatrow_foreachrow$fwork]
 
 fun{
 a:t0p
 } gmatrow_foreachrow{m,n:int}{ld:int}
 (
-  M: &gmatrow(a, m, n, ld) >> _, int(m), int(n), int(ld)
+  M: &gmatrow(a, m, n, ld) >> _, Int(m), Int(n), Int(ld)
 ) : void // end of [gmatrow_foreachrow]
 fun{
 a:t0p}{env:vt0p
 } gmatrow_foreachrow_env{m,n:int}{ld:int}
 (
-  M: &gmatrow(a, m, n, ld) >> _, int(m), int(n), int(ld), env: &(env) >> _
+  M: &gmatrow(a, m, n, ld) >> _, Int(m), Int(n), Int(ld), env: &(env) >> _
 ) : void // end of [gmatrow_foreachrow_env]
 
 (* ****** ****** *)
@@ -340,7 +340,7 @@ a1,a2:t0p}{env:vt0p
 (
   row1: &GVT (a1, n, 1) >> _
 , row2: &GVT (a2, n, 1) >> _
-, n: int (n), env: &(env) >> _
+, n: Int (n), env: &(env) >> _
 ) : void // end of [gmatrow_foreachrow$fwork]
 
 fun{
@@ -350,7 +350,7 @@ a1,a2:t0p
 (
   M1: &gmatrow(a1, m, n, ld1) >> _
 , M2: &gmatrow(a2, m, n, ld2) >> _
-, int(m), int(n), int(ld1), int(ld2)
+, Int(m), Int(n), Int(ld1), Int(ld2)
 ) : void // end of [gmatrow_foreachrow]
 fun{
 a1,a2:t0p}{env:vt0p
@@ -359,7 +359,7 @@ a1,a2:t0p}{env:vt0p
 (
   M1: &gmatrow(a1, m, n, ld1) >> _
 , M2: &gmatrow(a2, m, n, ld2) >> _
-, int(m), int(n), int(ld1), int(ld2)
+, Int(m), Int(n), Int(ld1), Int(ld2)
 , env: &(env) >> _
 ) : void // end of [gmatrow_foreachrow2_env]
 

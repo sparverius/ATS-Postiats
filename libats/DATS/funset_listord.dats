@@ -75,16 +75,16 @@ set_type (a: t0p) = List0 (a)
 (* ****** ****** *)
 
 implement{
-} funset_nil () = list_nil ()
+} funset_nil () = List_nil ()
 implement{
-} funset_make_nil () = list_nil ()
+} funset_make_nil () = List_nil ()
 
 (* ****** ****** *)
 
 implement{a}
-funset_sing (x) = list_cons{a}(x, list_nil)
+funset_sing (x) = List_cons{a}(x, List_nil)
 implement{a}
-funset_make_sing (x) = list_cons{a}(x, list_nil)
+funset_make_sing (x) = List_cons{a}(x, List_nil)
 
 (* ****** ****** *)
 (*
@@ -98,21 +98,21 @@ funset_make_list
 val xs = let
 //
 implement
-list_mergesort$cmp<a>
+List_mergesort$cmp<a>
   (x, y) = compare_elt_elt<a> (x, y)
 //
 in
-  $effmask_wrt (list_mergesort<a> (xs))
+  $effmask_wrt (List_mergesort<a> (xs))
 end // end of [let] // [val]
 //
 fnx loop1
   {m:pos;n:nat} .<m,0>.
 (
-  xs: list_vt (a, m), ys: list_vt (a, n)
+  xs: List_vt (a, m), ys: List_vt (a, n)
 ) :<!wrt>
-  listLte_vt (a, m+n) = let
+  ListLte_vt (a, m+n) = let
 //
-val-@cons_vt (x, xs1) = xs
+val-@Cons_vt (x, xs1) = xs
 val x_ = x
 val xs1_ = xs1; val () = (xs1 := ys)
 prval () = fold@ (xs)
@@ -124,13 +124,13 @@ end // end of [loop1]
 and loop2
   {m:nat;n:nat} .<m,1>.
 (
-  x0: a, xs: list_vt (a, m), ys: list_vt (a, n)
+  x0: a, xs: List_vt (a, m), ys: List_vt (a, n)
 ) :<!wrt>
-  listLte_vt (a, m+n) = let
+  ListLte_vt (a, m+n) = let
 in
 //
 case+ xs of
-| @cons_vt (x, xs1) => let
+| @Cons_vt (x, xs1) => let
     val sgn = compare_elt_elt<a> (x0, x)
   in
     if (sgn < 0)
@@ -143,32 +143,32 @@ case+ xs of
       end // end of [else]
     // end of [if]
   end (* end of [cons_vt] *)
-| ~nil_vt ((*void*)) => ys
+| ~Nil_vt ((*void*)) => ys
 //
 end // end of [loop2]
 //
 in (* in of [let] *)
 //
 case+ xs of
-| cons_vt _ =>
+| Cons_vt _ =>
   (
-    $effmask_wrt (list_of_list_vt(loop1 (xs, nil_vt())))
+    $effmask_wrt (List_of_List_vt(loop1 (xs, Nil_vt())))
   ) // end of [cons_vt]
-| ~nil_vt () => list_nil ()
+| ~Nil_vt () => List_nil ()
 //
 end // end of [funset_make_list]
 
 (* ****** ****** *)
 
 implement{}
-funset_is_nil (xs) = list_is_nil (xs)
+funset_is_nil (xs) = List_is_nil (xs)
 implement{}
-funset_isnot_nil (xs) = list_is_cons (xs)
+funset_isnot_nil (xs) = List_is_cons (xs)
 
 (* ****** ****** *)
 
 implement{a}
-funset_size (xs) = g1int2uint (list_length<a> (xs))
+funset_size (xs) = g1int2uint (List_length<a> (xs))
 
 (* ****** ****** *)
 
@@ -178,16 +178,16 @@ funset_is_member
 //
 fun aux
   {n:nat} .<n>. (
-  xs: list (a, n)
+  xs: List (a, n)
 ) :<> bool = let
 in
 //
 case+ xs of
-| list_cons (x, xs) => let
+| List_cons (x, xs) => let
     val sgn = compare_elt_elt<a> (x0, x) in
     if sgn > 0 then false else (if sgn < 0 then aux (xs) else true)
-  end // end of [list_cons]
-| list_nil () => false
+  end // end of [List_cons]
+| List_nil () => false
 //
 end // end of [aux]
 in
@@ -203,26 +203,26 @@ funset_insert
 fun aux
   {n:nat} .<n>.
 (
-  xs: list (a, n), flag: &int >> _
+  xs: List (a, n), flag: &int >> _
 ) :<cloref1> List0 (a) = let
 in
 //
 case+ xs of
-| list_cons
+| List_cons
     (x, xs1) => let
     val sgn = compare_elt_elt<a> (x0, x)
   in
     if sgn > 0 then let
-      val () = flag := flag + 1 in list_cons{a}(x0, xs)
+      val () = flag := flag + 1 in List_cons{a}(x0, xs)
     end else if sgn < 0 then let
       val flag0 = flag
       val xs1 = aux (xs1, flag)
     in
-      if flag = flag0 then xs else list_cons{a}(x, xs1)
+      if flag = flag0 then xs else List_cons{a}(x, xs1)
     end else xs // end of [if]
-  end // end of [list_cons]
-| list_nil () => let
-    val () = flag := flag + 1 in list_cons{a}(x0, list_nil)
+  end // end of [List_cons]
+| List_nil () => let
+    val () = flag := flag + 1 in List_cons{a}(x0, List_nil)
   end // end of [val]
 //
 end // end of [aux]
@@ -242,12 +242,12 @@ funset_remove
 //
 fun aux {n:nat} .<n>.
 (
-  xs: list (a, n), flag: &int >> _
+  xs: List (a, n), flag: &int >> _
 ) :<cloref1> List0 (a) = let
 in
 //
 case xs of
-| list_cons (x, xs1) => let
+| List_cons (x, xs1) => let
     val sgn = compare_elt_elt<a> (x0, x)
   in
     if sgn > 0 then xs
@@ -255,12 +255,12 @@ case xs of
       val flag0 = flag
       val xs1 = aux (xs1, flag)
     in
-      if flag = flag0 then xs else list_cons{a}(x, xs1)
+      if flag = flag0 then xs else List_cons{a}(x, xs1)
     end else let
       val () = flag := flag + 1 in xs1
     end (* end of [if] *)
-  end // end of [list_cons]
-| list_nil () => list_nil ()
+  end // end of [List_cons]
+| List_nil () => List_nil ()
 //
 end // end of [aux]
 //
@@ -279,14 +279,14 @@ funset_getmax
 in
 //
 case+ xs of
-| list_cons
+| List_cons
     (x, _) => let
     val () = x0 := x
     prval () = opt_some{a}(x0) in true
-  end // end of [list_cons]
-| list_nil () => let
+  end // end of [List_cons]
+| List_nil () => let
     prval () = opt_none{a}(x0) in false
-  end // end of [list_nil]
+  end // end of [List_nil]
 //
 end // end of [funset_getmax]
 
@@ -298,13 +298,13 @@ funset_getmin
 in
 //
 case+ xs of
-| list_cons _ => let
-    val () = x0 := list_last (xs)
+| List_cons _ => let
+    val () = x0 := List_last (xs)
     prval () = opt_some{a}(x0) in true
-  end // end of [list_cons]
-| list_nil () => let
+  end // end of [List_cons]
+| List_nil () => let
     prval () = opt_none{a}(x0) in false
-  end // end of [list_nil]
+  end // end of [List_nil]
 //
 end // end of [funset_getmin]
 
@@ -316,15 +316,15 @@ funset_takeoutmax
 in
 //
 case+ xs of
-| list_cons
+| List_cons
     (x, xs2) => let
     val () = (x0 := x)
     val () = (xs := xs2)
     prval () = opt_some{a}(x0)
   in
     true
-  end // end of [list_cons]
-| list_nil () => let
+  end // end of [List_cons]
+| List_nil () => let
     prval () = opt_none{a}(x0)
   in
     false
@@ -340,35 +340,35 @@ funset_takeoutmin
 //
 fun aux{n:pos} .<n>.
 (
-  xs: list (a, n), x0: &a? >> a
-) :<!wrt> list (a, n-1) = let
+  xs: List (a, n), x0: &a? >> a
+) :<!wrt> List (a, n-1) = let
 //
-val+list_cons (x, xs2) = xs
+val+List_cons (x, xs2) = xs
 //
 in
 //
 case+ xs2 of
-| list_cons _ => let
+| List_cons _ => let
     val xs2 = aux (xs2, x0)
   in
-    list_cons{a}(x, xs2)
-  end // end of [list_cons]
-| list_nil () => let
-    val () = x0 := x in list_nil ()
-  end // end of [list_nil]
+    List_cons{a}(x, xs2)
+  end // end of [List_cons]
+| List_nil () => let
+    val () = x0 := x in List_nil ()
+  end // end of [List_nil]
 //
 end // end of [aux]
 //
 in
 //
 case+ xs of
-| list_cons _ => let
+| List_cons _ => let
     val () = xs := aux (xs, x0)
     prval () = opt_some{a}(x0) in true
-  end // end of [list_cons]
-| list_nil () => let
+  end // end of [List_cons]
+| List_nil () => let
     prval () = opt_none{a}(x0) in false
-  end // end of [list_nil]
+  end // end of [List_nil]
 //
 end // end of [funset_takeoutmin]
 
@@ -382,29 +382,29 @@ funset_union
 fun aux // non-tail-recursive
   {n1,n2:nat} .<n1+n2>.
 (
-  xs1: list (a, n1), xs2: list (a, n2)
+  xs1: List (a, n1), xs2: List (a, n2)
 ) :<> List0 (a) = let
 in
 //
 case xs1 of
-| list_cons
+| List_cons
     (x1, xs11) =>
   (
   case+ xs2 of
-  | list_cons (x2, xs21) => let
+  | List_cons (x2, xs21) => let
       val sgn = compare_elt_elt<a> (x1, x2)
     in
       if sgn > 0 then
-        list_cons{a}(x1, aux (xs11, xs2))
+        List_cons{a}(x1, aux (xs11, xs2))
       else if sgn < 0 then
-        list_cons{a}(x2, aux (xs1, xs21))
+        List_cons{a}(x2, aux (xs1, xs21))
       else
-        list_cons{a}(x1, aux (xs11, xs21))
+        List_cons{a}(x1, aux (xs11, xs21))
       // end of [if]
-    end // end of [list_cons]
-  | list_nil () => xs1
-  ) // end of [list_cons]
-| list_nil () => xs2
+    end // end of [List_cons]
+  | List_nil () => xs1
+  ) // end of [List_cons]
+| List_nil () => xs2
 //
 end // end of [aux]
 //
@@ -422,16 +422,16 @@ funset_intersect
 fun aux // non-tail-recursive
   {n1,n2:nat} .<n1+n2>.
 (
-  xs1: list (a, n1), xs2: list (a, n2)
+  xs1: List (a, n1), xs2: List (a, n2)
 ) :<> List0 (a) = let
 in
 //
 case xs1 of
-| list_cons
+| List_cons
     (x1, xs11) =>
   (
   case+ xs2 of
-  | list_cons (x2, xs21) => let
+  | List_cons (x2, xs21) => let
       val sgn = compare_elt_elt<a> (x1, x2)
     in
       if sgn > 0 then
@@ -439,12 +439,12 @@ case xs1 of
       else if sgn < 0 then
         aux (xs1, xs21)
       else
-        list_cons{a}(x1, aux (xs11, xs21))
+        List_cons{a}(x1, aux (xs11, xs21))
       // end of [if]
-    end // end of [list_cons]
-  | list_nil () => list_nil ()
-  ) // end of [list_cons]
-| list_nil () => list_nil ()
+    end // end of [List_cons]
+  | List_nil () => List_nil ()
+  ) // end of [List_cons]
+| List_nil () => List_nil ()
 //
 end // end of [aux]
 //
@@ -462,28 +462,28 @@ funset_differ
 fun aux // non-tail-recursive
   {n1,n2:nat} .<n1+n2>.
 (
-  xs1: list (a, n1), xs2: list (a, n2)
+  xs1: List (a, n1), xs2: List (a, n2)
 ) :<cloref0> List0 (a) = let
 in
 //
 case xs1 of
-| list_cons
+| List_cons
     (x1, xs11) => (
   case+ xs2 of
-  | list_cons
+  | List_cons
       (x2, xs21) => let
       val sgn = compare_elt_elt<a> (x1, x2)
     in
       if sgn > 0
-        then list_cons{a}(x1, aux (xs11, xs2))
+        then List_cons{a}(x1, aux (xs11, xs2))
         else (
           if sgn < 0 then aux (xs1, xs21) else aux (xs11, xs21)
         ) (* end of [else] *)
       // end of [if]
-    end // end of [list_cons]
-  | list_nil () => xs1
-  ) // end of [list_cons]
-| list_nil () => xs2
+    end // end of [List_cons]
+  | List_nil () => xs1
+  ) // end of [List_cons]
+| List_nil () => xs2
 //
 end // end of [aux]
 //
@@ -501,31 +501,31 @@ funset_symdiff
 fun aux // non-tail-recursive
   {n1,n2:nat} .<n1+n2>.
 (
-  xs1: list (a, n1), xs2: list (a, n2)
+  xs1: List (a, n1), xs2: List (a, n2)
 ) :<> List0 (a) = let
 in
 //
 case xs1 of
-| list_cons
+| List_cons
     (x1, xs11) => (
   case+ xs2 of
-  | list_cons
+  | List_cons
       (x2, xs21) => let
       val sgn =
         compare_elt_elt<a> (x1, x2)
       // end of [val]
     in
       if sgn > 0 then
-        list_cons{a}(x1, aux (xs11, xs2))
+        List_cons{a}(x1, aux (xs11, xs2))
       else if sgn < 0 then
-        list_cons{a}(x2, aux (xs1, xs21))
+        List_cons{a}(x2, aux (xs1, xs21))
       else
         aux (xs11, xs21)
       // end of [if]
-    end // end of [list_cons]
-  | list_nil () => xs1
-  ) // end of [list_cons]
-| list_nil () => xs2
+    end // end of [List_cons]
+  | List_nil () => xs1
+  ) // end of [List_cons]
+| List_nil () => xs2
 //
 end // end of [aux]
 //
@@ -542,23 +542,23 @@ funset_compare
 fun aux // tail-recursive
   {n1,n2:nat} .<n1>.
 (
-  xs1: list (a, n1), xs2: list (a, n2)
+  xs1: List (a, n1), xs2: List (a, n2)
 ) :<> Sgn = (
   case+ xs1 of
-  | list_cons
+  | List_cons
       (x1, xs1) => (
     case+ xs2 of
-    | list_cons (x2, xs2) => let
+    | List_cons (x2, xs2) => let
         val sgn = compare_elt_elt<a> (x1, x2)
       in
         if sgn > 0 then 1 else (
           if sgn < 0 then ~1 else aux (xs1, xs2)
         ) // end of [if]
-      end // end of [list_cons]
-    | list_nil () => 1
-    ) // end of [list_cons]
-  | list_nil () => (
-    case+ xs2 of list_cons _ => ~1 | list_nil _ => 0
+      end // end of [List_cons]
+    | List_nil () => 1
+    ) // end of [List_cons]
+  | List_nil () => (
+    case+ xs2 of List_cons _ => ~1 | List_nil _ => 0
     )
 ) // end of [aux]
 //
@@ -575,25 +575,25 @@ funset_is_subset
 fun aux // tail-recursive
   {n1,n2:nat} .<n1+n2>.
 (
-  xs1: list (a, n1), xs2: list (a, n2)
+  xs1: List (a, n1), xs2: List (a, n2)
 ) :<> bool = let
 in
 //
 case+ xs1 of
-| list_cons
+| List_cons
     (x1, xs11) => (
   case+ xs2 of
-  | list_cons
+  | List_cons
       (x2, xs21) => let
       val sgn = compare_elt_elt<a> (x1, x2)
     in
       if sgn > 0 then false else
         (if sgn < 0 then aux (xs1, xs21) else aux (xs11, xs21))
       // end of [if]
-    end // end of [list_cons]
-  | list_nil () => false
-  ) // end of [list_cons]
-| list_nil () => true
+    end // end of [List_cons]
+  | List_nil () => false
+  ) // end of [List_cons]
+| List_nil () => true
 //
 end // end of [aux]
 //
@@ -608,17 +608,17 @@ implement
 funset_foreach_env
   (xs, env) = let
 //
-val xs = list_reverse (xs)
+val xs = List_reverse (xs)
 //
 implement{a}{env}
-list_vt_foreach$cont (x, env) = true
+List_vt_foreach$cont (x, env) = true
 implement
-list_vt_foreach$fwork<a><env> (x, env) =
+List_vt_foreach$fwork<a><env> (x, env) =
   funset_foreach$fwork<a><env> (x, env)
 //
-val () = list_vt_foreach_env<a><env> (xs, env)
+val () = List_vt_foreach_env<a><env> (xs, env)
 //
-val () = list_vt_free (xs)
+val () = List_vt_free (xs)
 //
 in
   // nothing
@@ -627,7 +627,7 @@ end // end of [funset_foreach_env]
 (* ****** ****** *)
 
 implement{a}
-funset_listize (xs) = list_reverse<a> (xs)
+funset_listize (xs) = List_reverse<a> (xs)
 
 (* ****** ****** *)
 

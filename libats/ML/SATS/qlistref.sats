@@ -73,7 +73,7 @@ fun
 qlistref_takeout_exn(qlistref(a)):<!ref> (a)
 fun
 {a:vt0p}
-qlistref_takeout_opt(qlistref(a)):<!ref> Option_vt(a)
+qlistref_takeout_opt(qlistref(a)):<!ref> Option_vt_1(a)
 //
 (* ****** ****** *)
 //

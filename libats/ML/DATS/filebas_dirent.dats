@@ -157,7 +157,7 @@ then let
 //
 in
 //
-  g0ofg1_list(list_vt2t(res2))
+  g0ofg1_list(List_vt2t(res2))
 //
 end // end of [then]
 else let

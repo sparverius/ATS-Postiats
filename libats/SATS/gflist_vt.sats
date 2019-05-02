@@ -61,7 +61,7 @@ gflist_vt_length
   {xs:ilist}
 (
   xs: !gflist_vt(INV(a), xs)
-) :<> [n:nat] (LENGTH(xs, n) | int(n))
+) :<> [n:nat] (LENGTH(xs, n) | Int(n))
 // end of [gflist_vt_length]
 //
 (* ****** ****** *)
@@ -117,7 +117,7 @@ gflist_vt_mergesort
 fun{a:vt0p}
 gflist_vt_mergesort$cmp
   {x1,x2:int}
-  (x1: &stamped_vt(a, x1), x2: &stamped_vt(a, x2)): int(sgn(x1-x2))
+  (x1: &stamped_vt(a, x1), x2: &stamped_vt(a, x2)): Int(sgn(x1-x2))
 //
 (* ****** ****** *)
 

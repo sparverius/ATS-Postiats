@@ -108,11 +108,11 @@ dynarray_getref_at
 //
 fun{a:vt0p}
 dynarray_insert_atbeg
-  (DA: dynarray(a), x0: a): Option_vt(a)
+  (DA: dynarray(a), x0: a): Option_vt_1(a)
 //
 fun{a:vt0p}
 dynarray_insert_atend
-  (DA: dynarray(a), x0: a): Option_vt(a)
+  (DA: dynarray(a), x0: a): Option_vt_1(a)
 //
 (* ****** ****** *)
 //
@@ -125,22 +125,22 @@ fun{a:vt0p}
 dynarray_insert_at
 (
   DA: dynarray(a), i: size_t, x0: a
-) : Option_vt(a) // end-of-function
+) : Option_vt_1(a) // end-of-function
 //
 (* ****** ****** *)
 //
 fun{a:vt0p}
 dynarray_takeout_atbeg
-  (DA: dynarray(INV(a))): Option_vt(a)
+  (DA: dynarray(INV(a))): Option_vt_1(a)
 fun{a:vt0p}
 dynarray_takeout_atend
-  (DA: dynarray(INV(a))): Option_vt(a)
+  (DA: dynarray(INV(a))): Option_vt_1(a)
 //
 (* ****** ****** *)
 //
 fun{a:vt0p}
 dynarray_takeout_at
-  (DA: dynarray(a), i: size_t): Option_vt(a)
+  (DA: dynarray(a), i: size_t): Option_vt_1(a)
 //
 (* ****** ****** *)
 //

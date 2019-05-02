@@ -13,8 +13,8 @@ staload "./../../basics.sats"
 fun
 matrix0_make_elt
 {a:t@ype}{m,n:nat}
-( nrow: int(m)
-, ncol: int(n), x0: a): matrix0(a) = "mac#%"
+( nrow: Int(m)
+, ncol: Int(n), x0: a): matrix0(a) = "mac#%"
 //
 (* ****** ****** *)
 //
@@ -122,8 +122,8 @@ fun
 matrix0_tabulate
   {a:vt0p}
   {m,n:nat}
-( nrow: int(m)
-, ncol: int(n)
+( nrow: Int(m)
+, ncol: Int(n)
 , fopr: (natLt(m), natLt(n)) -<cloref1> (a)
 ) : matrix0(a) = "mac#%" // end-of-function
 //

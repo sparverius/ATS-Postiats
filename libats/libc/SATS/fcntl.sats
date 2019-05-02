@@ -79,10 +79,10 @@ fildes_neg_elim
 // HX: this is just a castfn
 //
 fun fildes_get_int
-  {fd:int} (fd: !fildes (fd)):<> int (fd) = "mac#%"
+  {fd:int} (fd: !fildes (fd)):<> Int (fd) = "mac#%"
 //
 fun fildes_isgtez
-  {fd:int} (fd: !fildes (fd)):<> bool (fd >= 0) = "mac#%"
+  {fd:int} (fd: !fildes (fd)):<> Bool (fd >= 0) = "mac#%"
 //
 (* ****** ****** *)
 //

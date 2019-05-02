@@ -264,7 +264,7 @@ gmatrow_foreachrow_env
 fun loop
   {l:addr}{m:nat} .<m>.
 (
-  pfM: !GMR(a, l, m, n, ld) | p: ptr l, m: int m, env: &env
+  pfM: !GMR(a, l, m, n, ld) | p: ptr l, m: Int m, env: &env
 ) : void = let
 in
 //
@@ -319,7 +319,7 @@ fun loop
 (
   pfA: !GMR(a1, l1, m, n, lda)
 , pfB: !GMR(a2, l2, m, n, ldb)
-| p1: ptr l1, p2: ptr l2, m: int m, env: &env
+| p1: ptr l1, p2: ptr l2, m: Int m, env: &env
 ) : void = let
 in
 //

@@ -199,7 +199,7 @@ fprint_gmatrix
   {mo:mord}{m,n:int}{ld:int}
 (
   FILEref
-, V: &GMX(a, mo, m, n, ld), MORD(mo), int(m), int(n), int(ld)
+, V: &GMX(a, mo, m, n, ld), MORD(mo), Int(m), Int(n), Int(ld)
 ) : void // end of [fprint_gmatrix]
 
 fun{a:t0p}
@@ -208,7 +208,7 @@ fprint_gmatrix_sep
 (
   FILEref
 , V: &GMX(a, mo, m, n, ld)
-, MORD(mo), int(m), int(n), int(ld), sep1: string, sep: string
+, MORD(mo), Int(m), Int(n), Int(ld), sep1: string, sep: string
 ) : void // end of [fprint_gmatrix_sep]
 
 (* ****** ****** *)
@@ -225,14 +225,14 @@ a:t0p
 } gmatrix_iforeach
   {mo:mord}{m,n:int}{ld:int}
 (
-  M: &GMX(a, mo, m, n, ld) >> _, MORD(mo), int m, int n, int ld
+  M: &GMX(a, mo, m, n, ld) >> _, MORD(mo), Int m, Int n, Int ld
 ) : void // end of [gmatrix_iforeach]
 fun{
 a:t0p}{env:vt0p
 } gmatrix_iforeach_env
   {mo:mord}{m,n:int}{ld:int}
 (
-  M: &GMX(a, mo, m, n, ld) >> _, MORD(mo), int m, int n, int ld, env: &(env) >> _
+  M: &GMX(a, mo, m, n, ld) >> _, MORD(mo), Int m, Int n, Int ld, env: &(env) >> _
 ) : void // end of [gmatrix_iforeach_env]
 
 (* ****** ****** *)
@@ -245,13 +245,13 @@ fun{a:t0p}
 gmatrix_imake_arrayptr
   {mo:mord}{m,n:int}{ld:int}
 (
-  M: &GMX(a, mo, m, n, ld), mo: MORD(mo), int m, int n, int(ld)
+  M: &GMX(a, mo, m, n, ld), mo: MORD(mo), Int m, Int n, Int(ld)
 ) : arrayptr (a, m*n) // end of [gmatrix_imake_arrayptr]
 fun{a:t0p}
 gmatrix_imake_matrixptr
   {mo:mord}{m,n:int}{ld:int}
 (
-  M: &GMX(a, mo, m, n, ld), mo: MORD(mo), int m, int n, int(ld)
+  M: &GMX(a, mo, m, n, ld), mo: MORD(mo), Int m, Int n, Int(ld)
 ) : matrixptr (a, m, n) // end of [gmatrix_imake_matrixptr]
 
 (* ****** ****** *)

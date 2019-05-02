@@ -77,11 +77,11 @@ lindeque_nil{a} () = $UN.castvwtp0{deque(a,0)}(nullp)
 //
 implement{}
 lindeque_is_nil{a}{n} (dq) =
-  $UN.cast{bool(n==0)}($UN.castvwtp1{ptr}(dq) = nullp)
+  $UN.cast{Bool(n==0)}($UN.castvwtp1{ptr}(dq) = nullp)
 //
 implement{}
 lindeque_isnot_nil{a}{n} (dq) =
-  $UN.cast{bool(n > 0)}($UN.castvwtp1{ptr}(dq) > nullp)
+  $UN.cast{Bool(n > 0)}($UN.castvwtp1{ptr}(dq) > nullp)
 //
 (* ****** ****** *)
 
@@ -109,7 +109,7 @@ if isnot then let
   val nxs = $UN.castvwtp1{g2node1(a)}(dq)
   val len = $effmask_all (loop (nxs, gnode2ptr (nxs), 1))
 in
-  $UN.cast{int(n)}(len)
+  $UN.cast{Int(n)}(len)
 end else (0) // end of [if]
 //
 end // end of [lindeque_length]

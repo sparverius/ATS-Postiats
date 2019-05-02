@@ -126,14 +126,14 @@ fun
 int_list_map_cloref
   {a:t0p}{n:nat}
 (
- n: int(n), fopr: cfun(int, a)
-) : list(a, n) = "mac#%" // end-of-fun
+ n: Int(n), fopr: cfun(int, a)
+) : List(a, n) = "mac#%" // end-of-fun
 fun
 int_list_map_method
   {a:t0p}{n:nat}
 (
- n: int(n), _: TYPE(a))(fopr: cfun(int, a)
-) : list(a, n) = "mac#%" // end-of-function
+ n: Int(n), _: TYPE(a))(fopr: cfun(int, a)
+) : List(a, n) = "mac#%" // end-of-function
 //
 overload .list_map with int_list_map_method
 //
@@ -157,12 +157,12 @@ fun
 int_stream_map_cloref
   {a:t0p}{n:nat}
 (
-n0: int(n), fopr: cfun1(natLt(n), a)
+n0: Int(n), fopr: cfun1(natLt(n), a)
 ) : stream(a) = "mac#%"
 fun
 int_stream_map_method
   {a:t0p}{n:nat}
-  (int(n), TYPE(a))
+  (Int(n), TYPE(a))
 : (cfun1(natLt(n), a)) -<cloref1> stream(a) = "mac#%"
 //
 overload .stream_map with int_stream_map_method
@@ -173,12 +173,12 @@ fun
 int_stream_vt_map_cloref
   {a:vt0p}{n:nat}
 (
-  n0: int(n), fopr: cfun1(natLt(n), a)
+  n0: Int(n), fopr: cfun1(natLt(n), a)
 ) : stream_vt(a) = "mac#%" // end-of-function
 fun
 int_stream_vt_map_method
   {a:vt0p}{n:nat}
-  (n0: int(n), TYPE(a))
+  (n0: Int(n), TYPE(a))
 : (cfun1(natLt(n), a)) -<lincloptr1> stream_vt(a) = "mac#%"
 //
 overload .stream_vt_map with int_stream_vt_map_method

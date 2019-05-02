@@ -132,19 +132,19 @@ dllist_unsnoc{f:int | f > 0}
 
 fun{a:t0p}
 dllist_make_list
-  {n:int} (xs: list (INV(a), n)):<!wrt> dllist (a, 0, n)
+  {n:int} (xs: List (INV(a), n)):<!wrt> dllist (a, 0, n)
 // end of [dllist_make_list]
 
 (* ****** ****** *)
 
 fun{
 } dllist_is_nil
-  {a:vt0p}{f,r:int} (xs: !dllist (INV(a), f, r)):<> bool (r==0)
+  {a:vt0p}{f,r:int} (xs: !dllist (INV(a), f, r)):<> Bool (r==0)
 // end of [dllist_is_nil]
 
 fun{
 } dllist_is_cons
-  {a:vt0p}{f,r:int} (xs: !dllist (INV(a), f, r)):<> bool (r > 0)
+  {a:vt0p}{f,r:int} (xs: !dllist (INV(a), f, r)):<> Bool (r > 0)
 // end of [dllist_is_cons]
 
 (* ****** ****** *)
@@ -152,23 +152,23 @@ fun{
 fun{a:vt0p}
 dllist_is_atbeg
   {f,r:int}
-  (xs: !dllist (INV(a), f, r)):<> bool (f==0)
+  (xs: !dllist (INV(a), f, r)):<> Bool (f==0)
 // end of [dllist_is_atbeg]
 fun{a:vt0p}
 dllist_is_atend
   {f,r:int | r > 0}
-  (xs: !dllist (INV(a), f, r)):<> bool (r==1)
+  (xs: !dllist (INV(a), f, r)):<> Bool (r==1)
 // end of [dllist_is_atend]
 
 fun{a:vt0p}
 rdllist_is_atbeg
   {f,r:int | r > 0}
-  (xs: !dllist (INV(a), f, r)):<> bool (r==1)
+  (xs: !dllist (INV(a), f, r)):<> Bool (r==1)
 // end of [rdllist_is_atend]
 fun{a:vt0p}
 rdllist_is_atend
   {f,r:int}
-  (xs: !dllist (INV(a), f, r)):<> bool (f==0)
+  (xs: !dllist (INV(a), f, r)):<> Bool (f==0)
 // end of [rdllist_is_atend]
 
 (* ****** ****** *)
@@ -195,12 +195,12 @@ dllist_set_elt (xs: !Dllist1 (INV(a)), x0: a): void
 
 fun{a:vt0p}
 dllist_length
-  {f,r:int} (xs: !dllist (INV(a), f, r)):<> int (r)
+  {f,r:int} (xs: !dllist (INV(a), f, r)):<> Int (r)
 // end of [dllist_length]
 
 fun{a:vt0p}
 rdllist_length
-  {f,r:int} (xs: !dllist (INV(a), f, r)):<> int (f)
+  {f,r:int} (xs: !dllist (INV(a), f, r)):<> Int (f)
 // end of [rdllist_length]
 
 (* ****** ****** *)

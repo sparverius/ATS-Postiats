@@ -101,11 +101,11 @@ ans
 then let
   prval () = opt_unsome{itm}(res)
 in
-  Some_vt{itm}(res)
+  Some1_vt{itm}(res)
 end else let
   prval () = opt_unnone{itm}(res)
 in
-  None_vt{itm}((*void*))
+  None1_vt{itm}((*void*))
 end // end of [if]
 //
 end // end of [linmap_search_opt]
@@ -118,7 +118,7 @@ linmap_insert_any
   (map, k0, x0) = () where
 {
 //
-val-~None_vt() =
+val-~None1_vt() =
   linmap_insert_opt<key,itm>(map, k0, x0)
 //
 } (* end of [linmap_insert_any] *)
@@ -142,11 +142,11 @@ ans
 then let
   prval () = opt_unsome{itm}(res)
 in
-  Some_vt{itm}(res)
+  Some1_vt{itm}(res)
 end else let
   prval () = opt_unnone{itm}(res)
 in
-  None_vt{itm}((*void*))
+  None1_vt{itm}((*void*))
 end // end of [if]
 //
 end // end of [linmap_insert_opt]
@@ -170,11 +170,11 @@ ans
 then let
   prval () = opt_unsome{itm}(res)
 in
-  Some_vt{itm}(res)
+  Some1_vt{itm}(res)
 end else let
   prval () = opt_unnone{itm}(res)
 in
-  None_vt{itm}((*void*))
+  None1_vt{itm}((*void*))
 end // end of [if]
 //
 end // end of [linmap_takeout_opt]
@@ -317,7 +317,7 @@ in
   {
     val res = $Q.qstruct_takeout_list(env)
     prval
-    ((*void*)) = lemma_list_vt_param(res)
+    ((*void*)) = lemma_List_vt_param(res)
     prval
     ((*void*)) = $Q.qstruct_uninitize{ki}(env)
   }

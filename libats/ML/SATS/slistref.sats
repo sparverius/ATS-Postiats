@@ -77,7 +77,7 @@ fun
 slistref_takeout_exn(slistref(a)):<!ref> (a)
 fun
 {a:vt0p}
-slistref_takeout_opt(slistref(a)):<!ref> Option_vt(a)
+slistref_takeout_opt(slistref(a)):<!ref> Option_vt_1(a)
 //
 (* ****** ****** *)
 //

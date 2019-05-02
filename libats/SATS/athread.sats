@@ -99,7 +99,7 @@ spin_unlock{l:addr}
 //
 fun{}
 spin_trylock{l:agz}
-  (spin(l)):<!wrt> [b:bool] (option_v(locked_v(l), b) | bool(b))
+  (spin(l)):<!wrt> [b:bool] (option_v(locked_v(l), b) | Bool(b))
 //
 (* ****** ****** *)
 
@@ -147,7 +147,7 @@ fun{}
 mutex_lock{l:agz} (m: mutex(l)):<!wrt> (locked_v(l) | void)
 fun{}
 mutex_trylock{l:agz}
-  (m: mutex(l)): [b:bool] (option_v(locked_v(l), b) | bool(b))
+  (m: mutex(l)): [b:bool] (option_v(locked_v(l), b) | Bool(b))
 fun{}
 mutex_unlock{l:addr} (pf: locked_v(l) | m: mutex(l)):<!wrt> void
 //

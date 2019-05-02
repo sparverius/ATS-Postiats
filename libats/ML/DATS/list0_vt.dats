@@ -52,7 +52,7 @@ implement
 list0_vt_free
   (xs) =
 (
-  list_vt_free<a>(xs)
+  List_vt_free<a>(xs)
 ) where
 {
 val xs = $UN.castvwtp0(xs)
@@ -70,7 +70,7 @@ val ys = $UN.castvwtp0(ys)
 //
 in
   $UN.castvwtp0
-  (list_vt_append<a>(xs, ys))
+  (List_vt_append<a>(xs, ys))
 end // end of [list0_vt_append]
 
 (* ****** ****** *)
@@ -83,7 +83,7 @@ list0_vt_reverse
 val xs = $UN.castvwtp0(xs)
 //
 in
-  $UN.castvwtp0(list_vt_reverse<a>(xs))
+  $UN.castvwtp0(List_vt_reverse<a>(xs))
 end // end of [list0_vt_append]
 
 (* ****** ****** *)

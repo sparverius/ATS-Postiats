@@ -104,7 +104,7 @@ if
 n >= 0
 then let
   val xs =
-    $effmask_wrt(list_make_elt<a>(n, x))
+    $effmask_wrt(List_make_elt<a>(n, x))
   // end of [val]
 in
   list0_of_list_vt{a}(xs)
@@ -208,7 +208,7 @@ implement
 {a}(*tmp*)
 list0_make_arrpsz
   (psz) =
-  list0_of_list_vt{a}(list_make_arrpsz(psz))
+  list0_of_list_vt{a}(List_make_arrpsz(psz))
 // end of [list0_make_arrpsz]
 //
 (* ****** ****** *)
@@ -225,14 +225,14 @@ prerr_list0
 implement
 {a}(*tmp*)
 fprint_list0
-  (out, xs) = fprint_list<a> (out, g1ofg0(xs))
+  (out, xs) = fprint_List<a> (out, g1ofg0(xs))
 //
 implement
 {a}(*tmp*)
 fprint_list0_sep
   (out, xs, sep) =
 (
-  fprint_list_sep<a> (out, g1ofg0(xs), sep)
+  fprint_List_sep<a> (out, g1ofg0(xs), sep)
 ) (* end of [fprint_list0_sep] *)
 //
 implement
@@ -240,8 +240,8 @@ implement
 fprint_listlist0_sep
   (out, xss, sep1, sep2) =
 (
-  fprint_listlist_sep<a>
-    (out, $UN.cast{List(List(a))}(xss), sep1, sep2)
+  fprint_ListList_sep<a>
+    (out, $UN.cast{List_1(List_1(a))}(xss), sep1, sep2)
 ) (* end of [fprint_listlist0_sep] *)
 //
 (* ****** ****** *)
@@ -314,8 +314,8 @@ list0_head_opt
 in
 //
 case+ xs of
-| list0_nil() => None_vt()
-| list0_cons(x, _) => Some_vt{a}(x)
+| list0_nil() => None1_vt()
+| list0_cons(x, _) => Some1_vt{a}(x)
 //
 end // end of [list0_head_opt]
 
@@ -344,8 +344,8 @@ list0_tail_opt
 in
 //
 case+ xs of
-| list0_nil() => None_vt()
-| list0_cons(_, xs) => Some_vt{list0(a)}(xs)
+| list0_nil() => None1_vt()
+| list0_cons(_, xs) => Some1_vt{list0(a)}(xs)
 //
 end // end of [list0_tail_opt]
 
@@ -361,8 +361,8 @@ val xs = g1ofg0_list(xs)
 in
 //
 case+ xs of
-| list_cons _ => list_last<a>(xs)
-| list_nil () => $raise ListSubscriptExn()
+| List_cons _ => List_last<a>(xs)
+| List_nil () => $raise ListSubscriptExn()
 //
 end // end of [list0_last_exn]
 
@@ -376,8 +376,8 @@ val xs = g1ofg0_list(xs)
 in
 //
 case+ xs of
-| list_nil() => None_vt()
-| list_cons _ => Some_vt{a}(list_last(xs))
+| List_nil() => None1_vt()
+| List_cons _ => Some1_vt{a}(List_last(xs))
 //
 end // end of [list0_last_opt]
 
@@ -392,14 +392,14 @@ fun
 aux
 {n:nat} .<n>.
 (
-  x0: a, xs: list(a, n)
-) :<> list(a, n) =
+  x0: a, xs: List(a, n)
+) :<> List(a, n) =
 (
 case+ xs of
-| list_nil() =>
-  list_nil()
-| list_cons(x, xs) =>
-  list_cons(x0, aux(x, xs))
+| List_nil() =>
+  List_nil()
+| List_cons(x, xs) =>
+  List_cons(x0, aux(x, xs))
 )
 //
 in
@@ -423,23 +423,23 @@ fun
 aux
 {n:nat} .<n>.
 (
-  x0: a, xs: list(a, n)
-) :<> list(a, n) =
+  x0: a, xs: List(a, n)
+) :<> List(a, n) =
 (
 case+ xs of
-| list_nil() =>
-  list_nil()
-| list_cons(x, xs) =>
-  list_cons(x0, aux(x, xs))
+| List_nil() =>
+  List_nil()
+| List_cons(x, xs) =>
+  List_cons(x0, aux(x, xs))
 )
 //
 in
 //
 case+ xs of
 | list0_nil() =>
-  None_vt(*void*)
+  None1_vt(*void*)
 | list0_cons(x, xs) =>
-  Some_vt(g0ofg1(aux(x, g1ofg0(xs))))
+  Some1_vt(g0ofg1(aux(x, g1ofg0(xs))))
 //
 end // end of [list0_init_opt]
 
@@ -454,7 +454,7 @@ fun
 loop
 {i:nat} .<i>.
 (
-  xs: list0(a), i: int i
+  xs: list0(a), i: Int i
 ) :<!exn> (a) =
 (
 //
@@ -492,11 +492,11 @@ list0_nth_opt
 $effmask_exn
 (
 try
-Some_vt{a}
+Some1_vt{a}
 (
   list0_nth_exn<a>(xs, i0)
 )
-with ~ListSubscriptExn() => None_vt(*void*)
+with ~ListSubscriptExn() => None1_vt(*void*)
 ) (* $effmask_exn *)
 //
 (* ****** ****** *)
@@ -521,7 +521,7 @@ fun
 fset
 {i:nat} .<i>.
 (
-  xs: list0(a), i: int i
+  xs: list0(a), i: Int i
 ) :<!exn> list0(a) =
 (
 //
@@ -557,11 +557,11 @@ list0_fset_at_opt
 $effmask_exn
 (
 try
-Some_vt{list0(a)}
+Some1_vt{list0(a)}
 (
   list0_fset_at_exn<a>(xs, i0, x0)
 )
-with ~ListSubscriptExn((*void*)) => None_vt()
+with ~ListSubscriptExn((*void*)) => None1_vt()
 ) (* $effmask_exn *)
 
 (* ****** ****** *)
@@ -577,7 +577,7 @@ fun
 fexch
 {i:nat} .<i>.
 (
-xs: list0(a), i: int(i), visited: List0_vt(a)
+xs: list0(a), i: Int(i), visited: List0_vt(a)
 ) :<!exnwrt> list0(a) =
 (
 case+ xs of
@@ -589,18 +589,18 @@ case+ xs of
     then
     (
       fexch
-      (xs, i-1, list_vt_cons(x1, visited))
+      (xs, i-1, List_vt_cons(x1, visited))
     )
     else let
       val x2 = $UN.ptr0_get<a>(p0)
       val () = $UN.ptr0_set<a>(p0, x1)
       val x2_xs = g1ofg0(list0_cons(x2, xs))
     in
-      g0ofg1(list_reverse_append1_vt(visited, x2_xs))
+      g0ofg1(List_reverse_append1_vt(visited, x2_xs))
     end // end of [else]
   )  
 | list0_nil() => let
-    val () = list_vt_free(visited) in $raise ListSubscriptExn()
+    val () = List_vt_free(visited) in $raise ListSubscriptExn()
   end // end of [list0_nil]
 )
 //
@@ -608,7 +608,7 @@ val i0 = g1ofg0(i0)
 //
 in
   if i0 >= 0
-    then fexch(xs, i0, list_vt_nil()) else $raise ListSubscriptExn()
+    then fexch(xs, i0, List_vt_nil()) else $raise ListSubscriptExn()
   // end of [if]
 end // end of [list0_fexch_at_exn]
 
@@ -628,7 +628,7 @@ in
 $effmask_exn
 (
 try
-Some_vt{list0(a)}
+Some1_vt{list0(a)}
 (
 let
   val
@@ -641,7 +641,7 @@ in
   res
 end // end of [let]
 )
-with ~ListSubscriptExn((*void*)) => None_vt()
+with ~ListSubscriptExn((*void*)) => None1_vt()
 ) (* $effmask_exn *)
 //
 end // end of [list0_fexch_at_opt]
@@ -656,7 +656,7 @@ list0_insert_at_exn
 fun
 aux {i:nat} .<i>.
 (
-  xs: list0 a, i: int i, x0: a
+  xs: list0 a, i: Int i, x0: a
 ) :<!exn> list0 a = let
 in
 //
@@ -697,7 +697,7 @@ fun{
 a:t0p
 } auxlst {i:nat} .<i>.
 (
-  xs: list0 (a), i: int i, x0: &a? >> a
+  xs: list0 (a), i: Int i, x0: &a? >> a
 ) :<!exnwrt> list0 a = let
 //
 extern praxi __assert : (&a? >> a) -<prf> void
@@ -776,7 +776,7 @@ implement
 {a}(*tmp*)
 list0_length
   (xs) =
-  list_length<a>(g1ofg0(xs))
+  List_length<a>(g1ofg0(xs))
 //
 (* ****** ****** *)
 
@@ -788,7 +788,7 @@ list0_append
   and ys = g1ofg0(ys)
 in
 //
-list0_of_list(list_append<a>(xs, ys))
+list0_of_list(List_append<a>(xs, ys))
 //
 end // end of [list0_append]
 
@@ -805,7 +805,7 @@ in
 //
 $effmask_wrt
 (
-list0_of_list_vt(list_extend<a>(xs, x))
+list0_of_list_vt(List_extend<a>(xs, x))
 ) (* $effmask_wrt *)
 //
 end // end of [list0_extend]
@@ -819,7 +819,7 @@ mul_int_list0
 $effmask_wrt
 (
 list0_of_list_vt
-  (mul_int_list<a>(m, g1ofg0(xs)))
+  (mul_int_List<a>(m, g1ofg0(xs)))
 ) (* end of [mul_int_list0] *)
 //
 (* ****** ****** *)
@@ -837,7 +837,7 @@ list0_reverse_append
   val xs = g1ofg0(xs)
   and ys = g1ofg0(ys)
 in
-  list0_of_list(list_reverse_append<a>(xs, ys))
+  list0_of_list(List_reverse_append<a>(xs, ys))
 end // end of [list0_reverse_append]
 
 (* ****** ****** *)
@@ -847,14 +847,14 @@ implement
 list0_concat
   (xss) = let
 //
-typedef xss = List(List(a))
+typedef xss = List_1(List_1(a))
 //
 in
 //
 $effmask_wrt
 (
 list0_of_list_vt{a}
-  (list_concat<a>($UN.cast{xss}(xss)))
+  (List_concat<a>($UN.cast{xss}(xss)))
 ) (* $effmask_wrt *)
 end // end of [list0_concat]
 
@@ -876,7 +876,7 @@ then let
 //
 val
 res =
-$effmask_wrt(list_take_exn<a>(xs, i))
+$effmask_wrt(List_take_exn<a>(xs, i))
 //
 in
   list0_of_list_vt(res)
@@ -900,7 +900,7 @@ in
 if
 (i >= 0)
 then
-g0ofg1(list_drop_exn<a>(xs, i))
+g0ofg1(List_drop_exn<a>(xs, i))
 else
 $raise(IllegalArgExn"list0_drop_exn:i")
 //
@@ -1496,16 +1496,16 @@ fun
 loop
 (
   xs: list0(a)
-) : Option_vt(a) =
+) : Option_vt_1(a) =
 //
 case+ xs of
 | list0_nil() =>
-    None_vt(*void*)
+    None1_vt(*void*)
   // list0_nil
 | list0_cons(x, xs) =>
   (
     if pred(x)
-      then Some_vt{a}(x) else loop(xs)
+      then Some1_vt{a}(x) else loop(xs)
     // end of [if]
   ) (* end of [list_cons] *)
 //
@@ -1635,14 +1635,14 @@ case+ xs of
 | list0_nil() => res
 | list0_cons(x0, xs1) =>
   if pred(x0)
-    then auxmain(xs1, list_vt_cons(x0, res)) else res
+    then auxmain(xs1, List_vt_cons(x0, res)) else res
   // end of [if]
 )
 //
 in
 //
 list0_vt2t
-(g0ofg1(list_vt_reverse(auxmain(xs, list_vt_nil()))))
+(g0ofg1(List_vt_reverse(auxmain(xs, List_vt_nil()))))
 //
 end // end of [list0_take_while]
 
@@ -1661,14 +1661,14 @@ case+ xs of
 | list0_nil() => res
 | list0_cons(x0, xs1) =>
   if pred(x0)
-    then res else auxmain(xs1, list_vt_cons(x0, res))
+    then res else auxmain(xs1, List_vt_cons(x0, res))
   // end of [if]
 )
 //
 in
 //
 list0_vt2t
-(g0ofg1(list_vt_reverse(auxmain(xs, list_vt_nil()))))
+(g0ofg1(List_vt_reverse(auxmain(xs, List_vt_nil()))))
 //
 end // end of [list0_take_until]
 
@@ -1713,12 +1713,12 @@ list0_assoc_opt<a,b>
 //
 case+ xys of
 | list0_nil() =>
-    None_vt(*void*)
+    None1_vt(*void*)
   // list0_nil
 | list0_cons(xy, xys) =>
   (
     if eq (x0, xy.0)
-      then Some_vt{b}(xy.1) else loop(xys, x0, eq)
+      then Some1_vt{b}(xy.1) else loop(xys, x0, eq)
     // end of [if]
   ) (* end of [list_cons] *)
 //
@@ -1732,10 +1732,10 @@ list0_filter
   (xs, pred) = let
 //
 implement{a2}
-list_filter$pred
+List_filter$pred
   (x) = pred($UN.cast{a}(x))
 //
-val ys = list_filter<a>(g1ofg0(xs))
+val ys = List_filter<a>(g1ofg0(xs))
 //
 in
   list0_of_list_vt (ys)
@@ -1777,10 +1777,10 @@ list0_map(xs, fopr) = let
 //
 implement
 {a2}{b2}
-list_map$fopr(x) =
+List_map$fopr(x) =
 $UN.castvwtp0{b2}(fopr($UN.cast{a}(x)))
 //
-val ys = list_map<a><b>(g1ofg0_list(xs))
+val ys = List_map<a><b>(g1ofg0_list(xs))
 //
 in
   list0_of_list_vt{b}(ys)
@@ -1804,26 +1804,26 @@ in
 case+ xs of
 | list0_nil () =>
   (
-    res := list_vt_nil ()
+    res := List_vt_nil ()
   ) (* end of [list0_nil] *)
 | list0_cons
     (x, xs) =>
   (
   case+ fopr(x) of
-  | ~Some_vt(y) => let
+  | ~Some1_vt(y) => let
       val () =
       (
       res :=
-      list_vt_cons{b}{0}(y, _)
+      List_vt_cons{b}{0}(y, _)
       )
       val+
-      list_vt_cons(_, res1) = res
+      List_vt_cons(_, res1) = res
       val () = loop(xs, res1)
       prval ((*folded*)) = fold@(res)
     in
       // nothing
     end // end of [Some0]
-  | ~None_vt((*void*)) => loop(xs, res)
+  | ~None1_vt((*void*)) => loop(xs, res)
   ) (* end of [list0_cons] *)
 //
 end // end of [loop]
@@ -1855,11 +1855,11 @@ list0_mapcons
   (x0, xss) = let
 //
 implement
-list_map$fopr<list0(a)><list0(a)>
+List_map$fopr<list0(a)><list0(a)>
   (xs) = list0_cons(x0, xs)
 //
 val xss = g1ofg0 (xss)
-val res = list_map<list0(a)><list0(a)> (xss)
+val res = List_map<list0(a)><list0(a)> (xss)
 //
 in
   list0_of_list_vt (res)
@@ -1891,14 +1891,14 @@ list0_imap
 //
 implement
 {a2}{b2}
-list_imap$fopr(i, x) =
+List_imap$fopr(i, x) =
 let
   val x = $UN.cast{a}(x)
 in
   $UN.castvwtp0{b2}(fopr(i, x))
 end // end of [list_imap$fopr]
 //
-val ys = list_imap<a><b>(g1ofg0_list(xs))
+val ys = List_imap<a><b>(g1ofg0_list(xs))
 //
 in
   list0_of_list_vt{b}(ys)
@@ -1923,27 +1923,27 @@ in
 case+ xs of
 | list0_nil () =>
   (
-    res := list_vt_nil ()
+    res := List_vt_nil ()
   ) (* end of [list0_nil] *)
 | list0_cons
     (x, xs) =>
   (
   case+
   fopr(i0, x) of
-  | ~Some_vt(y) => let
+  | ~Some1_vt(y) => let
       val () =
       (
       res :=
-      list_vt_cons{b}{0}(y, _)
+      List_vt_cons{b}{0}(y, _)
       )
       val+
-      list_vt_cons(_, res1) = res
+      List_vt_cons(_, res1) = res
       val () = loop(i0+1, xs, res1)
       prval ((*folded*)) = fold@(res)
     in
       // nothing
     end // end of [Some0]
-  | ~None_vt((*void*)) => loop(i0+1, xs, res)
+  | ~None1_vt((*void*)) => loop(i0+1, xs, res)
   ) (* end of [list0_cons] *)
 //
 end // end of [loop]
@@ -2001,13 +2001,13 @@ list0_map2
 //
 implement
 {a11,a12}{b2}
-list_map2$fopr
+List_map2$fopr
   (x1, x2) =
 $UN.castvwtp0{b2}
   (fopr($UN.cast{a1}(x1), $UN.cast{a2}(x2)))
 //
 in
-  list0_of_list_vt{b}(list_map2<a1,a2><b>(g1ofg0(xs1), g1ofg0(xs2)))
+  list0_of_list_vt{b}(List_map2<a1,a2><b>(g1ofg0(xs1), g1ofg0(xs2)))
 end // end of [list0_map2]
 //
 (* ****** ****** *)
@@ -2022,7 +2022,7 @@ val nptr = addr@(_n_)
 //
 implement
 {a11,a12}{b2}
-list_map2$fopr
+List_map2$fopr
   (x1, x2) = let
 //
 val n0 =
@@ -2035,7 +2035,7 @@ in
 end // end of [list_map2$fopr]
 //
 in
-  list0_of_list_vt{b}(list_map2<a1,a2><b>(g1ofg0(xs1), g1ofg0(xs2)))
+  list0_of_list_vt{b}(List_map2<a1,a2><b>(g1ofg0(xs1), g1ofg0(xs2)))
 end // end of [list0_imap2]
 //
 (* ****** ****** *)
@@ -2046,7 +2046,7 @@ list0_tabulate
   {n}(n, fopr) = let
 //
 implement{a2}
-list_tabulate$fopr
+List_tabulate$fopr
   (i) = let
   val i =
   $UN.cast{natLt(n)}(i)
@@ -2061,7 +2061,7 @@ in
 if
 (n >= 0)
 then
-list0_of_list_vt(list_tabulate<a>(n))
+list0_of_list_vt(List_tabulate<a>(n))
 else
 $raise IllegalArgExn("list0_tabulate:n")
 // end of [if]
@@ -2086,18 +2086,18 @@ if
 (n > i)
 then (
 case+ fopr(i) of
-| ~None_vt() =>
+| ~None1_vt() =>
     loop(i+1, res)
   // end of [None_vt]
-| ~Some_vt(x) => let
+| ~Some1_vt(x) => let
 //
     val () =
     (
       res :=
-      list_vt_cons{a}{0}(x, _)
+      List_vt_cons{a}{0}(x, _)
     ) (* end of [val] *)
 //
-    val+list_vt_cons(_, res1) = res
+    val+List_vt_cons(_, res1) = res
 //
     val () = loop (i+1, res1)
 //
@@ -2107,7 +2107,7 @@ case+ fopr(i) of
   end // end of [Some0]
 ) else
 (
-  res := list_vt_nil((*void*))
+  res := List_vt_nil((*void*))
 ) (* end of [if] *)
 //
 end // end of [loop]
@@ -2127,7 +2127,7 @@ list0_zip
 //
   val xs = g1ofg0(xs)
   and ys = g1ofg0(ys)
-  val xys = $effmask_wrt(list_zip<x,y> (xs, ys))
+  val xys = $effmask_wrt(List_zip<x,y> (xs, ys))
 //
 in
   list0_of_list_vt{(x,y)}(xys)
@@ -2142,7 +2142,7 @@ list0_cross
 //
   val xs = g1ofg0(xs)
   and ys = g1ofg0(ys)
-  val xys = $effmask_wrt(list_cross<x,y> (xs, ys))
+  val xys = $effmask_wrt(List_cross<x,y> (xs, ys))
 //
 in
   list0_of_list_vt{(x,y)}(xys)
@@ -2157,12 +2157,12 @@ list0_crosswith
 //
 implement
 {x2,y2}{z2}
-list_crosswith$fopr(x, y) =
+List_crosswith$fopr(x, y) =
 $UN.castvwtp0{z2}
   (fopr($UN.cast{x}(x), $UN.cast{y}(y)))
 //
 val xs = g1ofg0(xs) and ys = g1ofg0(ys)
-val zs = $effmask_wrt(list_crosswith<x,y><z> (xs, ys))
+val zs = $effmask_wrt(List_crosswith<x,y><z> (xs, ys))
 //
 in
   list0_of_list_vt{z}(zs)
@@ -2302,7 +2302,7 @@ implement
 {a}(*tmp*)
 streamize_list0_elt
   (xs) =
-  streamize_list_elt<a>(g1ofg0(xs))
+  streamize_List_elt<a>(g1ofg0(xs))
 //
 (* ****** ****** *)
 //
@@ -2311,7 +2311,7 @@ implement
 un_streamize_list0_elt
   (xs) =
 (
-list0_of_list_vt{a}(stream2list_vt(xs))
+list0_of_list_vt{a}(stream2List_vt(xs))
 )
 //
 (* ****** ****** *)
@@ -2344,7 +2344,7 @@ end (* end of [streamize_list0_suffix] *)
 implement
 {a}(*tmp*)
 streamize_list0_choose2
-  (xs) = streamize_list_choose2<a>(g1ofg0(xs))
+  (xs) = streamize_List_choose2<a>(g1ofg0(xs))
 //
 (* ****** ****** *)
 
@@ -2397,13 +2397,13 @@ implement
 {a,b}(*tmp*)
 streamize_list0_zip
   (xs, ys) =
-  streamize_list_zip<a,b>(g1ofg0(xs), g1ofg0(ys))
+  streamize_List_zip<a,b>(g1ofg0(xs), g1ofg0(ys))
 //
 implement
 {a,b}(*tmp*)
 streamize_list0_cross
   (xs, ys) =
-  streamize_list_cross<a,b>(g1ofg0(xs), g1ofg0(ys))
+  streamize_List_cross<a,b>(g1ofg0(xs), g1ofg0(ys))
 //
 (* ****** ****** *)
 
@@ -2416,7 +2416,7 @@ implement
 gcompare_val_val<a>(x, y) = cmp(x, y)
 //
 in
-  list_is_ordered<a>(g1ofg0_list{a}(xs))
+  List_is_ordered<a>(g1ofg0_list{a}(xs))
 end // end of [list0_is_ordered]
 
 (* ****** ****** *)
@@ -2426,9 +2426,9 @@ implement
 list0_mergesort(xs, cmp) = let
 //
 implement
-list_mergesort$cmp<a>(x, y) = cmp(x, y)
+List_mergesort$cmp<a>(x, y) = cmp(x, y)
 //
-val ys = $effmask_wrt(list_mergesort<a>(g1ofg0(xs)))
+val ys = $effmask_wrt(List_mergesort<a>(g1ofg0(xs)))
 //
 in
   list0_of_list_vt (ys)
@@ -2441,9 +2441,9 @@ implement
 list0_quicksort(xs, cmp) = let
 //
 implement
-list_quicksort$cmp<a>(x, y) = cmp(x, y)
+List_quicksort$cmp<a>(x, y) = cmp(x, y)
 //
-val ys = $effmask_wrt(list_quicksort<a>(g1ofg0(xs)))
+val ys = $effmask_wrt(List_quicksort<a>(g1ofg0(xs)))
 //
 in
   list0_of_list_vt (ys)

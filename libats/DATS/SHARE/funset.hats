@@ -53,14 +53,14 @@ funset_make_list
 typedef set = set (a)
 //
 fun loop (
-  set: &set >> _, xs: List (a)
+  set: &set >> _, xs: List_1 (a)
 ) : void = let
 in
   case+ xs of
-  | list_cons (x, xs) => let
+  | List_cons (x, xs) => let
       val _(*exi*) = funset_insert<a> (set, x) in loop (set, xs)
     end // end of [list_cons]
-  | list_nil () => ()
+  | List_nil () => ()
 end // end of [loop]
 //
 var set: set = funset_make_nil ()
@@ -91,9 +91,9 @@ val ans =
 in
 //
 if ans then let
-  prval () = opt_unsome{a}(x0) in Some_vt{a}(x0)
+  prval () = opt_unsome{a}(x0) in Some1_vt{a}(x0)
 end else let
-  prval () = opt_unnone{a}(x0) in None_vt(*void*)
+  prval () = opt_unnone{a}(x0) in None1_vt(*void*)
 end (* end of [if] *)
 //
 end // end of [funset_getmax_opt]
@@ -112,9 +112,9 @@ val ans =
 in
 //
 if ans then let
-  prval () = opt_unsome{a}(x0) in Some_vt{a}(x0)
+  prval () = opt_unsome{a}(x0) in Some1_vt{a}(x0)
 end else let
-  prval () = opt_unnone{a}(x0) in None_vt(*void*)
+  prval () = opt_unnone{a}(x0) in None1_vt(*void*)
 end (* end of [if] *)
 //
 end // end of [funset_getmin_opt]
@@ -133,9 +133,9 @@ val ans =
 in
 //
 if ans then let
-  prval () = opt_unsome{a}(x0) in Some_vt{a}(x0)
+  prval () = opt_unsome{a}(x0) in Some1_vt{a}(x0)
 end else let
-  prval () = opt_unnone{a}(x0) in None_vt(*void*)
+  prval () = opt_unnone{a}(x0) in None1_vt(*void*)
 end (* end of [if] *)
 //
 end // end of [funset_takeoutmax_opt]
@@ -154,9 +154,9 @@ val ans =
 in
 //
 if ans then let
-  prval () = opt_unsome{a}(x0) in Some_vt{a}(x0)
+  prval () = opt_unsome{a}(x0) in Some1_vt{a}(x0)
 end else let
-  prval () = opt_unnone{a}(x0) in None_vt(*void*)
+  prval () = opt_unnone{a}(x0) in None1_vt(*void*)
 end (* end of [if] *)
 //
 end // end of [funset_takeoutmin_opt]
@@ -242,7 +242,7 @@ loop
 | i <= n
 } .<n-i>.
 (
-  i: int(i), n: int(n), res: &set(a) >> _
+  i: Int(i), n: Int(n), res: &set(a) >> _
 ) : void = (
 //
 if
@@ -327,7 +327,7 @@ val () = funset_foreach_env<a><tenv>(xs, env)
 //
 val res = $Q.qstruct_takeout_list(env)
 //
-prval () = lemma_list_vt_param(res)
+prval () = lemma_List_vt_param(res)
 prval () = $Q.qstruct_uninitize{b}(env)
 //
 } (* end of [funset_flistize] *)

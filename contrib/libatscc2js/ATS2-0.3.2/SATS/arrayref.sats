@@ -26,7 +26,7 @@ LIBATSCC_targetloc
 fun
 arrayref_uninitized
 {a:vt0p}{n:nat}
-  (asz: int(n)): arrayref(a?, n) = "mac#%"
+  (asz: Int(n)): arrayref(a?, n) = "mac#%"
 //
 (* ****** ****** *)
 

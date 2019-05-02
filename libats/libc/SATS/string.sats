@@ -71,16 +71,16 @@ fun strcspn (x1: string, x2: string):<> size_t = "mac#%"
 (* ****** ****** *)
 //
 fun strlen
-  {n:int} (x: string n):<> size_t (n) = "mac#%"
+  {n:int} (x: String n):<> Size_t (n) = "mac#%"
 fun strnlen {m,n:int}
-  (x: string n, max: size_t m):<> size_t (min(m,n)) = "mac#%"
+  (x: String n, max: Size_t m):<> Size_t (min(m,n)) = "mac#%"
 //
 (* ****** ****** *)
 
 fun strcat
   {l:addr}{m:int}{n1,n2:int | n1+n2 < m}
 (
-  !strbuf_v (l, m, n1) >> strbuf_v (l, m, n1+n2) | ptr (l), string (n2)
+  !strbuf_v (l, m, n1) >> strbuf_v (l, m, n1+n2) | ptr (l), String (n2)
 ) :<!wrt> ptr (l) = "mac#%" // end of [strcat]
 
 fun strcat_unsafe
@@ -93,7 +93,7 @@ fun strncat_unsafe
 fun strcpy
   {l:addr}{m:int}{n:int | n < m}
 (
-  !b0ytes(m) @ l >> strbuf_v (l, m, n) | ptr (l), string (n)
+  !b0ytes(m) @ l >> strbuf_v (l, m, n) | ptr (l), String (n)
 ) :<!wrt> ptr (l) = "mac#%" // endfun
 
 fun strcpy_unsafe
@@ -153,7 +153,7 @@ memcpy
 {n1,n2:int}
 {n:int | n <= n1; n <= n2}
 ( pf: !b0ytes(n1) @ l >> bytes(n1) @ l
-| dst: ptr(l), src: &RD(@[byte][n2]), n: size_t(n)
+| dst: ptr(l), src: &RD(@[byte][n2]), n: Size_t(n)
 ) :<!wrt> ptr (l) = "mac#%" // end of [memcpy]
 //
 fun
@@ -189,11 +189,11 @@ fun mempcpy
   {n:int | n <= n1; n <= n2}
 (
   pf: !b0ytes(n1) @ l >> bytes(n1) @ l
-| dst: ptr (l), src: &RD(@[byte][n2]), n: size_t (n)
+| dst: ptr (l), src: &RD(@[byte][n2]), n: Size_t (n)
 ) :<!wrt> ptr (l+n) = "mac#%" // end of [mempcpy]
 //
 fun mempcpy_unsafe{l:addr}{n:int}
-  (dst: ptr (l), src: ptr, n: size_t (n)):<!wrt> ptr (l+n) = "mac#%"
+  (dst: ptr (l), src: ptr, n: Size_t (n)):<!wrt> ptr (l+n) = "mac#%"
 //
 (* ****** ****** *)
 //
@@ -208,7 +208,7 @@ fun strerror
 int strerror_r(int errnum, char *buf, size_t buflen);
 */
 fun strerror_r{n:int}
-  (errnum: int, buf: &bytes(n), n: size_t (n)):<> int = "mac#%"
+  (errnum: int, buf: &bytes(n), n: Size_t (n)):<> int = "mac#%"
 // end of [strerror_r]
 
 (* ****** ****** *)

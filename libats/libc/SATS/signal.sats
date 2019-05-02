@@ -136,13 +136,13 @@ fun
 sigemptyset // 0/-1 : succ/fail
 (
   set: &sigset_t? >> opt (sigset_t, i==0)
-) : #[i:int | i <= 0] int (i) = "mac#%"
+) : #[i:int | i <= 0] Int (i) = "mac#%"
 //
 fun
 sigfillset // 0/-1 : succ/fail
 (
   set: &sigset_t? >> opt (sigset_t, i==0)
-) : #[i:int | i <= 0] int (i) = "mac#%"
+) : #[i:int | i <= 0] Int (i) = "mac#%"
 //
 fun
 sigaddset // 0/-1 : succ/fail
@@ -244,7 +244,7 @@ fun sigaction
   sgn: signum_t
 , newact: &RD(sigaction)
 , oldact: &sigaction? >> opt (sigaction, i==0)
-) : #[i:int | i <= 0] int i = "mac#%" // 0/-1 : succ/fail
+) : #[i:int | i <= 0] Int i = "mac#%" // 0/-1 : succ/fail
 //
 fun sigaction_null
   (sgn: signum_t, newact: &RD(sigaction)): int = "mac#%"
@@ -278,7 +278,7 @@ fun sigwait
 (
   set: &sigset_t
 , sgn: &signum_t? >> opt (signum_t, i==0)
-) : #[i:int | i >= 0] int(i) = "mac#%"
+) : #[i:int | i >= 0] Int(i) = "mac#%"
 //
 (* ****** ****** *)
 //
@@ -302,7 +302,7 @@ fun sigsuspend (mask: &sigset_t): int = "mac#%"
 fun sigpending
 (
   set: &sigset_t? >> opt (sigset_t, i==0)
-) : #[i:int | i <= 0] int (i) = "mac#%"
+) : #[i:int | i <= 0] Int (i) = "mac#%"
 //
 //
 // HX-2014-04-07:

@@ -126,7 +126,7 @@ implement
 qlist_takeout_opt(pq) =
 (
 if qlist_isnot_nil(pq)
-  then Some_vt{a}(qlist_takeout(pq)) else None_vt{a}()
+  then Some1_vt{a}(qlist_takeout(pq)) else None1_vt{a}()
 // end of [if]
 ) // end of [qlist_takeout_opt]
 
@@ -182,7 +182,7 @@ val isnil = (addr@(nxf) = p_nxr)
 prval () = fold@ (pq)
 //
 in
-  $UN.cast{bool(n==0)}(isnil)
+  $UN.cast{Bool(n==0)}(isnil)
 end // end of [qlist_is_nil]
 
 implement
@@ -195,7 +195,7 @@ val isnot = (addr@(nxf) != p_nxr)
 prval ((*prf*)) = fold@ (pq)
 //
 in
-  $UN.cast{bool(n > 0)}(isnot)
+  $UN.cast{Bool(n > 0)}(isnot)
 end // end of [qlist_isnot_nil]
 
 (* ****** ****** *)
@@ -217,7 +217,7 @@ val () =
   $effmask_all(qlist_foreach_env<a><int>(pq, env))
 //
 in
-  $UN.cast{int(n)}(env)
+  $UN.cast{Int(n)}(env)
 end // end of [qlist_length]
 
 (* ****** ****** *)
@@ -302,7 +302,7 @@ if p_nxf != p_nxr then let
 val xs =
   $UN.ptr0_get<List1_vt(a)>(p_nxf)
 // end of [val]
-val+@list_vt_cons(x1, xs2) = xs
+val+@List_vt_cons(x1, xs2) = xs
 //
 val test =
   qlist_foreach$cont<a><env>(x1, env)
@@ -391,7 +391,7 @@ mynode1_decode
 implement
 {}(*tmp*)
 mynode_null{a}() =
-  $UN.castvwtp0{mynode(a,null)}(list_vt_nil)
+  $UN.castvwtp0{mynode(a,null)}(List_vt_nil)
 // end of [mynode_null]
 
 (* ****** ****** *)
@@ -399,7 +399,7 @@ mynode_null{a}() =
 implement
 {a}(*tmp*)
 mynode_make_elt (x) =
-  $UN.castvwtp0{mynode1(a)}(list_vt_cons{a}{0}(x, _))
+  $UN.castvwtp0{mynode1(a)}(List_vt_cons{a}{0}(x, _))
 // end of [mynode_make_elt]
 
 implement
@@ -411,7 +411,7 @@ mynode_free_elt
 val xs =
   mynode1_decode(nx)
 //
-val+~list_vt_cons(x1, xs2) = xs
+val+~List_vt_cons(x1, xs2) = xs
 //
 val () = (res := x1)
 //
@@ -433,7 +433,7 @@ mynode_getfree_elt
 val xs =
   mynode1_decode(nx)
 //
-val+~list_vt_cons(x1, xs2) = xs
+val+~List_vt_cons(x1, xs2) = xs
 //
 prval () =
 __assert(xs2) where {
@@ -452,7 +452,7 @@ qlist_insert_ngc
 val+@QLIST(nxf, p_nxr) = pq
 //
 val xs = mynode1_decode(nx0)
-val+@list_vt_cons(_, xs2) = xs
+val+@List_vt_cons(_, xs2) = xs
 //
 val p2_nxr = addr@(xs2)
 prval ((*folded*)) = fold@(xs)
@@ -483,7 +483,7 @@ val nx0 =
 $UN.castvwtp0{mynode1(a)}(nxf)
 //
 val xs = mynode1_decode(nx0)
-val+@list_vt_cons (_, xs2) = xs
+val+@List_vt_cons (_, xs2) = xs
 //
 val p2_nxr = addr@(xs2)
 prval ((*folded*)) = fold@(xs)
@@ -520,7 +520,7 @@ val+@QLIST(nxf, p_nxr) = pq
 val () =
 $UN.ptr0_set<ptr>(p_nxr, the_null_ptr)
 //
-val xs = $UN.castvwtp0{list_vt(a,n)}(nxf)
+val xs = $UN.castvwtp0{List_vt(a,n)}(nxf)
 //
 val () = p_nxr := addr@(nxf)
 //

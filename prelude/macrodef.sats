@@ -54,10 +54,10 @@ andalso(x, y) =
 //
 macdef
 ifopt(t, x) =
-if(,(t))then(Some(,(x)))else(None())
+if(,(t))then(Some1(,(x)))else(None1())
 macdef
 ifopt_vt(t, x) =
-if(,(t))then(Some_vt(,(x)))else(None_vt())
+if(,(t))then(Some1_vt(,(x)))else(None1_vt())
 //
 (* ****** ****** *)
 //

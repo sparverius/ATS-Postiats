@@ -52,7 +52,7 @@ compare_elt_elt (x1, x2, cmp) = cmp (x1, x2)
 *)
 datatype
 btree (a:t@ype+, int(*rank*)) =
-  | {n:nat} btnode (a, n) of (int (n), a, btreelst (a, n))
+  | {n:nat} btnode (a, n) of (Int (n), a, btreelst (a, n))
 // end of [btree]
 
 and
@@ -68,7 +68,7 @@ a:t0p
 } btree_rank
   {n:nat} .<>. (
   bt: btree (a, n)
-) :<> int (n) = let
+) :<> Int (n) = let
   val btnode (n, _, _) = bt in n
 end // end of [btree_rank]
 
@@ -111,7 +111,7 @@ btree_bheap_merge{sz:nat}
   {n,n1:nat | n <= n1}{p:int} .<sz>.
 (
   pf: EXP2 (n, p)
-| bt: btree (a, n), n: int (n), hp: bheap (a, n1, sz)
+| bt: btree (a, n), n: Int (n), hp: bheap (a, n1, sz)
 , cmp: cmp (a)
 ) :<> [n2:int | n2 >= min(n, n1)] bheap (a, n2, sz+p) =
   case+ hp of
@@ -263,7 +263,7 @@ bheap_remove_min
   fun remove
     {n:nat}{sz:nat}
     {pos:nat} .<pos>. (
-    hp0: bheap (a, n, sz), pos: int (pos)
+    hp0: bheap (a, n, sz), pos: Int (pos)
   , btmin: &btree(a, 0)? >> btree (a, n2)
   ) :<!wrt> #[
     n1,n2,p:int | n1 >= n; n2 >= n; sz >= p
@@ -311,8 +311,8 @@ local
 fun{}
 pow2{n:nat} .<>.
 (
-  n: int n
-) :<> [p:pos] (EXP2 (n, p) | size_t (p)) = let
+  n: Int n
+) :<> [p:pos] (EXP2 (n, p) | Size_t (p)) = let
 //
 val res = (1 << n)
 val [p:int] res = $UN.cast{sizeGt(0)}(res)
@@ -328,7 +328,7 @@ funheap_size (hp) = let
 //
   fun aux
     {n:nat}{sz:nat} .<sz>.
-    (hp: bheap (a, n, sz)):<> size_t (sz) =
+    (hp: bheap (a, n, sz)):<> Size_t (sz) =
     case+ hp of
     | bheap_cons (pf | bt, hp) => let
         val btnode (n, _, _) = bt; val (pf1 | p) = pow2 (n)
@@ -454,10 +454,10 @@ in
 //
 if ans
   then let
-    prval () = opt_unsome{a}(res) in Some_vt{a}(res)
+    prval () = opt_unsome{a}(res) in Some1_vt{a}(res)
   end // end of [then]
   else let
-    prval () = opt_unnone{a}(res) in None_vt{a}(*void*)
+    prval () = opt_unnone{a}(res) in None1_vt{a}(*void*)
   end // end of [else]
 // end of [if]
 //

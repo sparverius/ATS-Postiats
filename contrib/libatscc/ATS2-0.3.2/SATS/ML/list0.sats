@@ -13,6 +13,18 @@ staload "./../../basics.sats"
 #define nil0 list0_nil
 #define cons0 list0_cons
 //
+castfn
+g0ofg1_list
+  {a:t@ype}
+  (List_1(INV(a))):<> list0(a)
+castfn
+g1ofg0_list
+  {a:t@ype}
+  (list0(INV(a))):<> List0(a)
+//
+overload g0ofg1 with g0ofg1_list
+overload g1ofg0 with g1ofg0_list
+//
 #define
 sing0(x) list0_cons(x, list0_nil)
 //
@@ -41,12 +53,12 @@ overload isneqz with list0_is_cons
 fun
 list0_head_opt
   {a:t0p}
-  (list0(INV(a))): Option_vt(a) = "mac#%"
+  (list0(INV(a))): Option_vt_1(a) = "mac#%"
 //
 fun
 list0_tail_opt
   {a:t0p}
-  (list0(INV(a))): Option_vt(list0(a)) = "mac#%"
+  (list0(INV(a))): Option_vt_1(list0(a)) = "mac#%"
 //
 overload head_opt with list0_head_opt of 100
 overload tail_opt with list0_tail_opt of 100
@@ -70,7 +82,7 @@ list0_last_opt
   {a:t0p}
 (
 xs: list0(INV(a))
-) : Option_vt(a) = "mac#%" // end-of-fun
+) : Option_vt_1(a) = "mac#%" // end-of-fun
 //
 (* ****** ****** *)
 //
@@ -79,7 +91,7 @@ list0_get_at_opt
   {a:t0p}
 (
 xs: list0(INV(a)), i: intGte(0)
-) : Option_vt(a) = "mac#%" // end-of-fun
+) : Option_vt_1(a) = "mac#%" // end-of-fun
 //
 (* ****** ****** *)
 //
@@ -183,7 +195,7 @@ list0_remove_at_opt
   {a:t0p}
 (
   xs: list0(INV(a)), i: intGte(0)
-) : Option_vt(list0(a)) = "mac#%" // end-of-fun
+) : Option_vt_1(list0(a)) = "mac#%" // end-of-fun
 //
 (* ****** ****** *)
 //
@@ -392,13 +404,13 @@ list0_find_opt
   {a:t0p}
 (
 xs: list0(INV(a)), pred: cfun(a, bool)
-) : Option_vt(a) = "mac#%" // end-of-fun
+) : Option_vt_1(a) = "mac#%" // end-of-fun
 fun
 list0_find_opt_method
   {a:t0p}
 (
 xs: list0(INV(a)))(pred: cfun(a, bool)
-) : Option_vt(a) = "mac#%" // end-of-fun
+) : Option_vt_1(a) = "mac#%" // end-of-fun
 //
 overload .find_opt with list0_find_opt_method
 //

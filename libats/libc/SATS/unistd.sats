@@ -99,7 +99,7 @@ close_v (fd:int, int) =
   | {i:int | i < 0} close_v_fail (fd, i) of fildes_v (fd)
 //
 fun close1{fd:nat}
-  (fd: fildes (fd)): [i:int] (close_v (fd, i) | int i) = "mac#%"
+  (fd: fildes (fd)): [i:int] (close_v (fd, i) | Int i) = "mac#%"
 //
 overload close with close0
 overload close with close1
@@ -124,7 +124,7 @@ fun dup2
 // this one requires that [fd2] be not in use
 //
 fun dup2_fildes{fd2:nat}
-  (fd: !Fildes0, fd2: int (fd2)): Fildes = "mac#%"
+  (fd: !Fildes0, fd2: Int (fd2)): Fildes = "mac#%"
 //
 (* ****** ****** *)
 //
@@ -214,7 +214,7 @@ getcwd_v
 fun getcwd
   {m:nat} {l:addr}
 (
-  pf: !b0ytes(m)@l >> getcwd_v(m, l, l1) | p: ptr(l), m: size_t(m)
+  pf: !b0ytes(m)@l >> getcwd_v(m, l, l1) | p: ptr(l), m: Size_t(m)
 ) : #[l1:addr] ptr (l1) = "mac#%" // end of [getcwd]
 //
 fun getcwd_gc (): Strptr0 = "ext#%" // HX: this is a convenient wrapper
@@ -265,7 +265,7 @@ fun getlogin(): vStrptr0 = "mac#%"
 //
 fun getlogin_r
   {n:int | n >= 2}
-  (buf: &bytes(n), size_t(n)): int = "mac#%"
+  (buf: &bytes(n), Size_t(n)): int = "mac#%"
 //
 fun getlogin_r_gc((*void*)): Strptr0 = "ext#%"
 //
@@ -281,25 +281,25 @@ fun read_err
   {sz,n:nat | n <= sz}
 (
   fd: !Fildes0
-, buf: &b0ytes(sz) >> bytes(sz), ntotal: size_t(n)
+, buf: &b0ytes(sz) >> bytes(sz), ntotal: Size_t(n)
 ) : ssizeBtw(~1, n+1) = "mac#%" // end-of-fun
 
 fun write_err
   {sz,n:nat | n <= sz}
 (
-  fd: !Fildes0, buf: &RD(bytes(sz)), ntotal: size_t(n)
+  fd: !Fildes0, buf: &RD(bytes(sz)), ntotal: Size_t(n)
 ) : ssizeBtw(~1, n+1) = "mac#%" // end-of-fun
 
 (* ****** ****** *)
 
 fun pread{n:int}
 (
-  fd: !Fildes0, buf: &(@[byte][n])>>_, n: size_t (n), ofs: off_t
+  fd: !Fildes0, buf: &(@[byte][n])>>_, n: Size_t (n), ofs: off_t
 ) : ssize_t = "mac#%" // end of [pread]
 
 fun pwrite{n:int}
 (
-  fd: !Fildes0, buf: &RD(array(byte, n)), n: size_t (n), ofs: off_t
+  fd: !Fildes0, buf: &RD(array(byte, n)), n: Size_t (n), ofs: off_t
 ) : ssize_t = "mac#%" // end of [pwrite]
 
 (* ****** ****** *)
@@ -312,7 +312,7 @@ alarm_v_elim (pfrem: alarm_v(0)): void
 //
 fun
 alarm_set{i:int}
-  (t: uint(i)): (alarm_v(i) | uInt) = "mac#%"
+  (t: Uint(i)): (alarm_v(i) | uInt) = "mac#%"
 // end of [alarm_set]
 fun
 alarm_cancel{i:int}
@@ -324,9 +324,9 @@ alarm_cancel{i:int}
 // HX: [sleep] may be implemented using SIGARM
 //
 fun sleep_int
-  {i:nat} (t: int i): [j:nat | j <= i] int j = "mac#%"
+  {i:nat} (t: Int i): [j:nat | j <= i] Int j = "mac#%"
 fun sleep_uint
-  {i:int} (t: uint i): [j:nat | j <= i] uint j = "mac#%"
+  {i:int} (t: Uint i): [j:nat | j <= i] Uint j = "mac#%"
 //
 symintr sleep
 overload sleep with sleep_int
@@ -337,9 +337,9 @@ overload sleep with sleep_uint
 // HX: some systems require that the argument <= 1 million
 //
 fun usleep_int // succ/fail: 0/~1
-  {i:nat | i <= 1000000} (n: int i): intLte(0) = "mac#%"
+  {i:nat | i <= 1000000} (n: Int i): intLte(0) = "mac#%"
 fun usleep_uint // succ/fail: 0/~1
-  {i:int | i <= 1000000} (n: uint i): intLte(0) = "mac#%"
+  {i:int | i <= 1000000} (n: Uint i): intLte(0) = "mac#%"
 //
 symintr usleep
 overload usleep with usleep_int
@@ -388,7 +388,7 @@ fun unlink_exn (path: NSH(string)):<!exnref> void = "ext#%"
 
 fun readlink{n:int}
 (
-  path: NSH(string), buf: &(@[byte][n]) >> _, n: size_t (n)
+  path: NSH(string), buf: &(@[byte][n]) >> _, n: Size_t (n)
 ) : ssizeLte(n) = "mac#%" // end of [readlink]
 
 fun readlink_gc (path: NSH(string)): Strptr0 = "ext#%"

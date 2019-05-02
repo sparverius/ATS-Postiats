@@ -41,7 +41,7 @@ qlistref_dequeue_exn
   {a:vt0p}(qlistref(a)): (a) = "mac#%"
 fun
 qlistref_dequeue_opt
-  {a:vt0p}(qlistref(a)): Option_vt(a) = "mac#%"
+  {a:vt0p}(qlistref(a)): Option_vt_1(a) = "mac#%"
 //
 (* ****** ****** *)
 //

@@ -89,7 +89,7 @@ key:t0p;
 itm:vt0p
 } keyitmarr_linprb{m:int}
 (
-  A: &array((key,itm), m), cap: size_t(m), k0: key, ans: &bool? >> _
+  A: &array((key,itm), m), cap: Size_t(m), k0: key, ans: &bool? >> _
 ) : Ptr0 // end of [keyitmarr_linprb]
 
 (* ****** ****** *)
@@ -156,7 +156,7 @@ itm:vt0p
 } keyitmarr_linprb2
   {m:int}{ofs:int | ofs <= m}
 (
-  A: &array((key,itm), m), cap: size_t(m), ofs: size_t(ofs), k0: key, ans: &bool? >> _
+  A: &array((key,itm), m), cap: Size_t(m), ofs: Size_t(ofs), k0: key, ans: &bool? >> _
 ) : Ptr0 // end of [keyitmarr_linprb2]
 
 (* ****** ****** *)
@@ -203,7 +203,7 @@ itm:vt0p
 } keyitmarr_reinserts
   {m:int}
 (
-  A: &array((key,itm), m) >> _, cap: size_t(m), p_kx: ptr
+  A: &array((key,itm), m) >> _, cap: Size_t(m), p_kx: ptr
 ) : void // end of [keyitmarr_reinserts]
 
 (* ****** ****** *)
@@ -220,7 +220,7 @@ val p_end = ptr_add<ki> (p0, cap)
 fun
 loop
 (
-  A: &array(ki, m) >> _, cap: size_t(m), p_kx: ptr
+  A: &array(ki, m) >> _, cap: Size_t(m), p_kx: ptr
 ) : bool = let
 in
 //
@@ -289,7 +289,7 @@ datavtype hashtbl
 ) =
   {m:int | m >= 1}
   HASHTBL of (
-    arrayptr ((key, itm), m), size_t m, size_t(*ntot*)
+    arrayptr ((key, itm), m), Size_t m, Size_t_1(*ntot*)
   ) (* end of [HASHTBL] *)
 // end of [hashtbl]
 
@@ -511,7 +511,7 @@ val p_end = ptr_add<ki> (p0, cap)
 fun
 loop{m2:int}
 (
-  p_A2: ptr, cap2: size_t(m2), p: ptr
+  p_A2: ptr, cap2: Size_t(m2), p: ptr
 ) : void = let
 in
 //
@@ -699,7 +699,7 @@ in
     else let
       val kx2 =
         hashtbl_flistize$fopr<key,itm><ki2> (p->0, p->1)
-      val res = list_vt_cons{ki2}(kx2, res)
+      val res = List_vt_cons{ki2}(kx2, res)
       val ((*void*)) = hashtbl_linprb_keyitm_nullize<key,itm> (!p)
       prval ((*void*)) = $UN.castview0 ((pf, fpf))
     in
@@ -711,7 +711,7 @@ else res // end of [else]
 //
 end // end of [loop]
 //
-val res = $effmask_all(loop (p_end, list_vt_nil(*void*)))
+val res = $effmask_all(loop (p_end, List_vt_nil(*void*)))
 //
 val ((*freed*)) = arrayptr_free($UN.castvwtp0{arrayptr(ki?,0)}(A))
 //

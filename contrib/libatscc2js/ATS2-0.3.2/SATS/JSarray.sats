@@ -36,10 +36,10 @@ JSarray_pair
 //
 fun
 JSarray_make_list
-  {a:t0p}(List(INV(a))): JSarray(a) = "mac#%"
+  {a:t0p}(List_1(INV(a))): JSarray(a) = "mac#%"
 fun
 JSarray_make_list_vt
-  {a:vt0p}(List_vt(INV(a))): JSarray(a) = "mac#%"
+  {a:vt0p}(List_vt_1(INV(a))): JSarray(a) = "mac#%"
 //
 (* ****** ****** *)
 //
@@ -86,7 +86,7 @@ JSarray_copy{a:t@ype}(JSarray(a)): JSarray(a) = "mac#%"
 fun
 JSarray_copy_arrayref
   {a:t@ype}{n:int}
-  (A: arrayref(a, n), asz: int(n)): JSarray(a) = "mac#"
+  (A: arrayref(a, n), asz: Int(n)): JSarray(a) = "mac#"
 //
 (* ****** ****** *)
 //
@@ -115,7 +115,7 @@ JSarray_remove_at
 fun
 JSarray_tabulate_cloref
   {a:vt0p}{n:nat}
-  (int(n), cfun(natLt(n), a)): JSarray(a) = "mac#%"
+  (Int(n), cfun(natLt(n), a)): JSarray(a) = "mac#%"
 //
 (* ****** ****** *)
 //

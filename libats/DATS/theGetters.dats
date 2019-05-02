@@ -64,9 +64,9 @@ loop
 //
 val () =
   res :=
-  list_vt_cons{a}{0}(_, _)
+  List_vt_cons{a}{0}(_, _)
 //
-val+list_vt_cons(x, res1) = res
+val+List_vt_cons(x, res1) = res
 //
 val ans = the_get_elt<a>(x)
 //
@@ -88,7 +88,7 @@ else let
     () = opt_unnone(x)
   // end of [prval]
   val () = free@{a}{0}(res)
-  val () = res := list_vt_nil()
+  val () = res := List_vt_nil()
 in
   // nothing
 end // end of [else]
@@ -183,7 +183,7 @@ val [n:int] n = g1ofg0_uint(asz)
 prval
 [l:addr]
 EQADDR() = eqaddr_make_ptr(addr@asz)
-prval () = view@asz := $UN.castview0{size_t(n)@l}(view@asz)
+prval () = view@asz := $UN.castview0{Size_t(n)@l}(view@asz)
 //
 in
   $UN.castvwtp0{arrayptr(a, n)}(asz)  
@@ -219,7 +219,7 @@ implement
 the_getall_list_exn
   ((*void*)) =
 (
-  list_vt_reverse(the_getall_rlist_exn<a>())
+  List_vt_reverse(the_getall_rlist_exn<a>())
 ) (* end of [the_getall_list_exn] *)
 
 (* ****** ****** *)
@@ -243,12 +243,12 @@ loop
   val xs =
     $UN.ptr0_get<res_vt>(p)
   val () =
-    $UN.ptr0_set<res_vt>(p, cons_vt{a}(x, xs))
+    $UN.ptr0_set<res_vt>(p, Cons_vt{a}(x, xs))
 } (* end of [loop] *)
 //
 var
 res: ptr =
-  list_vt_nil()
+  List_vt_nil()
 val
 p_res = addr@res
 //

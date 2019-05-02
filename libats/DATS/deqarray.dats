@@ -80,14 +80,14 @@ deqarray_get_size__tsz
   {a:vt0p}{m,n:int}
 (
   deq: !deqarray(a, m, n), tsz: sizeof_t(a)
-) :<> size_t(n) = "mac#%" // end-of-function
+) :<> Size_t(n) = "mac#%" // end-of-function
 extern
 fun
 deqarray_get_capacity__tsz
   {a:vt0p}{m,n:int}
 (
   deq: !deqarray(a, m, n), tsz: sizeof_t(a)
-) :<> size_t(m) = "mac#%" // end-of-function
+) :<> Size_t(m) = "mac#%" // end-of-function
 //
 in (* in of [local] *)
 //
@@ -201,7 +201,7 @@ deqarray_is_full__tsz
   {a:vt0p}{m,n:int}
 (
   !deqarray(INV(a), m, n), sizeof_t(a)
-) :<> bool (m==n) = "mac#%" // endfun
+) :<> Bool (m==n) = "mac#%" // endfun
 //
 in (* in of [local] *)
 //
@@ -261,9 +261,9 @@ in
 if
 isnot
 then let
-  val () = deqarray_insert_atbeg<a>(deq, x0) in None_vt()
+  val () = deqarray_insert_atbeg<a>(deq, x0) in None1_vt()
 end // end of [then]
-else Some_vt{a}(x0) // end of [else]
+else Some1_vt{a}(x0) // end of [else]
 //
 end // end of [deqarray_insert_atbeg_opt]
 
@@ -300,9 +300,9 @@ in
 if
 isnot
 then let
-  val () = deqarray_insert_atend<a>(deq, x0) in None_vt()
+  val () = deqarray_insert_atend<a>(deq, x0) in None1_vt()
 end // end of [then]
-else Some_vt{a}(x0) // end of [else]
+else Some1_vt{a}(x0) // end of [else]
 //
 end // end of [deqarray_insert_atend_opt]
 
@@ -351,9 +351,9 @@ in
 if
 isnot
 then let
-  val x0 = deqarray_takeout_atbeg<a>(deq) in Some_vt{a}(x0)
+  val x0 = deqarray_takeout_atbeg<a>(deq) in Some1_vt{a}(x0)
 end // end of [then]
-else None_vt((*void*)) // end of [else]
+else None1_vt((*void*)) // end of [else]
 //
 end // end of [deqarray_takeout_atbeg_opt]
 
@@ -401,8 +401,8 @@ val isnot = deqarray_isnot_nil{a}(deq)
 in
 //
 if isnot then let
-  val x0 = deqarray_takeout_atend<a>(deq) in Some_vt{a}(x0)
-end else None_vt((*void*))
+  val x0 = deqarray_takeout_atend<a>(deq) in Some1_vt{a}(x0)
+end else None1_vt((*void*))
 //
 end // end of [deqarray_takeout_atend_opt]
 

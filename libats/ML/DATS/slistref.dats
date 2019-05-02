@@ -50,7 +50,7 @@ staload "libats/ML/SATS/slistref.sats"
 //
 stadef
 slist =
-lam(a:vt0ype) => List_vt(a)
+lam(a:vt0ype) => List_vt_1(a)
 //
 (* ****** ****** *)
 //
@@ -64,7 +64,7 @@ implement
 {}(*tmp*)
 slistref_make_nil
   {a}((*void*)) =
-  ref<slist(a)>(list_vt_nil())
+  ref<slist(a)>(List_vt_nil())
 //
 (* ****** ****** *)
 //
@@ -72,7 +72,7 @@ implement
 {a}(*tmp*)
 slistref_is_nil
   (stk) =
-  list_vt_is_nil(!p) where
+  List_vt_is_nil(!p) where
 {
 //
 val
@@ -86,7 +86,7 @@ implement
 {a}(*tmp*)
 slistref_is_cons
   (stk) =
-  list_vt_is_cons(!p) where
+  List_vt_is_cons(!p) where
 {
 //
 val
@@ -99,7 +99,7 @@ implement
 {a}(*tmp*)
 slistref_isnot_nil
   (stk) =
-  list_vt_is_cons(!p) where
+  List_vt_is_cons(!p) where
 {
 //
 val
@@ -115,7 +115,7 @@ implement
 {a}(*tmp*)
 slistref_length
   (stk) =
-  list_vt_length(!p) where
+  List_vt_length(!p) where
 {
 //
 val
@@ -123,7 +123,7 @@ val
 vbox(pf) | p
 ) = ref_get_viewptr(stk)
 //
-prval() = lemma_list_vt_param(!p)
+prval() = lemma_List_vt_param(!p)
 //
 } (* end of [slistref_length] *)  
 
@@ -143,11 +143,11 @@ vbox(pf) | p
 prval
 (
 // argless
-) = lemma_list_vt_param(!p)
+) = lemma_List_vt_param(!p)
 //
 val () =
 $effmask_wrt
-  (!p := list_vt_cons(x0, !p))
+  (!p := List_vt_cons(x0, !p))
 //
 } (* end of [slistref_insert] *)
 
@@ -166,9 +166,9 @@ vbox(pf) | p
 in
 //
 case+ !p of
-|  list_vt_nil() => None_vt()
-| ~list_vt_cons(x0, xs) =>
-   $effmask_wrt(!p := xs; Some_vt(x0))
+|  List_vt_nil() => None1_vt()
+| ~List_vt_cons(x0, xs) =>
+   $effmask_wrt(!p := xs; Some1_vt(x0))
 //
 end (* end of [slistref_takeout_opt] *)
 //

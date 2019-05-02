@@ -358,7 +358,7 @@ ftnode_size
   {a:t0p}
   {d:int}
   {n:nat} // .<n>.
-  (xn: ftnode(a, d, n)) :<> size_t(n)
+  (xn: ftnode(a, d, n)) :<> Size_t(n)
 //
 implement
 ftnode_size(xn) = let
@@ -394,7 +394,7 @@ ftdigit_size
   {a:t0p}
   {d:int}
   {n:int} // .<>.
-  (xd: ftdigit (a, d, n)):<> size_t(n)
+  (xd: ftdigit (a, d, n)):<> Size_t(n)
 //
 implement
 ftdigit_size(xd) = let
@@ -842,7 +842,7 @@ fngtree_size
 {a:t0p}
 {d:int}
 {n:nat}
-  (xt: fngtree(a, d, n)):<> size_t(n)
+  (xt: fngtree(a, d, n)):<> Size_t(n)
 //
 implement
 {a}(*tmp*)

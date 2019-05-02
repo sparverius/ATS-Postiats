@@ -57,7 +57,7 @@ gflist_length (xs) = let
 val (pf | xs) = gflist2list (xs)
 //
 in
-  (pf | list_length<a> (xs))
+  (pf | List_length<a> (xs))
 end // end of [gflist_length]
 
 (* ****** ****** *)
@@ -295,7 +295,7 @@ loop
 {xs:ilist}{i:int}
 (
   pf: NTH(x0, xs, i)
-| xs: gflist(a, xs), i: int(i)
+| xs: gflist(a, xs), i: Int(i)
 ) : stamped_t(a, x0) = let
 //
 prval

@@ -90,7 +90,7 @@ stringbuf$recapacitize () = 1 // default policy
 datavtype
 stringbuf =
 {m:pos}
-STRINGBUF of (arrayptr(char, m+1), ptr(*cur*), size_t(m))
+STRINGBUF of (arrayptr(char, m+1), ptr(*cur*), Size_t(m))
 //
 (* ****** ****** *)
 
@@ -494,7 +494,7 @@ val p2 = $STDIO.fgets0 (!p1, sz2i(nb)+1, inp)
 prval pf2 =
 assert (view@last) where
 { 
-  extern praxi assert{l:addr}(char(0)@l): char@l
+  extern praxi assert{l:addr}(Char(0)@l): char@l
 }
 //
 val n2 =
@@ -550,15 +550,15 @@ stringbuf_insert_list
 //
 fun loop
 (
-  sbf: !stringbuf, xs: List(a), res: int
+  sbf: !stringbuf, xs: List_1(a), res: int
 ) : int = let
 in
 //
 case+ xs of
-| list_nil
+| List_nil
     () => res
-  // list_nil
-| list_cons
+  // List_nil
+| List_cons
     (x, xs) => let
     val n =
     stringbuf_insert_val<a>
@@ -589,7 +589,7 @@ val [n:int] n = g1ofg0_uint(n)
 val [i:int] i = g1ofg0_uint(i)
 //
 val i = min(i, n)
-val str = string_make_substring($UN.cast{string(n)}(p0), i2sz(0), i)
+val str = string_make_substring($UN.cast{String(n)}(p0), i2sz(0), i)
 //
 val ni = (n - i)
 val p0 = memmove(p0, ptr_add<char>(p0, i), ni)
@@ -618,7 +618,7 @@ $UN.cast{size_t}(p1 - p0)
 val
 [n:int] n = g1ofg0_uint(n)
 //
-val str = string_make_substring($UN.cast{string(n)}(p0), i2sz(0), n)
+val str = string_make_substring($UN.cast{String(n)}(p0), i2sz(0), n)
 //
 val () = p1 := p0
 //
@@ -714,7 +714,7 @@ fun aux .<>.
   p: ptr, n: size_t
 ) :<!wrt> Strptr1 = let
   val [n0:int]
-    str = $UN.cast{String}(p)
+    str = $UN.cast{String_1}(p)
   val n = $UN.cast{sizeLte(n0)}(n)
   val str2 =
     string_make_substring(str, i2sz(0), n)
@@ -802,7 +802,7 @@ atslib_stringbuf_insert_snprintf
 (
   atstype_ptr sbf, atstype_int recap, atstype_string fmt, ...
 ) {
-  int ntot ;
+  Int ntot ;
   va_list ap0 ;
   va_start(ap0, fmt) ;
   ntot = atslib_stringbuf_insert_vsnprintf (sbf, recap, fmt, ap0) ;
@@ -818,7 +818,7 @@ atslib_stringbuf_insert_vsnprintf
   size_t m ;
   size_t n ;
   void *p_cur ;
-  int ntot ;
+  Int ntot ;
   va_list ap1 ;
 //
   m = atslib__stringbuf_get_capacity (sbf) ;

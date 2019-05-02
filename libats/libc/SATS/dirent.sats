@@ -191,7 +191,7 @@ fun closedir{l:agz}
 ) :<!wrt>
   [i:int | i <= 0]
 (
-  option_v (DIR_v (l), i < 0) | int i
+  option_v (DIR_v (l), i < 0) | Int i
 ) = "mac#%" // end of [closedir]
 //
 fun
@@ -216,7 +216,7 @@ readdir_r
   dirp: !DIRptr1
 , ent0: &dirent? >> opt (dirent, l > null)
 , result: &ptr? >> ptr(l)
-) :<!wrt> #[l:addr;i:int | i >= 0] int(i) = "mac#%"
+) :<!wrt> #[l:addr;i:int | i >= 0] Int(i) = "mac#%"
 
 fun{} readdir_r_gc (dirp: !DIRptr1): Direntp0
 

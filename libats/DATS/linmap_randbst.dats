@@ -79,7 +79,7 @@ bstree (
     BSTcons (
       key, itm, 1+nl+nr
     ) of (
-      int (1+nl+nr), key, itm, bstree (key, itm, nl), bstree (key, itm, nr)
+      Int (1+nl+nr), key, itm, bstree (key, itm, nl), bstree (key, itm, nr)
     ) // end of [BSTcons]
 // end of [bstree]
 //
@@ -101,7 +101,7 @@ key:t0p;itm:vt0p
   {n:int} .<>.
 (
   t: !bstree (key, INV(itm), n)
-) :<> int n =
+) :<> Int n =
 (
   case+ t of BSTcons (n, _, _, _, _) => n | BSTnil _ => 0 
 ) // end of [bstree_size]
@@ -215,7 +215,7 @@ key:t0p;itm:vt0p
 } bstree_insert_atroot{n:nat} .<n>.
 (
   t: &bstree (key, INV(itm), n) >> bstree (key, itm, n+1-i), k0: key, x0: &itm >> opt (itm, i>0)
-) :<!wrt> #[i:nat2] int (i) = let
+) :<!wrt> #[i:nat2] Int (i) = let
 in
 //
 case+ t of
@@ -293,7 +293,7 @@ fun
 bstree_insert_random
   {n:nat} .<n>. (
   t: &bstree (key, INV(itm), n) >> bstree (key, itm, n+1-i), k0: key, x0: &itm >> opt(itm, i>0)
-) : #[i:nat2] int (i) = let
+) : #[i:nat2] Int (i) = let
 in
 //
 case+ t of
@@ -411,7 +411,7 @@ fun
 bstree_takeout_random
   {n:nat} .<n>. (
   t: &bstree (key, INV(itm), n) >> bstree (key, itm, n-i), k0: key, x0: &(itm?) >> opt (itm, i>0)
-) : #[i:nat2 | i <= n] int (i) = let
+) : #[i:nat2 | i <= n] Int (i) = let
 in
 //
 case+ t of
@@ -586,8 +586,8 @@ vtypedef ki = @(key, itm)
 //
 fun aux
   {m,n:nat} .<n>. (
-  t: bstree (key, itm, n), res: list_vt (ki2, m)
-) : list_vt (ki2, m+n) = let
+  t: bstree (key, itm, n), res: List_vt (ki2, m)
+) : List_vt (ki2, m+n) = let
 in
 //
 case+ t of
@@ -597,17 +597,17 @@ case+ t of
   ) => res where {
     val res = aux (tl, res)
     val kx2 = linmap_flistize$fopr<key,itm><ki2> (k, x)
-    val res = list_vt_cons{ki2}(kx2, res)
+    val res = List_vt_cons{ki2}(kx2, res)
     val res = aux (tr, res)
   } // end of [BSTcons]
 | ~BSTnil ((*void*)) => res
 //
 end // end of [aux]
 //
-val res = aux (map, list_vt_nil ())
+val res = aux (map, List_vt_nil ())
 //
 in
-  list_vt_reverse (res)
+  List_vt_reverse (res)
 end // end of [linmap_flistize]
 
 (* ****** ****** *)
@@ -622,8 +622,8 @@ vtypedef ki = @(key, itm)
 //
 fun aux
   {m,n:nat} .<n>. (
-  t0: !bstree (key, itm, n), res: list_vt (ki, m)
-) :<!wrt> list_vt (ki, m+n) = let
+  t0: !bstree (key, itm, n), res: List_vt (ki, m)
+) :<!wrt> List_vt (ki, m+n) = let
 in
 //
 case+ t0 of
@@ -631,7 +631,7 @@ case+ t0 of
     _, k, x, tl, tr
   ) => res where {
     val res = aux (tl, res)
-    val res = list_vt_cons{ki}((k, x), res)
+    val res = List_vt_cons{ki}((k, x), res)
     val res = aux (tr, res)
     prval ((*void*)) = fold@ (t0)
   } // end of [BSTcons]
@@ -639,10 +639,10 @@ case+ t0 of
 //
 end // end of [aux]
 //
-val res = aux (map, list_vt_nil ())
+val res = aux (map, List_vt_nil ())
 //
 in
-  list_vt_reverse (res)
+  List_vt_reverse (res)
 end // end of [linmap_listize1]
 *)
 

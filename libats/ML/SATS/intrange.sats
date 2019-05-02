@@ -238,12 +238,12 @@ fun
 {a:t0p}
 int_list0_map_cloref
   {n:nat}
-  (n: int(n), fopr: cfun(natLt(n), a)): list0(a)
+  (n: Int(n), fopr: cfun(natLt(n), a)): list0(a)
 fun
 {a:t0p}
 int_list0_map_method
   {n:nat}
-  (n: int(n), TYPE(a))(f0: cfun(natLt(n), a)): list0(a)
+  (n: Int(n), TYPE(a))(f0: cfun(natLt(n), a)): list0(a)
 //
 overload .list0_map with int_list0_map_method
 //
@@ -253,12 +253,12 @@ fun
 {a:t0p}
 int_array0_map_cloref
   {n:nat}
-  (n: int(n), fopr: cfun(natLt(n), a)): array0(a)
+  (n: Int(n), fopr: cfun(natLt(n), a)): array0(a)
 fun
 {a:t0p}
 int_array0_map_method
   {n:nat}
-  (n: int(n), TYPE(a))(f0: cfun(natLt(n), a)): array0(a)
+  (n: Int(n), TYPE(a))(f0: cfun(natLt(n), a)): array0(a)
 //
 overload .array0_map with int_array0_map_method
 //
@@ -268,12 +268,12 @@ fun
 {a:t0p}
 int_stream_map_cloref
   {n:nat}
-  (n: int(n), fopr: cfun(natLt(n), a)): stream(a)
+  (n: Int(n), fopr: cfun(natLt(n), a)): stream(a)
 fun
 {a:t0p}
 int_stream_map_method
   {n:nat}
-  (n: int(n), TYPE(a))(f0: cfun(natLt(n), a)): stream(a)
+  (n: Int(n), TYPE(a))(f0: cfun(natLt(n), a)): stream(a)
 //
 overload .stream_map with int_stream_map_method
 //
@@ -283,11 +283,11 @@ fun
 {a:vt0p}
 int_stream_vt_map_cloref
   {n:nat}
-  (n: int(n), fopr: cfun(natLt(n), a)): stream_vt(a)
+  (n: Int(n), fopr: cfun(natLt(n), a)): stream_vt(a)
 fun{a:vt0p}
 int_stream_vt_map_method
   {n:nat}
-  (n: int(n), TYPE(a))(f0: cfun(natLt(n), a)): stream_vt(a)
+  (n: Int(n), TYPE(a))(f0: cfun(natLt(n), a)): stream_vt(a)
 //
 overload .stream_vt_map with int_stream_vt_map_method
 //

@@ -169,7 +169,7 @@ gfarray_get_at
 (
   pf1: NTH(x0, xs, i0)
 , pf2: !gfarray_v (a, l, xs)
-| gp0: ptr (l), i0: size_t (i0)
+| gp0: ptr (l), i0: Size_t (i0)
 ) :<> stamped_t (a, x0) // end
 
 (* ****** ****** *)
@@ -183,7 +183,7 @@ gfarray_set_at
 (
   pf1: UPDATE(x0, xs1, i0, xs2)
 , pf2: !gfarray_v(a, l, xs1) >> gfarray_v(a, l, xs2)
-| gp0: ptr (l), i0: size_t (i0), x0: stamped_t (a, x0)
+| gp0: ptr (l), i0: Size_t (i0), x0: stamped_t (a, x0)
 ) :<!wrt> void // end of [gfarray_set_at]
 
 (* ****** ****** *)
@@ -199,7 +199,7 @@ gfarray_exch_at
   pf1: NTH(x1, xs1, i)
 , pf2: UPDATE(x0, xs1, i, xs2)
 , pf3: !gfarray_v (a, l, xs1) >> gfarray_v (a, l, xs2)
-| p: ptr l, i: size_t i, x0: &stamped_vt (a, x0) >> stamped_vt (a, x1)
+| p: ptr l, i: Size_t i, x0: &stamped_vt (a, x0) >> stamped_vt (a, x1)
 ) :<!wrt> void // end of [gfarray_exch_at]
 
 (* ****** ****** *)

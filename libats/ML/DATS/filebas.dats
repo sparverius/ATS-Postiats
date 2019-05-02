@@ -169,16 +169,16 @@ val opt =
 in
 //
 case+ opt of
-| ~None_vt() =>
-   None_vt()
-| ~Some_vt(inp) =>
-   Some_vt(lines) where
+| ~None1_vt() =>
+   None1_vt()
+| ~Some1_vt(inp) =>
+   Some1_vt(lines) where
  {
     val lines =
       fileref_get_lines_stringlst(inp)
     // end of [val]
     val ((*void*)) = fileref_close(inp)
- } (* end of [Some_vt] *) 
+ } (* end of [Some1_vt] *) 
 //
 end // end of [filename_get_lines_stringlst_opt]
 
@@ -310,10 +310,10 @@ fileref_open_opt(fname, file_mode_r)
 in
 //
 case+ opt of
-| ~None_vt() =>
-   None_vt()
-| ~Some_vt(filr) =>
-   Some_vt(streamize_fileptr_char($UN.castvwtp0{FILEptr1}(filr)))
+| ~None1_vt() =>
+   None1_vt()
+| ~Some1_vt(filr) =>
+   Some1_vt(streamize_fileptr_char($UN.castvwtp0{FILEptr1}(filr)))
 //
 end // end of [streamize_filename_char]
 
@@ -331,10 +331,10 @@ fileref_open_opt(fname, file_mode_r)
 in
 //
 case+ opt of
-| ~None_vt() =>
-   None_vt()
-| ~Some_vt(filr) =>
-   Some_vt(streamize_fileptr_line($UN.castvwtp0{FILEptr1}(filr)))
+| ~None1_vt() =>
+   None1_vt()
+| ~Some1_vt(filr) =>
+   Some1_vt(streamize_fileptr_line($UN.castvwtp0{FILEptr1}(filr)))
 //
 end // end of [streamize_filename_line]
 
@@ -352,10 +352,10 @@ fileref_open_opt(fname, file_mode_r)
 in
 //
 case+ opt of
-| ~None_vt() =>
-   None_vt()
-| ~Some_vt(filr) =>
-   Some_vt(streamize_fileptr_word($UN.castvwtp0{FILEptr1}(filr)))
+| ~None1_vt() =>
+   None1_vt()
+| ~Some1_vt(filr) =>
+   Some1_vt(streamize_fileptr_word($UN.castvwtp0{FILEptr1}(filr)))
 //
 end // end of [streamize_filename_word]
 

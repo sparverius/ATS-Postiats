@@ -225,9 +225,9 @@ fun cbrt_ldouble (ld: ldouble):<> ldouble = "mac#%"
 (* ****** ****** *)
 //
 fun{}
-intsqrt{n:nat}(n: int(n)): natLte(n) // = "mac#%"
+intsqrt{n:nat}(n: Int(n)): natLte(n) // = "mac#%"
 fun{}
-intcbrt{n:nat}(n: int(n)): natLte(n) // = "mac#%"
+intcbrt{n:nat}(n: Int(n)): natLte(n) // = "mac#%"
 //
 (* ****** ****** *)
 //

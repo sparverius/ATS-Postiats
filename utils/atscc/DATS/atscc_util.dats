@@ -244,7 +244,7 @@ in
 //
 case+ cas of
 //
-| list_cons
+| List_cons
     (ca, cas) =>
   (
   case+ ca of
@@ -258,7 +258,7 @@ case+ cas of
   | _ (*void*) => atsccomp_get2(cas)
   ) (* end of [list_cons] *)
 //
-| list_nil() => atsccomp_get()
+| List_nil() => atsccomp_get()
 //
 end // end of [atsccomp_get2]
 

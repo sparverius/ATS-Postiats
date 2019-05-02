@@ -113,7 +113,7 @@ end // end of [print_list_sep]
 (* ****** ****** *)
 
 implement
-list_sort_2
+List_sort_2
   {a}{n}(xs, cmp) = let
 //
 val A =
@@ -132,14 +132,14 @@ loop (
 if
 (i0 < asz)
 then (
-  loop(i0+1, list_cons(A.pop(), res))
+  loop(i0+1, List_cons(A.pop(), res))
 ) else res
 // end of [if]
 //
 ) (* end of [loop] *)
 //
 in
-  $UN.cast{list(a,n)}(loop(0, list_nil(*void*)))
+  $UN.cast{List(a,n)}(loop(0, List_nil(*void*)))
 end // end of [list_sort_2]
 
 (* ****** ****** *)

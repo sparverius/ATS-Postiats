@@ -63,7 +63,7 @@ compare_key_key
 sortdef two = {c:nat | c < 2}
 sortdef clr = {c:nat | c < 2}
 //
-typedef color(c:int) = int(c)
+typedef color(c:int) = Int(c)
 typedef color = [c:clr] color(c)
 //
 (* ****** ****** *)
@@ -186,7 +186,7 @@ search
 (
   t0: rbtree0(c, bh)
 , res: &itm? >> opt (itm, b)
-) :<!wrt> #[b:bool] bool(b) = let
+) :<!wrt> #[b:bool] Bool(b) = let
 in
 //
 case+ t0 of
@@ -302,7 +302,7 @@ insert
 {bh:nat} .<bh,c>.
 (
   t0: rbtree0 (c, bh)
-, res: &bool? >> bool (b)
+, res: &bool? >> Bool (b)
 , res2: &itm? >> opt (itm, b)
 ) :<!wrt> #[b:bool]
 [
@@ -472,7 +472,7 @@ rbtree_remove_min
 (
   t0: rbtree0 (key, itm, c, bh)
 , k0: &key? >> key, x0: &itm? >> itm
-, dfbh: &int? >> int (d)
+, dfbh: &int? >> Int (d)
 ) :<!wrt>
 #[d:two | d <= bh]
  [c1:clr | c1 <= c+d]
@@ -598,7 +598,7 @@ takeout
     (key, itm, c, bh)
   // rbtree0
 , pres: ptr
-, dfbh: &int? >> int(d)
+, dfbh: &int? >> Int(d)
 , taken: &bool? >> bool
 ) :<!wrt>
 #[d:two | d <= bh]
@@ -854,8 +854,8 @@ aux
 {c:clr}
 {bh,n:nat} .<bh,c>.
 (
-  t0: rbtree0 (c, bh), n: int(n)
-) :<> int(bh+n) = (
+  t0: rbtree0 (c, bh), n: Int(n)
+) :<> Int(bh+n) = (
 //
 case+ t0 of
 | E ((*void*)) => n

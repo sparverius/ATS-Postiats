@@ -53,19 +53,19 @@ map_type
 //
 (* ****** ****** *)
 
-implement{} funmap_nil () = list_nil ()
-implement{} funmap_make_nil () = list_nil ()
+implement{} funmap_nil () = List_nil ()
+implement{} funmap_make_nil () = List_nil ()
 
 (* ****** ****** *)
 
 implement{}
 funmap_is_nil (map) =
-  case+ map of list_nil _ => true | list_cons _ => false
+  case+ map of List_nil _ => true | List_cons _ => false
 // end of [funmap_is_nil]
 
 implement{}
 funmap_isnot_nil (map) =
-  case+ map of list_nil _ => false | list_cons _ => true
+  case+ map of List_nil _ => false | List_cons _ => true
 // end of [funmap_isnot_nil]
 
 (* ****** ****** *)
@@ -73,7 +73,7 @@ funmap_isnot_nil (map) =
 implement
 {key,itm}
 funmap_size
-  (map) = g1int2uint (list_length (map))
+  (map) = g1int2uint (List_length (map))
 // end of [funmap_size]
 
 (* ****** ****** *)
@@ -84,13 +84,13 @@ funmap_search
   (map, k0, res) = let
 //
 fun search (
-  kxs: List @(key, itm)
+  kxs: List_1 @(key, itm)
 , k0: key, res: &itm? >> opt (itm, b)
-) : #[b:bool] bool (b) = let
+) : #[b:bool] Bool (b) = let
 in
 //
 case+ kxs of
-| list_cons
+| List_cons
     (kx, kxs) => let
     val iseq =
       equal_key_key<key> (k0, kx.0)
@@ -103,7 +103,7 @@ case+ kxs of
       search (kxs, k0, res)
     // end of [if]
   end // end of [list_cons]
-| list_nil () => let
+| List_nil () => let
     prval () = opt_none {itm} (res) in false
   end // end of [list_nil]
 //
@@ -129,7 +129,7 @@ typedef ki = @(key, itm)
 val ans =
   funmap_takeout<key,itm>(map, k0, res)
 val () =
-  (map := list_cons{ki}( @(k0, x0), map ))
+  (map := List_cons{ki}( @(k0, x0), map ))
 // end of [val]
 //
 in
@@ -146,7 +146,7 @@ funmap_insert_any
 typedef ki = @(key, itm)
 //
 in
-  map := list_cons{ki}( @(k0, x0), map )
+  map := List_cons{ki}( @(k0, x0), map )
 end // end of [funmap_insert_any]
 
 (* ****** ****** *)
@@ -164,36 +164,36 @@ fun loop
 , kxs1: List0 @(key, itm)
 , kxs2: List0_vt @(key, itm)
 , k0: key, res: &itm? >> opt (itm, b)
-) : #[b:bool] bool (b) = let
+) : #[b:bool] Bool (b) = let
 //
 typedef ki = @(key, itm)
 //
 in
 //
 case+ kxs1 of
-| list_cons
+| List_cons
     (kx, kxs1) => let
     val iseq = equal_key_key<key> (k0, kx.0)
   in
     if iseq then let
       val () = res := kx.1
       prval () = opt_some {itm} (res)
-      val () = map := list_reverse_append1_vt (kxs2, kxs1)
+      val () = map := List_reverse_append1_vt (kxs2, kxs1)
     in
       true
     end else
-      loop (map, kxs1, list_vt_cons{ki}(kx, kxs2), k0, res)
+      loop (map, kxs1, List_vt_cons{ki}(kx, kxs2), k0, res)
     // end of [if]
   end // end of [list_cons]
-| list_nil () => let
-    val () = list_vt_free<ki> (kxs2)
+| List_nil () => let
+    val () = List_vt_free<ki> (kxs2)
     prval () = opt_none {itm} (res) in false
   end // end of [list_nil]
 //
 end // end of [loop]
 //
 in
-  loop (map, map, list_vt_nil (), k0, res)
+  loop (map, map, List_vt_nil (), k0, res)
 end // end of [funmap_takeout]
 
 (* ****** ****** *)
@@ -206,13 +206,13 @@ funmap_foreach_env
 vtypedef ki = @(key, itm)
 //
 implement{ki}{env}
-list_foreach$cont (kx, env) = true
+List_foreach$cont (kx, env) = true
 implement
-list_foreach$fwork<ki><env> (kx, env) =
+List_foreach$fwork<ki><env> (kx, env) =
   funmap_foreach$fwork<key,itm><env> (kx.0, kx.1, env)
 //
 in
-  list_foreach_env<ki><env> (map, env)
+  List_foreach_env<ki><env> (map, env)
 end // end of [funmap_foreach_env]
 
 (* ****** ****** *)

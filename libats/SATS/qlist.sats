@@ -94,16 +94,16 @@ qlist_free_nil{a:vt0p}(qlist(a, 0)):<!wrt> void
 fun
 {a:vt0p}
 qlist_length
-  {n:int}(q0: !qlist(INV(a), n)):<> int(n)
+  {n:int}(q0: !qlist(INV(a), n)):<> Int(n)
 //
 (* ****** ****** *)
 //
 fun{a:vt0p}
 qlist_is_nil
-  {n:int}(q0: !qlist(a, n)):<> bool(n == 0)
+  {n:int}(q0: !qlist(a, n)):<> Bool(n == 0)
 fun{a:vt0p}
 qlist_isnot_nil
-  {n:int}(q0: !qlist(INV(a), n)):<> bool(n > 0)
+  {n:int}(q0: !qlist(INV(a), n)):<> Bool(n > 0)
 //
 (* ****** ****** *)
 //
@@ -142,7 +142,7 @@ qlist_takeout{n:pos}
 //
 fun{a:vt0p}
 qlist_takeout_opt
-  (q0: !qlist(INV(a)) >> _):<!wrt> Option_vt(a)
+  (q0: !qlist(INV(a)) >> _):<!wrt> Option_vt_1(a)
 //
 (* ****** ****** *)
 //
@@ -152,7 +152,7 @@ qlist_takeout_opt
 //
 fun{}
 qlist_takeout_list{a:vt0p}{n:int}
-  (q0: !qlist(INV(a), n) >> qlist(a, 0)):<!wrt> list_vt(a, n)
+  (q0: !qlist(INV(a), n) >> qlist(a, 0)):<!wrt> List_vt(a, n)
 // end of [qlist_takeout_list]
 //
 (* ****** ****** *)
@@ -251,7 +251,7 @@ qstruct_takeout{n:pos}
 //
 fun{}
 qstruct_takeout_list{a:vt0p}{n:int}
-  (q0: &qstruct(INV(a), n) >> qstruct(a, 0)):<!wrt> list_vt(a, n)
+  (q0: &qstruct(INV(a), n) >> qstruct(a, 0)):<!wrt> List_vt(a, n)
 // end of [qstruct_takeout_list]
 //
 (* ****** ****** *)

@@ -81,7 +81,7 @@ datavtype avltree
      hr <= hl+HTDF}
     B (key, itm, 1+max(hl,hr)) of
     (
-      int (1+max(hl,hr)), key, itm, avltree (key, itm, hl), avltree (key, itm, hr)
+      Int (1+max(hl,hr)), key, itm, avltree (key, itm, hl), avltree (key, itm, hr)
     )
   | E (key, itm, 0) of ((*void*))
 // end of [datavtype avltree]
@@ -258,7 +258,7 @@ fn
 {key:t0p
 ;itm:vt0p}
 avltree_height{h:int}
-  (t: !avltree (key, itm, h)):<> int (h) = avlht(t)
+  (t: !avltree (key, itm, h)):<> Int (h) = avlht(t)
 //
 (* ****** ****** *)
 
@@ -277,15 +277,15 @@ avltree_lrotate
 , pf_tl: avltree (key, itm, hl) @ l_tl
 , pf_tr: avltree (key, itm, hr) @ l_tr
 | p_h: ptr l_h
-, hl: int hl, p_tl: ptr l_tl
-, hr: int hr, p_tr: ptr l_tr
+, hl: Int hl, p_tl: ptr l_tl
+, hr: Int hr, p_tr: ptr l_tr
 , t0: B_unfold (l, l_h, l_k, l_x, l_tl, l_tr)
 ) :<!wrt> avltree_inc (key, itm, hr) = let
   val tr = !p_tr
   val+@B{..}{hrl,hrr}
     (hr2, _, _, trl, trr) = tr
-  val hrl = avlht(trl): int(hrl)
-  and hrr = avlht(trr): int(hrr)
+  val hrl = avlht(trl): Int(hrl)
+  and hrr = avlht(trr): Int(hrr)
 in
   if hrl <= hrr+HTDF_1 then let
     val hrl1 = hrl + 1
@@ -301,8 +301,8 @@ in
     val trl_ = trl
     val+@B{..}{hrll,hrlr}
       (hrl, _, _, trll, trlr) = trl_
-    val hrll = avlht (trll) : int(hrll)
-    and hrlr = avlht (trlr) : int(hrlr)
+    val hrll = avlht (trll) : Int(hrll)
+    and hrlr = avlht (trlr) : Int(hrlr)
     val () = !p_h := 1+max(hl,hrll)
     val () = !p_tr := trll
     prval () = fold@ (t0)
@@ -337,15 +337,15 @@ avltree_rrotate
 , pf_tl: avltree (key, itm, hl) @ l_tl
 , pf_tr: avltree (key, itm, hr) @ l_tr
 | p_h: ptr l_h
-, hl : int hl, p_tl: ptr l_tl
-, hr : int hr, p_tr: ptr l_tr
+, hl : Int hl, p_tl: ptr l_tl
+, hr : Int hr, p_tr: ptr l_tr
 , t0: B_unfold (l, l_h, l_k, l_x, l_tl, l_tr)
 ) :<!wrt> avltree_inc (key, itm, hl) = let
   val tl = !p_tl
   val+@B{..}{hll,hlr}
     (hl2, _, _, tll, tlr) = tl
-  val hll = avlht(tll): int(hll)
-  and hlr = avlht(tlr): int(hlr)
+  val hll = avlht(tll): Int(hll)
+  and hlr = avlht(tlr): Int(hlr)
 in
   if hll+HTDF_1 >= hlr then let
     val hlr1 = hlr + 1
@@ -361,8 +361,8 @@ in
     val tlr_ = tlr
     val+@B{..}{hlrl,hlrr}
       (hlr, _, _, tlrl, tlrr) = tlr_
-    val hlrl = avlht (tlrl): int(hlrl)
-    val hlrr = avlht (tlrr): int(hlrr)
+    val hlrl = avlht (tlrl): Int(hlrl)
+    val hlrr = avlht (tlrr): Int(hlrr)
     val () = !p_h := 1+max(hlrr,hr)
     val () = !p_tl := tlrr
     prval () = fold@ (t0)
@@ -391,7 +391,7 @@ fun insert
   {h:nat} .<h>.
 (
   t0: &avltree (key, itm, h) >> avltree_inc (key, itm, h), k0: key, x0: &(itm) >> opt(itm, b)
-) :<!wrt> #[b:bool] bool(b) = let
+) :<!wrt> #[b:bool] Bool(b) = let
 in
 //
 case+ t0 of
@@ -759,17 +759,17 @@ case+ t of
   ) => res where {
     val res = aux (tl, res)
     val kx2 = linmap_flistize$fopr<key,itm><ki2> (k, x)
-    val res = list_vt_cons{ki2}(kx2, res)
+    val res = List_vt_cons{ki2}(kx2, res)
     val res = aux (tr, res)
   } // end of [BSTcons]
 | ~E ((*void*)) => res
 //
 end // end of [aux]
 //
-val res = aux (map, list_vt_nil ())
+val res = aux (map, List_vt_nil ())
 //
 in
-  list_vt_reverse (res)
+  List_vt_reverse (res)
 end // end of [linmap_flistize]
 
 (* ****** ****** *)

@@ -63,9 +63,9 @@ map_vtype (k:t0p, i:vt0p) = List0_vt @(k, i)
 (* ****** ****** *)
 
 implement{}
-linmap_nil () = list_vt_nil ()
+linmap_nil () = List_vt_nil ()
 implement{}
-linmap_make_nil () = list_vt_nil ()
+linmap_make_nil () = List_vt_nil ()
 
 (* ****** ****** *)
 
@@ -73,7 +73,7 @@ implement{}
 linmap_is_nil
   (map) = ans where {
   val ans = (
-    case+ map of list_vt_nil _ => true | list_vt_cons _ => false
+    case+ map of List_vt_nil _ => true | List_vt_cons _ => false
   ) : bool // end of [val]
 } // end of [linmap_is_nil]
 
@@ -81,7 +81,7 @@ implement{}
 linmap_isnot_nil
   (map) = ans where {
   val ans = (
-    case+ map of list_vt_nil _ => false | list_vt_cons _ => true
+    case+ map of List_vt_nil _ => false | List_vt_cons _ => true
   ) : bool // end of [val]
 } // end of [linmap_isnot_nil]
 
@@ -89,23 +89,23 @@ linmap_isnot_nil
 
 implement
 {key,itm}
-linmap_size (map) = g1int2uint (list_vt_length (map))
+linmap_size (map) = g1int2uint (List_vt_length (map))
 
 (* ****** ****** *)
 
 implement
 {key,itm}
-linmap_free (map) = list_vt_free<(key,itm)> (map)
+linmap_free (map) = List_vt_free<(key,itm)> (map)
 
 implement
 {key,itm}
 linmap_freelin (map) = let
 //
 vtypedef ki = @(key, itm)
-fun aux (kxs: List_vt(ki)): void =
+fun aux (kxs: List_vt_1(ki)): void =
 (
 case+ kxs of
-| @list_vt_cons
+| @List_vt_cons
     (kx, kxs1) => let
     val kxs1 = kxs1
     val () = linmap_freelin$clear<itm> (kx.1)
@@ -113,7 +113,7 @@ case+ kxs of
   in
     aux (kxs1)
   end // end of [list_vt_cons]
-| ~list_vt_nil ((*void*)) => ()
+| ~List_vt_nil ((*void*)) => ()
 )
 //
 in
@@ -160,7 +160,7 @@ linmap_insert_any
   (map, k0, x0) = let
 //
 vtypedef ki = @(key, itm)
-val () = map := list_vt_cons{ki}( @(k0, x0), map )
+val () = map := List_vt_cons{ki}( @(k0, x0), map )
 //
 in
   // nothing
@@ -176,13 +176,13 @@ linmap_foreach_env
 vtypedef ki = @(key, itm)
 //
 implement{ki}{env}
-list_vt_foreach$cont (kx, env) = true
+List_vt_foreach$cont (kx, env) = true
 implement
-list_vt_foreach$fwork<ki><env>
+List_vt_foreach$fwork<ki><env>
   (kx, env) = linmap_foreach$fwork<key,itm><env> (kx.0, kx.1, env)
 //
 in
-  list_vt_foreach_env<ki><env> (map, env)
+  List_vt_foreach_env<ki><env> (map, env)
 end // end of [linmap_foreach_env]
 
 (* ****** ****** *)
@@ -199,18 +199,18 @@ linmap_flistize (map) = let
 //
 vtypedef ki = @(key, itm) 
 implement
-list_vt_mapfree$fopr<ki><ki2>
+List_vt_mapfree$fopr<ki><ki2>
   (kx) = linmap_flistize$fopr<key,itm><ki2> (kx.0, kx.1)
 //
 in
-  list_vt_mapfree<ki><ki2> (map)
+  List_vt_mapfree<ki><ki2> (map)
 end // end of [linmap_flistize]
 
 (* ****** ****** *)
 
 implement
 {key,itm}
-linmap_listize1 (map) = list_vt_copy<(key,itm)> (map)
+linmap_listize1 (map) = List_vt_copy<(key,itm)> (map)
 
 (* ****** ****** *)
 //
@@ -237,7 +237,7 @@ mynode_make_keyitm
   (k, x) = let
 //
 vtypedef ki = @(key, itm)
-val nx = list_vt_cons{ki}{0}( @(k, x), _ )
+val nx = List_vt_cons{ki}{0}( @(k, x), _ )
 //
 in
   $UN.castvwtp0{mynode1(key,itm)}(nx)
@@ -254,7 +254,7 @@ vtypedef ki = @(key, itm)
 //
 val nx2 = $UN.castvwtp1{List1_vt(ki)}(nx)
 //
-val+@list_vt_cons (kx, _) = nx2
+val+@List_vt_cons (kx, _) = nx2
 //
 val k = kx.0
 //
@@ -274,7 +274,7 @@ vtypedef ki = @(key, itm)
 //
 val nx2 = $UN.castvwtp1{List1_vt(ki)}(nx)
 //
-val+@list_vt_cons (kx, _) = nx2
+val+@List_vt_cons (kx, _) = nx2
 //
 val p_x = addr@ (kx.1)
 val p_x = $UN.cast{cPtr1(itm)}(p_x)
@@ -297,7 +297,7 @@ vtypedef ki = @(key, itm)
 //
 val nx = $UN.castvwtp0{List1_vt(ki)}(nx)
 //
-val+~list_vt_cons (kx, nx2) = nx
+val+~List_vt_cons (kx, nx2) = nx
 val () = k0 := kx.0 and () = x0 := kx.1
 prval () = __assert (nx2) where {
   extern praxi __assert : List0_vt(ki) -<prf> void
@@ -316,7 +316,7 @@ vtypedef ki = @(key, itm)
 //
 val nx = $UN.castvwtp0{List1_vt(ki)}(nx)
 //
-val+~list_vt_cons (kx, nx2) = nx
+val+~List_vt_cons (kx, nx2) = nx
 //
 prval ((*void*)) = $UN.cast2void (nx2)
 //
@@ -333,12 +333,12 @@ vtypedef ki = @(key, itm)
 //
 fun loop
   {n:nat} .<n>. (
-  kxs: !list_vt (ki, n), k0: key
+  kxs: !List_vt (ki, n), k0: key
 ) :<> Ptr0 = let
 in
 //
 case+ kxs of
-| @list_vt_cons
+| @List_vt_cons
     (kx, kxs1) => let
     val iseq = equal_key_key<key> (kx.0, k0)
   in
@@ -351,7 +351,7 @@ case+ kxs of
       prval () = fold@ (kxs) in res
     end // end of [if]
   end // end of [list_vt_cons]
-| @list_vt_nil () => let
+| @List_vt_nil () => let
     prval () = fold@ (kxs) in the_null_ptr
   end // end of [list_vt_cons]
 //
@@ -389,7 +389,7 @@ vtypedef ki = @(key, itm)
 //
 val nx0 = $UN.castvwtp0{List1_vt(ki)}(nx0)
 //
-val+@list_vt_cons (_, kxs) = nx0
+val+@List_vt_cons (_, kxs) = nx0
 prval () = __assert (kxs) where {
   extern praxi __assert : List0_vt(ki) -<prf> void
 } // end of [where] // end of [prval]
@@ -418,7 +418,7 @@ vtypedef kis = List0_vt (ki)
 in
 //
 case+ kxs of
-| @list_vt_cons
+| @List_vt_cons
     (kx, kxs1) => let
     val iseq =
       equal_key_key<key> (kx.0, k0)
@@ -436,7 +436,7 @@ case+ kxs of
       prval () = fold@ (kxs) in res
     end // end of [if]
   end // end of [list_vt_cons]
-| @list_vt_nil () => let
+| @List_vt_nil () => let
     prval () = fold@ (kxs) in mynode_null ()
   end // end of [list_vt_cons]
 //

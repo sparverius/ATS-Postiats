@@ -80,12 +80,12 @@ fun{
 
 fun{
 } gnode_is_null
-  {tk:tk}{a:vt0p}{l:addr} (nx: gnode (tk, INV(a), l)):<> bool (l==null)
+  {tk:tk}{a:vt0p}{l:addr} (nx: gnode (tk, INV(a), l)):<> Bool (l==null)
 // end of [gnode_is_null]
 
 fun{
 } gnode_isnot_null
-  {tk:tk}{a:vt0p}{l:addr} (nx: gnode (tk, INV(a), l)):<> bool (l > null)
+  {tk:tk}{a:vt0p}{l:addr} (nx: gnode (tk, INV(a), l)):<> Bool (l > null)
 // end of [gnode_isnot_null]
 
 (* ****** ****** *)

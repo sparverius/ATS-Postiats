@@ -114,24 +114,24 @@ sllist_unsnoc{n:int | n > 0}
 
 fun{a:t0p}
 sllist_make_list
-  {n:int} (xs: list (INV(a), n)):<!wrt> sllist (a, n)
+  {n:int} (xs: List (INV(a), n)):<!wrt> sllist (a, n)
 // end of [sllist_make_list]
 
 (* ****** ****** *)
 
 fun{a:t0p}
 sllist_make_list_vt
-  {n:int} (xs: list_vt (INV(a), n)):<!wrt> sllist (a, n)
+  {n:int} (xs: List_vt (INV(a), n)):<!wrt> sllist (a, n)
 // end of [sllist_make_list_vt]
 
 (* ****** ****** *)
 
 fun{
 } sllist_is_nil
-  {a:vt0p}{n:int} (xs: !sllist (INV(a), n)):<> bool (n==0)
+  {a:vt0p}{n:int} (xs: !sllist (INV(a), n)):<> Bool (n==0)
 fun{
 } sllist_is_cons
-  {a:vt0p}{n:int} (xs: !sllist (INV(a), n)):<> bool (n > 0)
+  {a:vt0p}{n:int} (xs: !sllist (INV(a), n)):<> Bool (n > 0)
 //
 overload iseqz with sllist_is_nil
 overload isneqz with sllist_is_cons
@@ -140,7 +140,7 @@ overload isneqz with sllist_is_cons
 
 fun{a:vt0p}
 sllist_length
-  {n:int} (xs: !sllist (INV(a), n)):<> int (n)
+  {n:int} (xs: !sllist (INV(a), n)):<> Int (n)
 //
 overload length with sllist_length
 //

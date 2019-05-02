@@ -82,7 +82,7 @@ overload capacity with hashtbl_get_capacity
 fun{
 key,itm:t0p
 } hashtbl_search
-  (hashtbl(key, INV(itm)), key): Option_vt(itm)
+  (hashtbl(key, INV(itm)), key): Option_vt_1(itm)
 // end of [hashtbl_search]
 
 fun{
@@ -96,7 +96,7 @@ key,itm:t0p
 fun{
 key,itm:t0p
 } hashtbl_insert
-  (hashtbl(key, INV(itm)), key, itm): Option_vt(itm)
+  (hashtbl(key, INV(itm)), key, itm): Option_vt_1(itm)
 // end of [hashtbl_insert]
 
 fun{
@@ -109,7 +109,7 @@ key,itm:t0p
 fun{
 key,itm:t0p
 } hashtbl_takeout
-  (kxs: hashtbl(key, INV(itm)), k0: key): Option_vt(itm)
+  (kxs: hashtbl(key, INV(itm)), k0: key): Option_vt_1(itm)
 // end of [hashtbl_takeout]
 
 (* ****** ****** *)

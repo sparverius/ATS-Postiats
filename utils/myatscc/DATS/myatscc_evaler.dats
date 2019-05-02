@@ -48,7 +48,7 @@ myexp_eval_name_s(string): gvalue
 extern
 fun
 myexp_eval_fcall
-  (f: token, xs: List(myexp)): gvalue
+  (f: token, xs: List_1(myexp)): gvalue
 //
 (* ****** ****** *)
 
@@ -153,10 +153,10 @@ val opt = list0_nth_opt(gvs, ind)
 in
 //
 case+ opt of
-| ~Some_vt
+| ~Some1_vt
     (gv) => gv
   // Some_vt
-| ~None_vt() =>
+| ~None1_vt() =>
     GVnil(*void*) where
   {
     val () =
@@ -197,15 +197,15 @@ println!
 ) (* println! *)
 *)
 //
-val opt = None_vt()
+val opt = None1_vt()
 //
 in
 //
 case+ opt of
-| ~Some_vt
+| ~Some1_vt
     (gv) => gv
   // Some_vt
-| ~None_vt() =>
+| ~None1_vt() =>
     GVnil(*void*) where
   {
     val () =
@@ -242,7 +242,7 @@ the_myexpfun_map_insert
   (name, fdef) = () where
 {
 //
-val-~None_vt() =
+val-~None1_vt() =
   the_myexpfun_map.insert(name, fdef)
 //
 } (* end of [the_myexpfun_map_insert] *)
@@ -263,18 +263,18 @@ the_myexpfun_map.search(name)
 in
 //
 case+ opt of
-| ~Some_vt
+| ~Some1_vt
     (fopr) =>
     fopr(arg) where
   {
     val arg =
-    list_map_fun<myexp><gvalue>
+    List_map_fun<myexp><gvalue>
       (arg, myexp_eval)
     // end of [val]
     reassume myexpfun_type
-    val arg = list_vt2t{gvalue}(arg)
+    val arg = List_vt2t{gvalue}(arg)
   } (* end of [Some_vt] *)
-| ~None_vt() =>
+| ~None1_vt() =>
     GVnil(*void*) where
   {
     val () =
@@ -290,14 +290,14 @@ local
 fun
 fname
 (
-  gvs: List(gvalue)
+  gvs: List_1(gvalue)
 ) : gvalue = (
 //
 case+ gvs of
-| list_nil
+| List_nil
     () => GVnil()
   // list_nil
-| list_cons
+| List_cons
     (gv, _) =>
   (
     case+ gv of
@@ -325,14 +325,14 @@ case+ gvs of
 fun
 fname_ext
 (
-  gvs: List(gvalue)
+  gvs: List_1(gvalue)
 ) : gvalue = (
 //
 case+ gvs of
-| list_nil
+| List_nil
     () => GVnil()
   // list_nil
-| list_cons
+| List_cons
     (gv, _) =>
   (
     case+ gv of
@@ -365,16 +365,16 @@ case+ gvs of
 fun
 arglst
 (
-  gvs: List(gvalue)
+  gvs: List_1(gvalue)
 ) : gvalue =
 (
 case+ gvs of
-| list_nil() => GVnil()
-| list_cons(gv1, gvs) =>
+| List_nil() => GVnil()
+| List_cons(gv1, gvs) =>
   (
     case+ gvs of
-    | list_nil() => arglst_1(gv1)
-    | list_cons(gv2, _) => arglst_2(gv1, gv2)
+    | List_nil() => arglst_1(gv1)
+    | List_cons(gv2, _) => arglst_2(gv1, gv2)
   )
 ) (* end of [arglst] *)
 //
@@ -560,16 +560,16 @@ myexpseq_stringize
 val xs = g1ofg0(xs)
 //
 val ss =
-list_map_fun<myexp><string>
+List_map_fun<myexp><string>
   (xs, myexp_stringize)
 //
 val res = let
-  val ss = $UN.list_vt2t(ss)
+  val ss = $UN.List_vt2t(ss)
 in
   stringlst_concat(g0ofg1(ss))
 end // end of [val]
 //
-val ((*freed*)) = list_vt_free(ss)
+val ((*freed*)) = List_vt_free(ss)
 //
 } (* end of [myexpseq_stringize] *)
 

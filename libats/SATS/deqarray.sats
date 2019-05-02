@@ -92,7 +92,7 @@ lemma_deqarray_param
 
 fun{a:vt0p}
 deqarray_make_cap
-  {m:int} (cap: size_t(m)):<!wrt> deqarray(a, m, 0)
+  {m:int} (cap: Size_t(m)):<!wrt> deqarray(a, m, 0)
 // end of [deqarray_make_cap]
 
 (* ****** ****** *)
@@ -103,7 +103,7 @@ deqarray_make_ngc__tsz
   {l:addr}{m:int}
 (
   deqarray_tsize? @ l
-| ptr(l), arrayptr(a?, m+1), size_t(m), sizeof_t(a)
+| ptr(l), arrayptr(a?, m+1), Size_t(m), sizeof_t(a)
 ) :<!wrt> (mfree_ngc_v (l) | deqarray(a, m, 0)) = "mac#%"
 
 (* ****** ****** *)
@@ -120,34 +120,34 @@ fun
 {a:vt0p}
 deqarray_get_size
   {m,n:int}
-  (deq: !deqarray(INV(a), m, n)):<> size_t(n)
+  (deq: !deqarray(INV(a), m, n)):<> Size_t(n)
 fun
 {a:vt0p}
 deqarray_get_capacity
   {m,n:int}
-  (deq: !deqarray(INV(a), m, n)):<> size_t(m)
+  (deq: !deqarray(INV(a), m, n)):<> Size_t(m)
 //
 (* ****** ****** *)
 //
 fun
 deqarray_is_nil
   {a:vt0p}{m,n:int}
-  (deq: !deqarray(INV(a), m, n)):<> bool(n==0) = "mac#%"
+  (deq: !deqarray(INV(a), m, n)):<> Bool(n==0) = "mac#%"
 fun
 deqarray_isnot_nil
   {a:vt0p}{m,n:int}
-  (deq: !deqarray(INV(a), m, n)):<> bool(n > 0) = "mac#%"
+  (deq: !deqarray(INV(a), m, n)):<> Bool(n > 0) = "mac#%"
 //
 (* ****** ****** *)
 //
 fun
 {a:vt0p}
 deqarray_is_full{m,n:int}
-  (deq: !deqarray(INV(a), m, n)):<> bool(m==n) = "mac#%"
+  (deq: !deqarray(INV(a), m, n)):<> Bool(m==n) = "mac#%"
 fun
 {a:vt0p}
 deqarray_isnot_full{m,n:int}
-  (deq: !deqarray(INV(a), m, n)):<> bool(m > n) = "mac#%"
+  (deq: !deqarray(INV(a), m, n)):<> Bool(m > n) = "mac#%"
 //
 (* ****** ****** *)
 //
@@ -174,7 +174,7 @@ deqarray_insert_atbeg
 
 fun{a:vt0p}
 deqarray_insert_atbeg_opt
-  (deq: !deqarray(INV(a)) >> _, x0: a):<!wrt> Option_vt(a)
+  (deq: !deqarray(INV(a)) >> _, x0: a):<!wrt> Option_vt_1(a)
 // end of [deqarray_insert_atbeg_opt]
 
 (* ****** ****** *)
@@ -190,7 +190,7 @@ deqarray_insert_atend
 fun
 {a:vt0p}
 deqarray_insert_atend_opt
-  (deq: !deqarray(INV(a)) >> _, x0: a):<!wrt> Option_vt(a)
+  (deq: !deqarray(INV(a)) >> _, x0: a):<!wrt> Option_vt_1(a)
 // end of [deqarray_insert_atend_opt]
 //
 (* ****** ****** *)
@@ -206,7 +206,7 @@ deqarray_takeout_atbeg
 fun
 {a:vt0p}
 deqarray_takeout_atbeg_opt
-  (deq: !deqarray(INV(a)) >> _):<!wrt> Option_vt(a)
+  (deq: !deqarray(INV(a)) >> _):<!wrt> Option_vt_1(a)
 // end of [deqarray_takeout_atbeg_opt]
 //
 (* ****** ****** *)
@@ -222,7 +222,7 @@ deqarray_takeout_atend
 fun
 {a:vt0p}
 deqarray_takeout_atend_opt
-  (deq: !deqarray(INV(a)) >> _):<!wrt> Option_vt(a)
+  (deq: !deqarray(INV(a)) >> _):<!wrt> Option_vt_1(a)
 // end of [deqarray_takeout_atend_opt]
 
 (* ****** ****** *)

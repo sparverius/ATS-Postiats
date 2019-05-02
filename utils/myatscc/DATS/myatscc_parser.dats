@@ -69,7 +69,7 @@ fprint_val<myexp> = fprint_myexp
 //
 implement
 fprint_myexplst
-  (out, xs) = fprint_list_sep(out, xs, ", ")
+  (out, xs) = fprint_List_sep(out, xs, ", ")
 //
 (* ****** ****** *)
 
@@ -285,8 +285,8 @@ in
 //
 seq2wth_parser_fun<token><x,xs,xs>
 ( myexp_parser_(px)
-, list0_parser(commamyexp_parser(px)), lam(x, xs) => list_cons(x, xs)
-) || ret_parser(list_nil((*void*)))
+, list0_parser(commamyexp_parser(px)), lam(x, xs) => List_cons(x, xs)
+) || ret_parser(List_nil((*void*)))
 //
 end // end of [myexpcommaseq_parser]
 //
@@ -295,7 +295,7 @@ end // end of [myexpcommaseq_parser]
 typedef
 myexparg = @(token, myexplst, token)
 typedef
-myexpargopt = Option@(token, myexplst, token)
+myexpargopt = Option_1 @(token, myexplst, token)
 
 (* ****** ****** *)
 //
@@ -339,8 +339,8 @@ myexp_fcallopt
 ) : myexp = (
 //
   case+ opt of
-  | None() => myexp_name(tok)
-  | Some(arg) => myexp_fcall(tok, arg)
+  | None1() => myexp_name(tok)
+  | Some1(arg) => myexp_fcall(tok, arg)
 //
 ) (* myexp_fcallopt *)
 //
@@ -391,7 +391,7 @@ myexpseq_parser(px) = list0_parser(myexp_parser(px))
 fun
 tokenlst_streamize
 (
-xs: List(token)
+xs: List_1(token)
 ) : stream(token) = let
 //
 val eof = token_eof((*void*))
@@ -401,11 +401,11 @@ in
 $delay
 (
 case+ xs of
-| list_nil() =>
+| List_nil() =>
   stream_cons
     (eof, tokenlst_streamize(xs))
   // list_nil
-| list_cons(x, xs) =>
+| List_cons(x, xs) =>
   stream_cons(x, tokenlst_streamize(xs))
 )
 //

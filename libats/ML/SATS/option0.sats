@@ -52,22 +52,22 @@ typedef NSH(a:type) = a // for commenting purpose
 castfn
 option0_of_option
   {a:t@ype}
-  (xs: Option(INV(a))):<> option0(a)
+  (xs: Option_1(INV(a))):<> option0(a)
 castfn
 option0_of_option_vt
   {a:t@ype}
-  (xs: Option_vt(INV(a))):<> option0(a)
+  (xs: Option_vt_1(INV(a))):<> option0(a)
 //
 (* ****** ****** *)
 //
 castfn
 g0ofg1_option
   {a:t@ype}
-  (xs: Option(INV(a))):<> option0(a)
+  (xs: Option_1(INV(a))):<> option0(a)
 castfn
 g1ofg0_option
   {a:t@ype}
-  (xs: option0(INV(a))):<> Option(a)
+  (xs: option0(INV(a))):<> Option_1(a)
 //
 overload g0ofg1 with g0ofg1_option
 overload g1ofg0 with g1ofg0_option

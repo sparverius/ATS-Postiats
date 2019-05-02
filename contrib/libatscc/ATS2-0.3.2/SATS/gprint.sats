@@ -84,7 +84,7 @@ fun{} gprint_list$end(): void
 fun{} gprint_list$sep(): void
 //
 fun{a:t0p}
-gprint_list (xs: List(a)): void
+gprint_list (xs: List_1(a)): void
 //
 overload gprint with gprint_list of 100
 //
@@ -99,7 +99,7 @@ fun{} gprint_listlist$end2(): void
 fun{} gprint_listlist$sep2(): void
 //
 fun{a:t0p}
-gprint_listlist (xss: List(List(a))): void
+gprint_listlist (xss: List_1(List_1(a))): void
 
 (* ****** ****** *)
 //
@@ -111,7 +111,7 @@ fun{a:t0p}
 gprint_arrayref
   {n:int}
 (
-  A: arrayref(a, n), asz: int(n)
+  A: arrayref(a, n), asz: Int(n)
 ) : void // end-of-function
 //
 fun{a:t0p}

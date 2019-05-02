@@ -197,7 +197,7 @@ fun mkfifo // 0/-1 : succ/fail // errno set
 fun stat
 (
   path: NSH(string), st: &stat? >> opt (stat, i==0)
-) : #[i:int | i <= 0] int (i) = "mac#%"
+) : #[i:int | i <= 0] Int (i) = "mac#%"
 fun stat_exn
   (path: NSH(string), st: &stat? >> stat): void = "ext#%"
 //
@@ -206,7 +206,7 @@ fun stat_exn
 fun fstat
 (
   fd: !Fildes0, st: &stat? >> opt (stat, i==0)
-) : #[i:int | i <= 0] int (i) = "mac#%"
+) : #[i:int | i <= 0] Int (i) = "mac#%"
 fun fstat_exn
   (fd: !Fildes0, st: &stat? >> stat): void = "ext#%"
 //
@@ -215,7 +215,7 @@ fun fstat_exn
 fun lstat
 (
   path: NSH(string), st: &stat? >> opt (stat, i==0)
-) : #[i:int | i <= 0] int (i) = "mac#%"
+) : #[i:int | i <= 0] Int (i) = "mac#%"
 fun lstat_exn
   (path: NSH(string), st: &stat? >> stat): void = "ext#%"
 //

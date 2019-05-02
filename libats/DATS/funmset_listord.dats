@@ -76,21 +76,21 @@ mset_type (a: t0p) = List0 @(intGt(0), a)
 
 implement
 {}(*tmp*)
-funmset_nil () = list_nil()
+funmset_nil () = List_nil()
 implement
 {}(*tmp*)
-funmset_make_nil () = list_nil()
+funmset_make_nil () = List_nil()
 
 (* ****** ****** *)
 //
 implement
 {a}(*tmp*)
 funmset_sing
-  (x) = list_cons((1, x), list_nil)
+  (x) = List_cons((1, x), List_nil)
 implement
 {a}(*tmp*)
 funmset_make_sing
-  (x) = list_cons((1, x), list_nil)
+  (x) = List_cons((1, x), List_nil)
 //
 (* ****** ****** *)
 
@@ -102,50 +102,50 @@ funmset_make_list
 fun
 loop1
 (
-  xs: List_vt(a)
+  xs: List_vt_1(a)
 ) : mset(a) =
 (
 case+ xs of
-| ~nil_vt() => list_nil()
-| ~cons_vt(x, xs) => loop2(xs, x, 1, list_nil)
+| ~Nil_vt() => List_nil()
+| ~Cons_vt(x, xs) => loop2(xs, x, 1, List_nil)
 ) (* end of [loop1] *)
 //
 and
 loop2
 (
-  xs: List_vt(a), x0: a, n: intGt(0), res: mset(a)
+  xs: List_vt_1(a), x0: a, n: intGt(0), res: mset(a)
 ) : mset(a) =
 (
 case+ xs of
-| ~nil_vt() =>
-    list_cons ((n, x0), res)
-  // end of [list_nil]
-| ~cons_vt(x1, xs) => let
+| ~Nil_vt() =>
+    List_cons ((n, x0), res)
+  // end of [List_nil]
+| ~Cons_vt(x1, xs) => let
     val sgn = compare_elt_elt<a> (x0, x1)
   in
     if sgn = 0
       then loop2(xs, x0, n+1, res)
-      else loop2(xs, x1, 1, list_cons ((n, x0), res))
+      else loop2(xs, x1, 1, List_cons ((n, x0), res))
     // end of [if]
-  end // end of [list_cons]
+  end // end of [List_cons]
 )
 //
 implement
-list_mergesort$cmp<a>
+List_mergesort$cmp<a>
   (x1, x2) = compare_elt_elt<a> (x1, x2)
 //
 in
-  $effmask_all(loop1(list_mergesort(xs)))
+  $effmask_all(loop1(List_mergesort(xs)))
 end // end of [funmset_make_list]
 
 (* ****** ****** *)
 //
 implement
 {}(*tmp*)
-funmset_is_nil(nxs) = list_is_nil(nxs)
+funmset_is_nil(nxs) = List_is_nil(nxs)
 implement
 {}(*tmp*)
-funmset_isnot_nil(nxs) = list_is_cons(nxs)
+funmset_isnot_nil(nxs) = List_is_cons(nxs)
 //
 (* ****** ****** *)
 
@@ -160,11 +160,11 @@ loop
 ) : size_t =
 (
 case+ nxs of
-| list_nil
+| List_nil
     ((*void*)) => res
-| list_cons
+| List_cons
     ((n, x), nxs) => loop (nxs, res+i2sz(n))
-  // end of [list_cons]
+  // end of [List_cons]
 )
 //
 in
@@ -196,16 +196,16 @@ loop
 ) : intGte(0) =
 (
 case+ nxs of
-| list_nil
+| List_nil
     ((*void*)) => 0
-| list_cons
+| List_cons
     ((n, x), nxs) => let
     val sgn = compare_elt_elt<a> (x0, x)
   in
     if sgn < 0
       then loop(nxs, x0) else (if sgn > 0 then 0 else n)
     // end of [if]
-  end // end of [list_cons]
+  end // end of [List_cons]
 ) (* end of [loop] *)
 //
 in
@@ -224,18 +224,18 @@ typedef nx = @(intGt(0), a)
 fun
 loop
 (
-  nxs: List(nx)
+  nxs: List_1(nx)
 , nbef: &int? >> intGte(0)
 ) : List0 nx =
 (
 //
 case+ nxs of
-| list_nil() => let
+| List_nil() => let
     val () = nbef := 0
   in
-    list_cons((n0, x0), list_nil)
-  end // end of [list_nil]
-| list_cons
+    List_cons((n0, x0), List_nil)
+  end // end of [List_nil]
+| List_cons
     (nx, nxs2) => let
     val x1 = nx.1
     val sgn =
@@ -243,15 +243,15 @@ case+ nxs of
     // end of [val]
   in
     if sgn < 0
-      then list_cons(nx, loop(nxs2, nbef))
+      then List_cons(nx, loop(nxs2, nbef))
       else (
         if sgn > 0
-          then (nbef := 0; list_cons((n0, x0), nxs))
-          else (nbef := nx.0; list_cons((nbef+n0, x1), nxs2))
+          then (nbef := 0; List_cons((n0, x0), nxs))
+          else (nbef := nx.0; List_cons((nbef+n0, x1), nxs2))
         // end of [if]
       ) (* end of [else] *)
     // end of [if]
-  end // end of [list_cons]
+  end // end of [List_cons]
 ) (* end of [loop] *)
 //
 var nbef: int // uninitized
@@ -272,16 +272,16 @@ typedef nx = @(intGt(0), a)
 fun
 loop
 (
-  nxs: List(nx), nbef: &int? >> intGte(0)
+  nxs: List_1(nx), nbef: &int? >> intGte(0)
 ) : List0 nx =
 (
 //
 case+ nxs of
-| list_nil() =>
+| List_nil() =>
   (
-    nbef := 0; list_nil()
-  ) // end of [list_nil]
-| list_cons
+    nbef := 0; List_nil()
+  ) // end of [List_nil]
+| List_cons
     (nx, nxs2) => let
     val x1 = nx.1
     val sgn =
@@ -289,7 +289,7 @@ case+ nxs of
     // end of [val]
   in
     if sgn < 0
-      then list_cons(nx, loop(nxs2, nbef))
+      then List_cons(nx, loop(nxs2, nbef))
       else (
         if sgn > 0
           then (nbef := 0; nxs)
@@ -297,13 +297,13 @@ case+ nxs of
             val () = nbef := nx.0
           in
             if n0 <= nbef
-              then nxs2 else list_cons((n0-nbef, nx.1), nxs2)
+              then nxs2 else List_cons((n0-nbef, nx.1), nxs2)
             // end of [if]
           end // end of [else]
         // end of [if]
       ) (* end of [else] *)
     // end of [if]
-  end // end of [list_cons]
+  end // end of [List_cons]
 ) (* end of [loop] *)
 //
 var nbef: int // uninitized
@@ -321,8 +321,8 @@ funmset_union
 //
 typedef nx = (intGt(0), a)
 //
-prval () = lemma_list_param(nxs)
-prval () = lemma_list_param(nys)
+prval () = lemma_List_param(nxs)
+prval () = lemma_List_param(nys)
 //
 fun
 union
@@ -334,20 +334,20 @@ union
 case+
 (nxs, nys) of
 // case+
-| (list_nil(), _) => nys
-| (_, list_nil()) => nxs
-| (list_cons(nx, nxs2),
-   list_cons(ny, nys2)) => let
+| (List_nil(), _) => nys
+| (_, List_nil()) => nxs
+| (List_cons(nx, nxs2),
+   List_cons(ny, nys2)) => let
    val x = nx.1
    and y = ny.1
    val sgn = compare_elt_elt<a> (x, y)
  in
    if sgn < 0
-     then list_cons(ny, union(nxs, nys2))
+     then List_cons(ny, union(nxs, nys2))
      else (
        if sgn > 0
-         then list_cons(nx, union(nxs2, nys))
-         else list_cons((nx.0+ny.0, x), union(nxs2, nys2))
+         then List_cons(nx, union(nxs2, nys))
+         else List_cons((nx.0+ny.0, x), union(nxs2, nys2))
        // end of [if]
      ) (* end of [if] *)
    // end of [if]
@@ -368,8 +368,8 @@ funmset_intersect
 //
 typedef nx = (intGt(0), a)
 //
-prval () = lemma_list_param(nxs)
-prval () = lemma_list_param(nys)
+prval () = lemma_List_param(nxs)
+prval () = lemma_List_param(nys)
 //
 fun
 intersect
@@ -381,10 +381,10 @@ intersect
 case+
 (nxs, nys) of
 // case+
-| (list_nil(), _) => list_nil()
-| (_, list_nil()) => list_nil()
-| (list_cons(nx, nxs2),
-   list_cons(ny, nys2)) => let
+| (List_nil(), _) => List_nil()
+| (_, List_nil()) => List_nil()
+| (List_cons(nx, nxs2),
+   List_cons(ny, nys2)) => let
    val x = nx.1
    and y = ny.1
    val sgn = compare_elt_elt<a> (x, y)
@@ -394,7 +394,7 @@ case+
      else (
        if sgn > 0
          then intersect(nxs2, nys)
-         else list_cons((min(nx.0,ny.0), x), intersect(nxs2, nys2))
+         else List_cons((min(nx.0,ny.0), x), intersect(nxs2, nys2))
        // end of [if]
      ) (* end of [if] *)
    // end of [if]
@@ -422,14 +422,14 @@ $d2ctype
 lam(nxs, env) =>
 (
 case+ nxs of
-| list_nil
+| List_nil
     ((*void*)) => ()
-| list_cons
+| List_cons
     ((n, x), nxs) => let
     val () = funmset_foreach$fwork(n, x, env)
   in
     loop(nxs, env)
-  end // end of [list_cons]
+  end // end of [List_cons]
 )
 //
 in

@@ -201,7 +201,7 @@ implement
 array0_make_list
   (xs) =
 (
-  array0_of_arrszref{a}(arrszref_make_list<a>(xs))
+  array0_of_arrszref{a}(arrszref_make_List<a>(xs))
 )
 implement
 {a}(*tmp*)
@@ -209,7 +209,7 @@ array0_make_list0
   (xs) = let
   val xs = g1ofg0(xs)
 in
-  array0_of_arrszref{a}(arrszref_make_list<a>(xs))
+  array0_of_arrszref{a}(arrszref_make_List<a>(xs))
 end // end of [array0_make_list0]
 
 (* ****** ****** *)
@@ -219,7 +219,7 @@ implement
 array0_make_rlist
   (xs) =
 (
-  array0_of_arrszref{a}(arrszref_make_rlist<a>(xs))
+  array0_of_arrszref{a}(arrszref_make_rList<a>(xs))
 )
 implement
 {a}(*tmp*)
@@ -227,7 +227,7 @@ array0_make_rlist0
   (xs) = let
   val xs = g1ofg0(xs)
 in
-  array0_of_arrszref{a}(arrszref_make_rlist<a>(xs))
+  array0_of_arrszref{a}(arrszref_make_rList<a>(xs))
 end // end of [array0_make_rlist0]
 
 (* ****** ****** *)

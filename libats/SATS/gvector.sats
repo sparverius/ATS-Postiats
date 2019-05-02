@@ -154,19 +154,19 @@ fun{a:t0p}
 gvector_get_at
   {n:int}{d:int}
 (
-  V: &GVT(a, n, d), d: int d, i: natLt(n)
+  V: &GVT(a, n, d), d: Int d, i: natLt(n)
 ) : a // end of [gvector_get_at]
 fun{a:t0p}
 gvector_set_at
   {n:int}{d:int}
 (
-  V: &GVT(a, n, d), d: int d, i: natLt(n), x: a
+  V: &GVT(a, n, d), d: Int d, i: natLt(n), x: a
 ) : void // end of [gvector_set_at]
 
 fun{a:t0p}
 gvector_getref_at
   {n:int}{d:int}
-  (V: &GVT(a, n, d), d: int d, i: natLt(n)): cPtr1(a)
+  (V: &GVT(a, n, d), d: Int d, i: natLt(n)): cPtr1(a)
 // end of [gvector_getref_at]
 
 (* ****** ****** *)
@@ -177,7 +177,7 @@ fprint_gvector$sep (out: FILEref): void
 fun{a:t0p}
 fprint_gvector{n:int}{d:int}
 (
-  out: FILEref, V: &GVT(a, n, d), int n, int d
+  out: FILEref, V: &GVT(a, n, d), Int n, Int d
 ) : void // end of [fprint_gvector]
 
 (* ****** ****** *)
@@ -187,14 +187,14 @@ gvector_copyto
   {n:int}{d1,d2:int}
 (
   V1: &GVT(a, n, d1)
-, V2: &GVT(a?, n, d2) >> GVT(a, n, d2), int(n), int(d1), int(d2)
+, V2: &GVT(a?, n, d2) >> GVT(a, n, d2), Int(n), Int(d1), Int(d2)
 ) : void // end of [gvector_copyto]
 
 fun{a:t0p}
 gvector_exchange
   {n:int}{d1,d2:int}
 (
-  V1: &GVT(a, n, d1), V2: &GVT(a, n, d2), int(n), int(d1), int(d2)
+  V1: &GVT(a, n, d1), V2: &GVT(a, n, d2), Int(n), Int(d1), Int(d2)
 ) : void // end of [gvector_exchange]
 
 (* ****** ****** *)
@@ -210,12 +210,12 @@ a:t0p}{env:vt0p
 //
 fun{a:t0p}
 gvector_foreach{n:int}{d:int}
-  (V: &GVT(a, n, d) >> _, n: int n, d: int d): natLte(n)
+  (V: &GVT(a, n, d) >> _, n: Int n, d: Int d): natLte(n)
 fun{
 a:t0p}{env:vt0p
 } gvector_foreach_env{n:int}{d:int}
 (
-  V: &GVT(a, n, d) >> _, n: int n, d: int d, env: &(env) >> _
+  V: &GVT(a, n, d) >> _, n: Int n, d: Int d, env: &(env) >> _
 ) : natLte(n) // end of [gvector_foreach_env]
 //
 (* ****** ****** *)
@@ -235,7 +235,7 @@ gvector_foreach2
 (
   V1: &GVT(a, n, d1) >> _
 , V2: &GVT(b, n, d2) >> _
-, n: int (n), d1: int (d1), d2: int (d2)
+, n: Int (n), d1: Int (d1), d2: Int (d2)
 ) : natLte(n) // end of [gvector_foreach2]
 fun{
 a,b:t0p}{env:vt0p
@@ -244,7 +244,7 @@ a,b:t0p}{env:vt0p
 (
   V1: &GVT(a, n, d1) >> _
 , V2: &GVT(b, n, d2) >> _
-, n: int (n), d1: int (d1), d2: int (d2)
+, n: Int (n), d1: Int (d1), d2: Int (d2)
 , env: &env >> _
 ) : natLte(n) // end of [gvector_foreach2_env]
 //

@@ -269,7 +269,7 @@ val asz = $UN.cast{intGte(0)}((nbit + wsz - 1) >> log)
 fun
 loop{n:nat} .<n>.
 (
-  p: ptr, n: int(n)
+  p: ptr, n: Int(n)
 ) :<> bool =
 (
 //
@@ -323,7 +323,7 @@ val asz = $UN.cast{intGte(0)}((nbit + wsz - 1) >> log)
 fun
 loop{n:nat} .<n>.
 (
-  p: ptr, n: int(n)
+  p: ptr, n: Int(n)
 ) :<> bool =
 (
 //
@@ -390,7 +390,7 @@ val asz = $UN.cast{intGte(0)}((nbit + wsz - 1) >> log)
 fun
 loop{n:nat} .<n>.
 (
-  p1: ptr, p2: ptr, n: int(n)
+  p1: ptr, p2: ptr, n: Int(n)
 ) :<> bool =
 (
 //
@@ -465,7 +465,7 @@ val asz = $UN.cast{intGte(0)}((nbit + wsz - 1) >> log)
 fun
 loop{n:nat} .<n>.
 (
-  p1: ptr, p2: ptr, n: int(n)
+  p1: ptr, p2: ptr, n: Int(n)
 ) :<!wrt> void =
 (
 //
@@ -500,7 +500,7 @@ val asz = $UN.cast{intGte(0)}((nbit + wsz - 1) >> log)
 //
 fun
 loop{n:nat} .<n>.
-  (p: ptr, n: int(n)):<!wrt> ptr =
+  (p: ptr, n: Int(n)):<!wrt> ptr =
 (
 //
 if
@@ -565,7 +565,7 @@ val asz = $UN.cast{intGte(0)}((nbit + wsz - 1) >> log)
 fun
 loop{n:nat} .<n>.
 (
-  p1: ptr, p2: ptr, n: int(n)
+  p1: ptr, p2: ptr, n: Int(n)
 ) :<!wrt> void =
 (
 //
@@ -602,7 +602,7 @@ val asz = $UN.cast{intGte(0)}((nbit + wsz - 1) >> log)
 fun
 loop{n:nat} .<n>.
 (
-  p1: ptr, p2: ptr, n: int(n)
+  p1: ptr, p2: ptr, n: Int(n)
 ) :<!wrt> void =
 (
 //
@@ -639,7 +639,7 @@ val asz = $UN.cast{intGte(0)}((nbit + wsz - 1) >> log)
 fun
 loop{n:nat} .<n>.
 (
-  p1: ptr, p2: ptr, n: int(n)
+  p1: ptr, p2: ptr, n: Int(n)
 ) :<!wrt> void =
 (
 //

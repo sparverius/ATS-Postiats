@@ -59,9 +59,9 @@ fun
 loop
 {xs:ilist}{j:int} .<xs>.
 (
-  xs: !gflist_vt(a, xs), j: int j
+  xs: !gflist_vt(a, xs), j: Int j
 ) :<> [i:nat]
-  (LENGTH(xs, i) | int(i+j)) = let
+  (LENGTH(xs, i) | Int(i+j)) = let
 in
 //
 case+ xs of
@@ -70,7 +70,7 @@ case+ xs of
     val (pf | res) = loop(xs, j+1)
   in
     (LENGTHcons(pf) | res)
-  end // end of [gflist_vt_cons]
+  end // end of [gfList_vt_cons]
 | gflist_vt_nil () => (LENGTHnil() | j)
 //
 end // end of [loop]
@@ -133,10 +133,10 @@ case+ xs of
     prval () = fold@(res)
   in
     (APPENDcons(pf) | ())
-  end // end of [gflist_vt_cons]
+  end // end of [gfList_vt_cons]
 | ~gflist_vt_nil () => let
     val () = res := ys in (APPENDnil() | ())
-  end // end of [gflist_vt_nil]
+  end // end of [gfList_vt_nil]
 //
 end // end of [loop]
 //
@@ -167,7 +167,7 @@ case+ xs of
     // end of [val]
   in
     (REVAPPcons(pf) | res)
-  end // end of [gflist_vt_cons]
+  end // end of [gfList_vt_cons]
 | ~gflist_vt_nil() => (REVAPPnil() | ys)
 //
 end // end of [gflist_vt_append]
@@ -194,7 +194,7 @@ a:vt0p
 {n,i:nat | i <= n} .<i>.
 (
   pflen: LENGTH(xs, n)
-| xs: &gflist_vt(a, xs) >> gflist_vt(a, xs1), i: int i
+| xs: &gflist_vt(a, xs) >> gflist_vt(a, xs1), i: Int i
 ) :
 #[xs1,xs2:ilist]
 (
@@ -329,14 +329,14 @@ a:vt0p
         in
           (pfuni, pford | ())
         end // end of [if]
-      end // end of [gflist_vt_cons]
+      end // end of [gfList_vt_cons]
     | ~gflist_vt_nil () => let
         val () = fold@ (ys1); val () = ys := ys1 in (union_nil2 (), pf1ord | ())
-      end // end of [gflist_vt_nil]
-    ) (* end of [gflist_vt_cons] *)
+      end // end of [gfList_vt_nil]
+    ) (* end of [gfList_vt_cons] *)
   | ~gflist_vt_nil () => let
       val () = ys := ys2 in (union_nil1(), pf2ord | ())
-    end // end of [gflist_vt_nil]
+    end // end of [gfList_vt_nil]
 // end of [merge]
 
 (* ****** ****** *)
@@ -354,7 +354,7 @@ a:vt0p
   {xs:ilist}{n:nat} .<n>.
 (
   pflen: LENGTH(xs, n)
-| xs: gflist_vt(a, xs), n: int n
+| xs: gflist_vt(a, xs), n: Int n
 ) :
 [ys:ilist]
 (

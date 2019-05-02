@@ -162,37 +162,37 @@ sllist_make_list
   {n}(xs) = let
 //
 fun loop (
-  nx0: g2node1 (a), xs: List (a)
+  nx0: g2node1 (a), xs: List_1 (a)
 ) : void = let
 in
 //
 case+ xs of
-| list_cons
+| List_cons
     (x, xs) => let
     val nx1 = g2node_make_elt<a> (x)
     val () = gnode_link11 (nx0, nx1)
   in
     loop (nx1, xs)
   end // end of [loop]
-| list_nil () => let
+| List_nil () => let
     val () = gnode_set_next_null (nx0)
   in
     // nothing
-  end // end of [list_nil]
+  end // end of [List_nil]
 //
 end // end of [loop]
 //
 in
 //
 case+ xs of
-| list_cons
+| List_cons
     (x, xs) => let
     val nx0 = g2node_make_elt<a> (x)
     val () = $effmask_all (loop (nx0, xs))
   in
     sllist0_encode (nx0)
   end // end of [list_cons]
-| list_nil () => sllist_nil ()
+| List_nil () => sllist_nil ()
 //
 end // end of [sllist_make_list]
 
@@ -211,7 +211,7 @@ sllist_is_nil
   {a}{n} (xs) = let
   val nxs = $UN.castvwtp1{g2node0(a)}(xs)
 in
-  $UN.cast{bool(n==0)}(gnodelst_is_nil (nxs))
+  $UN.cast{Bool(n==0)}(gnodelst_is_nil (nxs))
 end // end of [sllist_is_nil]
 
 implement
@@ -220,7 +220,7 @@ sllist_is_cons
   {a}{n} (xs) = let
   val nxs = $UN.castvwtp1{g2node0(a)}(xs)
 in
-  $UN.cast{bool(n > 0)}(gnodelst_is_cons (nxs))
+  $UN.cast{Bool(n > 0)}(gnodelst_is_cons (nxs))
 end // end of [sllist_is_cons]
 
 (* ****** ****** *)
@@ -238,7 +238,7 @@ sllist_length
 val nxs = $UN.castvwtp1{g2node0(a)}(xs)
 //
 in
-  $UN.cast{int(n)}(gnodelst_length (nxs))
+  $UN.cast{Int(n)}(gnodelst_length (nxs))
 end // end of [sllist_length]
 
 (* ****** ****** *)

@@ -82,7 +82,7 @@ list0_cast{x:t0p}
 castfn
 g0ofg1_list
   {a:t@ype}
-  (List(INV(a))):<> list0(a)
+  (List_1(INV(a))):<> list0(a)
 castfn
 g1ofg0_list
   {a:t@ype}
@@ -95,10 +95,10 @@ overload g1ofg0 with g1ofg0_list
 //
 castfn
 list0_of_list
-  {a:t@ype}(List(INV(a))):<> list0(a)
+  {a:t@ype}(List_1(INV(a))):<> list0(a)
 castfn
 list0_of_list_vt
-  {a:t@ype}(List_vt(INV(a))):<> list0(a)
+  {a:t@ype}(List_vt_1(INV(a))):<> list0(a)
 //
 (* ****** ****** *)
 //
@@ -213,7 +213,7 @@ list0_head_exn
   (xs: list0(INV(a))):<!exn> (a)
 fun{a:t0p}
 list0_head_opt
-  (xs: list0(INV(a))):<> Option_vt(a)
+  (xs: list0(INV(a))):<> Option_vt_1(a)
 //
 (* ****** ****** *)
 //
@@ -224,7 +224,7 @@ list0_tail_exn
 fun
 {a:t0p}
 list0_tail_opt
-  (xs: SHR(list0(INV(a)))):<> Option_vt(list0(a))
+  (xs: SHR(list0(INV(a)))):<> Option_vt_1(list0(a))
 //
 (* ****** ****** *)
 //
@@ -247,7 +247,7 @@ list0_last_exn
 fun
 {a:t0p}
 list0_last_opt
-  (xs: list0(INV(a))):<> Option_vt(a)
+  (xs: list0(INV(a))):<> Option_vt_1(a)
 //
 (* ****** ****** *)
 //
@@ -258,7 +258,7 @@ list0_init_exn
 fun
 {a:t0p}
 list0_init_opt
-(xs: list0(INV(a))):<!exn> Option_vt(list0(a))
+(xs: list0(INV(a))):<!exn> Option_vt_1(list0(a))
 //
 (* ****** ****** *)
 //
@@ -267,7 +267,7 @@ list0_nth_exn
 (xs: list0(INV(a)), i0: int):<!exn> (a)
 fun{a:t0p}
 list0_nth_opt
-(xs: list0(INV(a)), i0: int):<> Option_vt(a)
+(xs: list0(INV(a)), i0: int):<> Option_vt_1(a)
 //
 (* ****** ****** *)
 //
@@ -276,7 +276,7 @@ list0_get_at_exn
 (xs: list0(INV(a)), i0: int):<!exn> (a)
 fun{a:t0p}
 list0_get_at_opt
-(xs: list0(INV(a)), i0: int):<> Option_vt(a)
+(xs: list0(INV(a)), i0: int):<> Option_vt_1(a)
 //
 overload
 [] with list0_get_at_exn // ListSubscriptExn
@@ -288,7 +288,7 @@ list0_fset_at_exn
   (list0(INV(a)), i0: int, x0: a):<!exn> list0(a)
 fun{a:t0p}
 list0_fset_at_opt
-  (list0(INV(a)), i0: int, x0: a):<> Option_vt(list0(a))
+  (list0(INV(a)), i0: int, x0: a):<> Option_vt_1(list0(a))
 //
 (* ****** ****** *)
 //
@@ -297,7 +297,7 @@ list0_fexch_at_exn
   (list0(INV(a)), i0: int, x0: &a >> a):<!exnwrt> list0(a)
 fun{a:t0p}
 list0_fexch_at_opt
-  (list0(INV(a)), i0: int, x0: &a >> a):<!wrt> Option_vt(list0(a))
+  (list0(INV(a)), i0: int, x0: &a >> a):<!wrt> Option_vt_1(list0(a))
 //
 (* ****** ****** *)
 //
@@ -723,7 +723,7 @@ list0_find_exn
 fun
 {a:t0p}
 list0_find_opt
-(xs: list0(INV(a)), pred: cfun(a, bool)): Option_vt(a)
+(xs: list0(INV(a)), pred: cfun(a, bool)): Option_vt_1(a)
 //
 fun
 {a:t0p}
@@ -732,7 +732,7 @@ list0_find_exn_method
 fun
 {a:t0p}
 list0_find_opt_method
-(xs: list0(INV(a)))(pred: cfun(a, bool)): Option_vt(a)
+(xs: list0(INV(a)))(pred: cfun(a, bool)): Option_vt_1(a)
 //
 overload .find with list0_find_exn_method
 overload .find_opt with list0_find_opt_method
@@ -798,7 +798,7 @@ a,b:t0p
 } list0_assoc_opt
 (
   list0@(INV(a), b), x0: a, eq: cfun(a, a, bool)
-) : Option_vt (b) // end-of-function
+) : Option_vt_1 (b) // end-of-function
 //
 (* ****** ****** *)
 //
@@ -829,7 +829,7 @@ fun
 {b:t0p}
 list0_mapopt
 (
-xs: list0(INV(a)), fopr: cfun(a, Option_vt(b))
+xs: list0(INV(a)), fopr: cfun(a, Option_vt_1(b))
 ) : list0(b) // end of [list0_mapopt]
 //
 (* ****** ****** *)
@@ -847,7 +847,7 @@ fun
 {b:t0p}
 list0_mapopt_method
 (
-xs: list0(INV(a)), TYPE(b))(fopr: cfun(a, Option_vt(b))
+xs: list0(INV(a)), TYPE(b))(fopr: cfun(a, Option_vt_1(b))
 ) : list0(b) // end-of-function
 //
 overload .map with list0_map_method
@@ -893,7 +893,7 @@ fun
 {a:t0p}
 {b:t0p}
 list0_imapopt
-(list0(INV(a)), fopr: cfun2(int, a, Option_vt(b))): list0(b)
+(list0(INV(a)), fopr: cfun2(int, a, Option_vt_1(b))): list0(b)
 //
 (* ****** ****** *)
 //
@@ -906,7 +906,7 @@ fun
 {a:t0p}
 {b:t0p}
 list0_imapopt_method
-(list0(INV(a)), TYPE(b))(fopr: cfun2(int, a, Option_vt(b))): list0(b)
+(list0(INV(a)), TYPE(b))(fopr: cfun2(int, a, Option_vt_1(b))): list0(b)
 //
 overload .imap with list0_imap_method
 overload .imapopt with list0_imapopt_method
@@ -934,11 +934,11 @@ a2:t0p}{b:t0p
 fun{a:t0p}
 list0_tabulate
   {n:nat}
-  (n: int(n), fopr: cfun(natLt(n), a)): list0(a)
+  (n: Int(n), fopr: cfun(natLt(n), a)): list0(a)
 fun{a:t0p}
 list0_tabulate_opt
   {n:nat}
-  (n: int(n), fopr: cfun(natLt(n), Option_vt(a))): list0(a)
+  (n: Int(n), fopr: cfun(natLt(n), Option_vt_1(a))): list0(a)
 //
 (* ****** ****** *)
 //

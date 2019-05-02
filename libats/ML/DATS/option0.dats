@@ -176,7 +176,7 @@ opt =
 g1ofg0_option(opt)
 //
 in
-  fprint_option<a>(out, opt)
+  fprint_Option<a>(out, opt)
 end // end of [fprint_option0]
 //
 (* ****** ****** *)

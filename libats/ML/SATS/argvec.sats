@@ -48,7 +48,7 @@ staload "libats/ML/SATS/basis.sats"
 fun
 listize_argc_argv
   {n:pos}
-  (argc: int(n), argv: !argv(n)): list0(string)
+  (argc: Int(n), argv: !argv(n)): list0(string)
 //
 (* ****** ****** *)
 

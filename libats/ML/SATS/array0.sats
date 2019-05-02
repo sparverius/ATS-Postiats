@@ -150,7 +150,7 @@ array0_make_arrpsz
 fun{}
 array0_make_arrayref
   {a:vt0p}{n:int}
-  (Arf: arrayref(a, n), n: size_t(n)):<!wrt> array0(a)
+  (Arf: arrayref(a, n), n: Size_t(n)):<!wrt> array0(a)
 //
 symintr array0
 //
@@ -174,7 +174,7 @@ array0_get_refsize
   {a:vt0p}
 (
 A : array0(a)
-) :<> [n:nat] (arrayref(a, n), size_t(n))
+) :<> [n:nat] (arrayref(a, n), Size_t(n))
 //
 (* ****** ****** *)
 //
@@ -198,10 +198,10 @@ array0_make_elt with array0_make_elt_size
 //
 fun{a:t0p}
 array0_make_list
-  (xs: List(INV(a))):<!wrt> array0(a)
+  (xs: List_1(INV(a))):<!wrt> array0(a)
 fun{a:t0p}
 array0_make_rlist
-  (xs: List(INV(a))):<!wrt> array0(a)
+  (xs: List_1(INV(a))):<!wrt> array0(a)
 //
 fun{a:t0p}
 array0_make_list0
@@ -377,7 +377,7 @@ fun
 array0_tabulate
   {n:int}
 (
-  asz: size_t(n), fopr: (sizeLt(n)) -<cloref1> a
+  asz: Size_t(n), fopr: (sizeLt(n)) -<cloref1> a
 ) : array0(a) // end of [array0_tabulate]
 //
 (* ****** ****** *)
@@ -387,14 +387,14 @@ fun
 array0_tabulate_method_int
   {n:nat}
 (
-  asz: int(n))(fopr: (natLt(n)) -<cloref1> a
+  asz: Int(n))(fopr: (natLt(n)) -<cloref1> a
 ) : array0(a) // end of [array0_tabulate_method_int]
 fun
 {a:vt0p}
 array0_tabulate_method_size
   {n:int}
 (
-  asz: size_t(n))(fopr: (sizeLt(n)) -<cloref1> a
+  asz: Size_t(n))(fopr: (sizeLt(n)) -<cloref1> a
 ) : array0(a) // end of [array0_tabulate_method_size]
 //
 overload
@@ -421,7 +421,7 @@ fun
 array0_find_opt
 (
 xs: array0(a), pred: (&a) -<cloref1> bool
-) : Option_vt(size_t) // end-of-function
+) : Option_vt_1(size_t) // end-of-function
 //
 (* ****** ****** *)
 //

@@ -36,7 +36,7 @@
 // HX-2013-01:
 //
 // this data structure is essentially based on
-// Chris Okasaki's random-access list (formulated
+// Chris Okasaki's random-access List_1 (formulated
 // as a nested datatype). However, unlike Okasaki's
 // formulation, [ralist] is *not* a nested datatype.
 //
@@ -89,7 +89,7 @@ datatype myralist
 assume
 ralist_type
   (a:t0p, n:int) = myralist (a, 0, n)
-// end of [ralist_type]
+// end of [raList_type]
 
 (* ****** ****** *)
 
@@ -100,7 +100,7 @@ in
 case+ xs of
 | RAevn _ => () | RAodd _ => () | RAnil () => ()
 //
-end // end of [lemma_ralist_param]
+end // end of [lemma_raList_param]
 
 (* ****** ****** *)
 
@@ -165,7 +165,7 @@ local
 extern
 fun length
   {a:t0p}{d:nat}{n:nat}
-  (xs: myralist (a, d, n)):<> int (n)
+  (xs: myralist (a, d, n)):<> Int (n)
 implement
 length{a}{d}{n} (xs) = let
 in

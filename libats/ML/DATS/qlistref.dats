@@ -169,7 +169,7 @@ $effmask_wrt
 //
 prval () = $UN.cast2void(q0)
 //
-prval () = lemma_list_vt_param(xs)
+prval () = lemma_List_vt_param(xs)
 //
 } (* end of [qlistref_takeout_list] *)
 //

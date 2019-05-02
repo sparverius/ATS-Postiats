@@ -82,14 +82,14 @@ stkarray_get_size_tsz
   {a:vt0p}{m,n:int}
 (
   stk: !stkarray (a, m, n), sizeof_t(a)
-) :<> size_t(n) = "mac#%" // end-of-fun
+) :<> Size_t(n) = "mac#%" // end-of-fun
 extern
 fun
 stkarray_get_capacity_tsz
   {a:vt0p}{m,n:int}
 (
   stk: !stkarray (a, m, n), sizeof_t(a)
-) :<> size_t(m) = "mac#%" // end-of-fun
+) :<> Size_t(m) = "mac#%" // end-of-fun
 
 in (* in of [local] *)
 //
@@ -217,8 +217,8 @@ in
 if
 isnot
 then let
-  val () = stkarray_insert<a>(stk, x0) in None_vt()
-end else Some_vt{a}(x0)
+  val () = stkarray_insert<a>(stk, x0) in None1_vt()
+end else Some1_vt{a}(x0)
 //
 end // end of [stkarray_insert_opt]
 
@@ -267,9 +267,9 @@ isnot
 then let
 //
   val x0 =
-  stkarray_takeout<a>(stk) in Some_vt{a}(x0)
+  stkarray_takeout<a>(stk) in Some1_vt{a}(x0)
 //
-end else None_vt((*void*))
+end else None1_vt((*void*))
 //
 end // end of [stkarray_takeout_opt]
 

@@ -118,7 +118,7 @@ fun
 bind_in_exn
   {fd:int}
 (
-  pf: !socket_v(fd, init) >> socket_v(fd, bind) | fd: int fd, sa: &SA_in
+  pf: !socket_v(fd, init) >> socket_v(fd, bind) | fd: Int fd, sa: &SA_in
 ) :<!exnref> void = "ext#%" // end of [bind_in_exn]
 
 (* ****** ****** *)
@@ -127,7 +127,7 @@ fun
 connect_in_exn
   {fd:int}
 (
-  pf: !socket_v(fd, init) >> socket_v(fd, conn) | fd: int fd, sa: &SA_in
+  pf: !socket_v(fd, init) >> socket_v(fd, conn) | fd: Int fd, sa: &SA_in
 ) :<!exnref> void = "ext#%" // end of [connect_in_exn]
 
 (* ****** ****** *)

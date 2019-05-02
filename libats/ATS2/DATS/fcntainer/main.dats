@@ -339,9 +339,9 @@ foreach$work<x0>(x0) =
 {
 //
   val nx0 =
-  list_vt_cons{x0}{0}(x0, _)
+  List_vt_cons{x0}{0}(x0, _)
   val+
-  list_vt_cons(x1, nx1) = nx0
+  List_vt_cons(x1, nx1) = nx0
 //
   val pr =
   $UN.ptr0_get<ptr>(pp)
@@ -357,7 +357,7 @@ foreach$work<x0>(x0) =
 } (* end of [foreach$work] *)
 //
 val () =
-(r0 := list_vt_nil())
+(r0 := List_vt_nil())
 //
 in
 //
@@ -370,7 +370,7 @@ r0 where
   $UN.ptr0_get<ptr>(pp)
   val () =
   $UN.ptr0_set<res>
-    (pr, $UN.castvwtp0{res}(list_vt_nil()))
+    (pr, $UN.castvwtp0{res}(List_vt_nil()))
   // end of [val]
 } (* end of [where] *)
 end // end of [listize]
@@ -394,11 +394,11 @@ foreach$work<x0>(x0) =
   $UN.ptr0_get<res>(pr)
   val () =
   $UN.ptr0_set<res>
-    (pr, list_vt_cons(x0, xs))
+    (pr, List_vt_cons(x0, xs))
   // end of [val]
 }
 //
-val () = r0 := list_vt_nil()
+val () = r0 := List_vt_nil()
 //
 in
 $effmask_all
@@ -591,8 +591,8 @@ loop1
 ) : bool =
 (
 case+ ys of
-| list_vt_nil() => true
-| list_vt_cons(y0, ys) =>
+| List_vt_nil() => true
+| List_vt_cons(y0, ys) =>
   if
   cross_forall$test<x0,y0>
     (x0, y0)
@@ -609,7 +609,7 @@ loop2
 case+ !xs of
 | ~stream_vt_nil() =>
   (
-    list_vt_free(ys); true
+    List_vt_free(ys); true
   )
 | ~stream_vt_cons(x0, xs) =>
   (
@@ -618,7 +618,7 @@ case+ !xs of
     then loop2(xs, ys)
     else
     (
-      ~(xs); list_vt_free(ys); false
+      ~(xs); List_vt_free(ys); false
     )
   ) (* end of [stream_vt_cons] *)
 )
@@ -663,18 +663,18 @@ xy0 = (x0, y0)
 fun
 concat
 (
-ps: List_vt(xy0)
+ps: List_vt_1(xy0)
 ,
 qs: stream_vt(xy0)
 ) : stream_vt(xy0) = $ldelay
 (
 (
 case+ ps of
-| ~list_vt_nil() => !(qs)
-| ~list_vt_cons(p, ps) =>
+| ~List_vt_nil() => !(qs)
+| ~List_vt_cons(p, ps) =>
    stream_vt_cons(p, concat(ps, qs))
 )
-, (list_vt_free(ps); lazy_vt_free(qs))
+, (List_vt_free(ps); lazy_vt_free(qs))
 )
 //
 fun
@@ -682,7 +682,7 @@ auxelt
 ( x0: x0
 , ys: !List0_vt(y0)): List0_vt(xy0) =
 (
-  list_vt_map_cloptr<y0><xy0>(ys, lam(y) => (x0, y))
+  List_vt_map_cloptr<y0><xy0>(ys, lam(y) => (x0, y))
 )
 //
 fun
@@ -699,7 +699,7 @@ case+ !xs of
 | ~stream_vt_nil() =>
    stream_vt_nil() where
   {
-    val () = list_vt_free(ys)
+    val () = List_vt_free(ys)
   } (* end of [stream_vt_nil] *)
 | ~stream_vt_cons(x0, xs) =>
    !(concat(xys0, xys1)) where
@@ -708,7 +708,7 @@ case+ !xs of
     val xys1 = auxlst(xs, ys)
   } (* end of [stream_vt_cons] *)
 )
-, (lazy_vt_free(xs); list_vt_free<y0>(ys))
+, (lazy_vt_free(xs); List_vt_free<y0>(ys))
 )
 //
 in

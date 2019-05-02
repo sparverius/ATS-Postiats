@@ -50,17 +50,17 @@ linset_make_list
 //
 fun loop
 (
-  xs: List (a), res: &set(a) >> _
+  xs: List_1 (a), res: &set(a) >> _
 ) : void = 
 (
 case+ xs of
-| list_cons
+| List_cons
     (x, xs) => let
     val _(*exi*) =
       linset_insert (res, x) in loop (xs, res)
     // end of [val]
   end // end of [list_cons]
-| list_nil () => ()
+| List_nil () => ()
 )
 //
 var res: set(a) = linset_nil ()
@@ -85,9 +85,9 @@ val ans = linset_choose<a> (xs, x0)
 in
 //
 if ans then let
-  prval () = opt_unsome{a}(x0) in Some_vt{a}(x0)
+  prval () = opt_unsome{a}(x0) in Some1_vt{a}(x0)
 end else let
-  prval () = opt_unnone{a}(x0) in None_vt(*void*)
+  prval () = opt_unnone{a}(x0) in None1_vt(*void*)
 end (* end of [if] *)
 //
 end // end of [linset_choose_opt]
@@ -104,9 +104,9 @@ val ans = linset_takeoutmax<a> (xs, x0)
 in
 //
 if ans then let
-  prval () = opt_unsome{a}(x0) in Some_vt{a}(x0)
+  prval () = opt_unsome{a}(x0) in Some1_vt{a}(x0)
 end else let
-  prval () = opt_unnone{a}(x0) in None_vt(*void*)
+  prval () = opt_unnone{a}(x0) in None1_vt(*void*)
 end (* end of [if] *)
 //
 end // end of [linset_takeoutmax_opt]
@@ -124,9 +124,9 @@ val ans =
 in
 //
 if ans then let
-  prval () = opt_unsome{a}(x0) in Some_vt{a}(x0)
+  prval () = opt_unsome{a}(x0) in Some1_vt{a}(x0)
 end else let
-  prval () = opt_unnone{a}(x0) in None_vt(*void*)
+  prval () = opt_unnone{a}(x0) in None1_vt(*void*)
 end (* end of [if] *)
 //
 end // end of [linset_takeoutmin_opt]

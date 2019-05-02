@@ -120,11 +120,11 @@ ans
 then let
   prval () = opt_unsome{itm}(res)
 in
-  Some_vt{itm}(res)
+  Some1_vt{itm}(res)
 end else let
   prval () = opt_unnone{itm}(res)
 in
-  None_vt{itm}((*void*))
+  None1_vt{itm}((*void*))
 end // end of [if]
 //
 end // end of [hashtbl_search_opt]
@@ -148,11 +148,11 @@ ans
 then let
   prval () = opt_unsome{itm}(res)
 in
-  Some_vt{itm}(res)
+  Some1_vt{itm}(res)
 end else let
   prval () = opt_unnone{itm}(res)
 in
-  None_vt{itm}((*void*))
+  None1_vt{itm}((*void*))
 end // end of [if]
 //
 end // end of [hashtbl_insert_opt]
@@ -176,11 +176,11 @@ ans
 then let
   prval () = opt_unsome{itm}(res)
 in
-  Some_vt{itm}(res)
+  Some1_vt{itm}(res)
 end else let
   prval () = opt_unnone{itm}(res)
 in
-  None_vt{itm}((*void*))
+  None1_vt{itm}((*void*))
 end // end of [if]
 //
 end // end of [hashtbl_takeout_opt]
@@ -308,7 +308,7 @@ end // end of [hashtbl_listize]
 implement
 {key,itm}
 streamize_hashtbl(tbl) =
-  streamize_list_vt_elt<@(key,itm)>(hashtbl_listize(tbl))
+  streamize_List_vt_elt<@(key,itm)>(hashtbl_listize(tbl))
 //
 (* ****** ****** *)
 
@@ -346,7 +346,7 @@ val () = $effmask_all (hashtbl_foreach_env<key,itm><tenv> (tbl, env))
 val res = $Q.qstruct_takeout_list (env)
 prval () = $Q.qstruct_uninitize{ki}(env)
 //
-prval () = lemma_list_vt_param (res)
+prval () = lemma_List_vt_param (res)
 //
 in
   res

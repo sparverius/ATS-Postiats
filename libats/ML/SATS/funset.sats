@@ -123,16 +123,16 @@ funset_remove
 (* ****** ****** *)
 
 fun{a:t0p}
-funset_getmax_opt(xs: set(INV(a))): Option_vt(a)
+funset_getmax_opt(xs: set(INV(a))): Option_vt_1(a)
 fun{a:t0p}
-funset_getmin_opt(xs: set(INV(a))): Option_vt(a)
+funset_getmin_opt(xs: set(INV(a))): Option_vt_1(a)
 
 (* ****** ****** *)
 
 fun{a:t0p}
-funset_takeoutmax_opt(xs: &set(INV(a)) >> _): Option_vt(a)
+funset_takeoutmax_opt(xs: &set(INV(a)) >> _): Option_vt_1(a)
 fun{a:t0p}
-funset_takeoutmin_opt(xs: &set(INV(a)) >> _): Option_vt(a)
+funset_takeoutmin_opt(xs: &set(INV(a)) >> _): Option_vt_1(a)
 
 (* ****** ****** *)
 
@@ -190,7 +190,7 @@ funset_foreach_cloref
 //
 fun{a:t0p}
 funset_tabulate_cloref
-  {n:nat}(int(n), fopr: (natLt(n)) -<cloref1> a): set(a)
+  {n:nat}(Int(n), fopr: (natLt(n)) -<cloref1> a): set(a)
 //
 (* ****** ****** *)
 //

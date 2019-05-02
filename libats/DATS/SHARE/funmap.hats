@@ -60,11 +60,11 @@ in
 if ans then let
   prval () = opt_unsome{itm}(res)
 in
-  Some_vt{itm}(res)
+  Some1_vt{itm}(res)
 end else let
   prval () = opt_unnone{itm}(res)
 in
-  None_vt{itm}((*void*))
+  None1_vt{itm}((*void*))
 end // end of [if]
 //
 end // end of [funmap_search_opt]
@@ -82,11 +82,11 @@ in
 if ans then let
   prval () = opt_unsome {itm} (res)
 in
-  Some_vt{itm}(res)
+  Some1_vt{itm}(res)
 end else let
   prval () = opt_unnone {itm} (res)
 in
-  None_vt{itm}((*void*))
+  None1_vt{itm}((*void*))
 end // end of [if]
 //
 end // end of [funmap_insert_opt]
@@ -104,11 +104,11 @@ in
 if ans then let
   prval () = opt_unsome {itm} (res)
 in
-  Some_vt{itm}(res)
+  Some1_vt{itm}(res)
 end else let
   prval () = opt_unnone {itm} (res)
 in
-  None_vt{itm}((*void*))
+  None1_vt{itm}((*void*))
 end // end of [if]
 //
 end // end of [funmap_takeout_opt]
@@ -228,7 +228,7 @@ funmap_foreach_env<key,itm><tenv>(map, env)
 //
 val res = $Q.qstruct_takeout_list(env)
 //
-prval () = lemma_list_vt_param(res)
+prval () = lemma_List_vt_param(res)
 prval () = $Q.qstruct_uninitize{ki2}(env)
 //
 } (* end of [funmap_flistize] *)

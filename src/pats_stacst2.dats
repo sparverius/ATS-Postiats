@@ -155,6 +155,9 @@ in
 //
 if isnul then let
   val id = s2cstref_get_sym (r)
+  val () = $SYM.prerr_symbol (id)
+  val () = println!()
+
   val ans = the_s2expenv_pervasive_find (id)
 in
 //

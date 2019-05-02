@@ -38,7 +38,7 @@ UN = "prelude/SATS/unsafe.sats"
 extern
 fun
 myatscc_getdef_file
-  ((*void*)): Option_vt(string)
+  ((*void*)): Option_vt_1(string)
 //
 (* ****** ****** *)
 
@@ -52,8 +52,8 @@ val opt =
 in
 //
 case+ opt of
-| ~Some_vt(def) => def
-| ~None_vt((*void*)) => MYATSCCDEF_def_get()
+| ~Some1_vt(def) => def
+| ~None1_vt((*void*)) => MYATSCCDEF_def_get()
 //
 end // end of [myatscc_getdef]
 
@@ -66,29 +66,29 @@ local
 fun
 auxprfx
 (
-xs: List(char)
+xs: List_1(char)
 ,
-ys: List(char)
-) : Option_vt(List0(char)) = let
+ys: List_1(char)
+) : Option_vt_1(List0(char)) = let
 //
-prval () = lemma_list_param(ys)
+prval () = lemma_List_param(ys)
 //
 in
 //
 case+ xs of
-| list_nil
-    () => Some_vt(ys)
+| List_nil
+    () => Some1_vt(ys)
   // list_nil
-| list_cons
+| List_cons
     (x, xs) =>
   (
     case+ ys of
-    | list_nil
-        () => None_vt()
+    | List_nil
+        () => None1_vt()
       // list_nil
-    | list_cons(y, ys) =>
+    | List_cons(y, ys) =>
       if (x = y)
-        then auxprfx(xs, ys) else None_vt()
+        then auxprfx(xs, ys) else None1_vt()
       // end of [list_cons]
   ) (* end of [list_cons] *)
 //
@@ -97,11 +97,11 @@ end // end of [auxprfx]
 fun
 auxprfx2
 (
-xs: List(char)
+xs: List_1(char)
 ,
-ys: List(char)
+ys: List_1(char)
 ) :
-Option_vt
+Option_vt_1
 (
   List0(char)
 ) = let
@@ -111,12 +111,12 @@ opt = auxprfx(xs, ys)
 //
 in
   case+ opt of
-  |  Some_vt _ => opt
-  | ~None_vt((*void*)) =>
+  |  Some1_vt _ => opt
+  | ~None1_vt((*void*)) =>
     (
       case+ ys of
-      | list_nil() => None_vt()
-      | list_cons(_, ys) => auxprfx2(xs, ys)
+      | List_nil() => None1_vt()
+      | List_cons(_, ys) => auxprfx2(xs, ys)
     )
 end // end of [auxprfx2]
 //
@@ -126,16 +126,16 @@ fun
 auxfind
 (
   filr: FILEref
-) : Option_vt(string) =
+) : Option_vt_1(string) =
   res where
 {
 //
   val cs1 =
   string_explode(MYATSCCDEF_key)
   val res =
-  auxfind2($UN.list_vt2t(cs1), filr)
+  auxfind2($UN.List_vt2t(cs1), filr)
 //
-  val ((*void*)) = list_vt_free(cs1)
+  val ((*void*)) = List_vt_free(cs1)
   val ((*void*)) = fileref_close(filr)
 //
 } (* end of [auxfind] *)
@@ -143,8 +143,8 @@ auxfind
 and
 auxfind2
 (
-  cs1: List(char), filr: FILEref
-) : Option_vt(string) =
+  cs1: List_1(char), filr: FILEref
+) : Option_vt_1(string) =
 (
 if
 fileref_isnot_eof(filr)
@@ -152,23 +152,23 @@ then let
   val cs2 =
   fileref_get_line_charlst(filr)
   val opt =
-  auxprfx2(cs1, $UN.list_vt2t(cs2))
+  auxprfx2(cs1, $UN.List_vt2t(cs2))
 in
   case+ opt of
-  | ~None_vt() => let
+  | ~None1_vt() => let
       val () =
-      list_vt_free(cs2)
+      List_vt_free(cs2)
     in
       auxfind2(cs1, filr)
-    end // end of [None_vt]
-  | ~Some_vt(cs2_) => let
-      val cs2_ = list_reverse(cs2_)
-      val ((*void*)) = list_vt_free(cs2)
+    end // end of [None1_vt]
+  | ~Some1_vt(cs2_) => let
+      val cs2_ = List_reverse(cs2_)
+      val ((*void*)) = List_vt_free(cs2)
     in
-      Some_vt(auxfind2_cont(filr, cs2_))
-    end // end of [Some_vt]
+      Some1_vt(auxfind2_cont(filr, cs2_))
+    end // end of [Some1_vt]
 end // end of [then]
-else None_vt(*void*) // end of [else]
+else None1_vt(*void*) // end of [else]
 )
 //
 and
@@ -182,15 +182,15 @@ val
 iscont =
 (
 case+ res of
-| list_vt_nil() => true
-| list_vt_cons(c, _) => (c = '\\')
+| List_vt_nil() => true
+| List_vt_cons(c, _) => (c = '\\')
 ) : bool // end of [val]
 //
 val res =
 (
 case+ res of
-| list_vt_nil() => res
-| @list_vt_cons(c, cs) =>
+| List_vt_nil() => res
+| @List_vt_cons(c, cs) =>
   (
     if iscont
       then cs where
@@ -210,7 +210,7 @@ then let
   val cs =
   fileref_get_line_charlst(inp)
   val res =
-  list_vt_reverse_append(cs, res)
+  List_vt_reverse_append(cs, res)
 in
   auxfind2_cont(inp, res)
 end // end of [then]
@@ -218,7 +218,7 @@ else let
   val res =
   $UN.castvwtp0{List0_vt(charNZ)}(res)
 in
-  strnptr2string(string_make_rlist_vt(res))
+  strnptr2string(string_make_rList_vt(res))
 end // end of [else]
 //
 end // end of [auxfind2_cont]
@@ -241,7 +241,7 @@ val opt = list0_nth_opt(gvs, 1)
 in
 //
 case+ opt of
-| ~Some_vt(gv) => let
+| ~Some1_vt(gv) => let
     val-
     GVstring(name) = gv
     val opt =
@@ -249,10 +249,10 @@ case+ opt of
       (name, file_mode_r)
   in
     case+ opt of
-    | ~None_vt() => None_vt()
-    | ~Some_vt(filr) => auxfind(filr)
-  end // end of [Some_vt]
-| ~None_vt((*void*)) => None_vt()
+    | ~None1_vt() => None1_vt()
+    | ~Some1_vt(filr) => auxfind(filr)
+  end // end of [Some1_vt]
+| ~None1_vt((*void*)) => None1_vt()
 //
 end // end of [myatscc_getdef_file]
 

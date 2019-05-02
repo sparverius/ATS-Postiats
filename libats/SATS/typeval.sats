@@ -53,7 +53,7 @@ fun
 {t:type}
 tieq2int
   {n:int}
-  (pf: tieq(t, n) | (*void*)): int(n)
+  (pf: tieq(t, n) | (*void*)): Int(n)
 //
 (* ****** ****** *)
 //
@@ -72,7 +72,7 @@ fun
 {t:type}
 ti2eq2int
   {n:int}
-  (pf: ti2eq(t, n) | (*void*)): int(n)
+  (pf: ti2eq(t, n) | (*void*)): Int(n)
 //
 (* ****** ****** *)
 //

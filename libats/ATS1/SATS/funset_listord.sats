@@ -58,7 +58,7 @@ funset_make_nil{a:t0p} ():<> set (a)
 fun{a:t0p}
 funset_make_sing (x0: a):<> set (a) // singleton set
 fun{a:t0p}
-funset_make_list (xs: List(INV(a)), cmp: cmp a):<!wrt> set (a)
+funset_make_list (xs: List_1(INV(a)), cmp: cmp a):<!wrt> set (a)
 
 (* ****** ****** *)
 
@@ -132,7 +132,7 @@ funset_foreach_funenv
 //
 castfn
 funset2list
-  {a:t0p}(xs: set(INV(a))):<> List (a)
+  {a:t0p}(xs: set(INV(a))):<> List_1 (a)
 //
 fun{a:t0p}
 funset_listize(xs: set(a)):<!wrt> List0_vt (a) // = list_copy

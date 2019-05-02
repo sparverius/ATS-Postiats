@@ -110,7 +110,7 @@ assert_errmsg_bool0
 fun
 assert_errmsg_bool1
   {b:bool}
-  (claim: bool(b), msg: string): [b] void = "mac#%"
+  (claim: Bool(b), msg: string): [b] void = "mac#%"
 //
 overload
 assert_errmsg with assert_errmsg_bool0 of 100

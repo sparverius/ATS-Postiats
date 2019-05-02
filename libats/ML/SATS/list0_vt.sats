@@ -65,7 +65,7 @@ list0_vt2t
 castfn
 g0ofg1_list_vt
   {a:vt@ype}
-  (List_vt(INV(a))):<> list0_vt(a)
+  (List_vt_1(INV(a))):<> list0_vt(a)
 castfn
 g1ofg0_list_vt
   {a:vt@ype}

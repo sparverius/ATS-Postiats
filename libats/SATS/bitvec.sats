@@ -85,10 +85,10 @@ bitvec_get_wordsize_log ():<> intGte(0)
 //
 fun{}
 bitvecptr_make_none
-  {n:nat}(n: int(n)):<!wrt> bitvecptr(n)
+  {n:nat}(n: Int(n)):<!wrt> bitvecptr(n)
 fun{}
 bitvecptr_make_full
-  {n:nat}(n: int(n)):<!wrt> bitvecptr(n)
+  {n:nat}(n: Int(n)):<!wrt> bitvecptr(n)
 //
 (* ****** ****** *)
 
@@ -133,77 +133,77 @@ overload [] with bitvecptr_set_at
 //
 fun{}
 bitvec_is_none
-  {n:int}(&bitvec(n), int(n)):<> bool
+  {n:int}(&bitvec(n), Int(n)):<> bool
 fun{}
 bitvecptr_is_none
-  {l:addr}{n:int}(!bitvecptr(n), int(n)):<> bool
+  {l:addr}{n:int}(!bitvecptr(n), Int(n)):<> bool
 //
 fun{}
 bitvec_is_full
-  {n:int}(&bitvec(n), int(n)):<> bool
+  {n:int}(&bitvec(n), Int(n)):<> bool
 fun{}
 bitvecptr_is_full
-  {l:addr}{n:int}(!bitvecptr(l,n), int(n)):<> bool
+  {l:addr}{n:int}(!bitvecptr(l,n), Int(n)):<> bool
 //  
 (* ****** ****** *)
 //
 fun{}
 bitvec_equal{n:int}
-  (&bitvec(n), &bitvec(n), int(n)):<> bool
+  (&bitvec(n), &bitvec(n), Int(n)):<> bool
 fun{}
 bitvec_notequal{n:int}
-  (&bitvec(n), &bitvec(n), int(n)):<> bool
+  (&bitvec(n), &bitvec(n), Int(n)):<> bool
 //
 fun{}
 bitvecptr_equal
   {l1,l2:addr}{n:int}
-  (x1: !bitvecptr(l1, n), x2: !bitvecptr(l2, n), int(n)):<> bool
+  (x1: !bitvecptr(l1, n), x2: !bitvecptr(l2, n), Int(n)):<> bool
 fun{}
 bitvecptr_notequal
   {l1,l2:addr}{n:int}
-  (x1: !bitvecptr(l1, n), x2: !bitvecptr(l2, n), int(n)):<> bool
+  (x1: !bitvecptr(l1, n), x2: !bitvecptr(l2, n), Int(n)):<> bool
 //
 (* ****** ****** *)
 //
 fun{}
 bitvec_copy{n:int}
-  (x1: &bitvec(n) >> _, x2: &bitvec(n), int(n)):<!wrt> void
+  (x1: &bitvec(n) >> _, x2: &bitvec(n), Int(n)):<!wrt> void
 //
 (* ****** ****** *)
 //
 fun{}
 bitvec_lnot
-  {n:int}(x: &bitvec(n) >> _, int(n)):<!wrt> void
+  {n:int}(x: &bitvec(n) >> _, Int(n)):<!wrt> void
 fun{}
 bitvecptr_lnot{l:addr}
-  {n:int}(x: !bitvecptr(l, n) >> _, int(n)):<!wrt> void
+  {n:int}(x: !bitvecptr(l, n) >> _, Int(n)):<!wrt> void
 //
 (* ****** ****** *)
 //
 fun{}
 bitvec_lor{n:int}
-  (x1: &bitvec(n) >> _, x2: &bitvec(n), int(n)):<!wrt> void
+  (x1: &bitvec(n) >> _, x2: &bitvec(n), Int(n)):<!wrt> void
 fun{}
 bitvec_lxor{n:int}
-  (x1: &bitvec(n) >> _, x2: &bitvec(n), int(n)):<!wrt> void
+  (x1: &bitvec(n) >> _, x2: &bitvec(n), Int(n)):<!wrt> void
 fun{}
 bitvec_land{n:int}
-  (x1: &bitvec(n) >> _, x2: &bitvec(n), int(n)):<!wrt> void
+  (x1: &bitvec(n) >> _, x2: &bitvec(n), Int(n)):<!wrt> void
 //
 fun{}
 bitvecptr_lor{l1,l2:addr}{n:int}
 (
-  x1: !bitvecptr(l1, n) >> _, x2: !bitvecptr(l2, n), int(n)
+  x1: !bitvecptr(l1, n) >> _, x2: !bitvecptr(l2, n), Int(n)
 ) :<!wrt> void // end-of-function
 fun{}
 bitvecptr_lxor{l1,l2:addr}{n:int}
 (
-  x1: !bitvecptr(l1, n) >> _, x2: !bitvecptr(l2, n), int(n)
+  x1: !bitvecptr(l1, n) >> _, x2: !bitvecptr(l2, n), Int(n)
 ) :<!wrt> void // end-of-function
 fun{}
 bitvecptr_land{l1,l2:addr}{n:int}
 (
-  x1: !bitvecptr(l1, n) >> _, x2: !bitvecptr(l2, n), int(n)
+  x1: !bitvecptr(l1, n) >> _, x2: !bitvecptr(l2, n), Int(n)
 ) :<!wrt> void // end-of-function
 //
 (* ****** ****** *)
@@ -212,32 +212,32 @@ fun{}
 fprint_bitvec$word(out: FILEref, w: uintptr): void
 fun{}
 fprint_bitvec{n:int}
-  (out: FILEref, vec: &bitvec(n), n: int(n)): void
+  (out: FILEref, vec: &bitvec(n), n: Int(n)): void
 fun{}
 fprint_bitvecptr{l:addr}{n:int}
-  (out: FILEref, bvp: !bitvecptr(l, n), n: int(n)): void
+  (out: FILEref, bvp: !bitvecptr(l, n), n: Int(n)): void
 //
 (* ****** ****** *)
 //
 fun{}
 bitvec_tabulate$fopr(i: intGte(0)): bit
 fun{}
-bitvecptr_tabulate{n:nat}(nbit: int(n)): bitvecptr(n)
+bitvecptr_tabulate{n:nat}(nbit: Int(n)): bitvecptr(n)
 //
 (* ****** ****** *)
 //
 fun{}
 bitvec_foreach{n:int}
-  (vec: &bitvec(n), n: int(n)): void
+  (vec: &bitvec(n), n: Int(n)): void
 fun{
 env:vt0p
 } bitvec_foreach_env{n:int}
-  (vec: &bitvec(n), n: int(n), env: &env >> _): void
+  (vec: &bitvec(n), n: Int(n), env: &env >> _): void
 //
 fun{
 env:vt0p
 } bitvec_foreach$fwork{n:nat}
-  (w: &uintptr >> _, n: int(n), env: &(env) >> _): void
+  (w: &uintptr >> _, n: Int(n), env: &(env) >> _): void
 fun{
 env:vt0p
 } bitvec_foreach$fworkbit (b: bit, env: &(env) >> _): void
@@ -247,12 +247,12 @@ env:vt0p
 fun{}
 bitvecptr_foreach
   {l:addr}{n:int}
-  (bvp: !bitvecptr(l, n) >> _, n: int(n)): void
+  (bvp: !bitvecptr(l, n) >> _, n: Int(n)): void
 fun{
 env:vt0p
 } bitvecptr_foreach_env
   {l:addr}{n:int}
-  (bvp: !bitvecptr(l, n) >> _, n: int(n), env: &env >> _): void
+  (bvp: !bitvecptr(l, n) >> _, n: Int(n), env: &env >> _): void
 //
 (* ****** ****** *)
 

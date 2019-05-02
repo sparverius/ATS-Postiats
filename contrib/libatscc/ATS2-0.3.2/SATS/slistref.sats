@@ -41,7 +41,7 @@ slistref_pop_exn
   {a:vt0p}(slistref(a)): (a) = "mac#"
 fun
 slistref_pop_opt
-  {a:vt0p}(slistref(a)): Option_vt(a) = "mac#"
+  {a:vt0p}(slistref(a)): Option_vt_1(a) = "mac#"
 //
 (* ****** ****** *)
 //

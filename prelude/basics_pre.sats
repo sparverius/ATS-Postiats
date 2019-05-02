@@ -57,8 +57,7 @@ true = true_bool and false = false_bool
 // HX: boolean negation
 //
 stacst
-neg_bool
-  : bool -> bool = "ext#"
+neg_bool : bool -> bool = "ext#"
 //
 stadef ~ = neg_bool // overloaded
 stadef not = neg_bool // overloaded

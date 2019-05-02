@@ -163,7 +163,7 @@ local
 extern
 fun length
   {a:vt0p}{d:nat}{n:nat}
-  (xs: !myralist (a, d, n)):<> int (n)
+  (xs: !myralist (a, d, n)):<> Int (n)
 implement
 length{a}{d}{n} (xs) = let
 in

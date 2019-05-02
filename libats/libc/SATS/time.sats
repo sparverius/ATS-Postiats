@@ -95,7 +95,7 @@ fun
 time_getset
 (
   t0: &time_t? >> opt(time_t, b)
-) :<!wrt> #[b:bool] bool (b) = "mac#%"
+) :<!wrt> #[b:bool] Bool (b) = "mac#%"
 //
 symintr time
 overload time with time_get
@@ -196,8 +196,8 @@ strftime
 {l:addr}{m:pos}
 (
   pf: !b0ytes(m) @ l >> strbuf(m, n) @ l
-| p: ptr l, m: size_t m, fmt: string, tm: &RD(tm_struct)
-) :<> #[n:nat | n < m] size_t n = "mac#%" // endfun
+| p: ptr l, m: Size_t m, fmt: string, tm: &RD(tm_struct)
+) :<> #[n:nat | n < m] Size_t n = "mac#%" // endfun
 
 (* ****** ****** *)
 
@@ -264,7 +264,7 @@ nanosleep
 (
   tms: &RD(timespec)
 , rem: &timespec? >> opt(timespec, i==0)
-) : #[i:int | i <= 0] int(i) = "mac#%"
+) : #[i:int | i <= 0] Int(i) = "mac#%"
 
 fun
 nanosleep_null(tms: &RD(timespec)): int = "mac#%"
@@ -279,14 +279,14 @@ clock_getres
 (
   id: clockid_t
 , res: &timespec? >> opt(timespec, i==0)
-) : #[i:int | i <= 0] int(i) = "mac#%"
+) : #[i:int | i <= 0] Int(i) = "mac#%"
 //
 fun
 clock_gettime
 (
   id: clockid_t
 , tms: &timespec? >> opt(timespec, i==0)
-) : #[i:int | i <= 0] int(i) = "mac#%"
+) : #[i:int | i <= 0] Int(i) = "mac#%"
 //
 // HX: this one requires SUPERUSER previlege
 //

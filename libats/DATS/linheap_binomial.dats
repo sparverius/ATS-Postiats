@@ -77,7 +77,7 @@ btree (
 a:vt@ype+, int(*rank*)
 ) = // btree
   | {n:nat}
-    btnode (a, n) of (int (n), a, btreelst (a, n))
+    btnode (a, n) of (Int (n), a, btreelst (a, n))
 // end of [btree]
 
 and btreelst
@@ -108,7 +108,7 @@ a:vt0p
 } btree_rank
   {n:int} .<>. (
   bt: !btree (a, n)
-) :<> int (n) = let
+) :<> Int (n) = let
   val btnode (n, _, _) = bt in n
 end // end of [btree_rank]
 
@@ -117,7 +117,7 @@ end // end of [btree_rank]
 extern
 fun{
 } pow2 {n:nat}
-  (n: int n):<> [p:int] (EXP2 (n, p) | size_t p)
+  (n: Int n):<> [p:int] (EXP2 (n, p) | Size_t p)
 // end of [pow2]
 
 implement{}
@@ -143,7 +143,7 @@ a:vt0p
   bt: !btree (a, n)
 ) :<> [p:int]
 (
-  EXP2 (n, p) | size_t (p)
+  EXP2 (n, p) | Size_t (p)
 ) = let
   val btnode (n, _, _) = bt in pow2 (n)
 end // end of [btree_size]
@@ -156,7 +156,7 @@ a:vt0p
   {n:int}{sz:int}
 (
   hp: !bheap (a, n, sz)
-) : size_t (sz) = let
+) : Size_t (sz) = let
 in
 //
 case+ hp of
@@ -233,7 +233,7 @@ btree_bheap_merge
   {sz:nat}{p:int} .<sz>.
 (
   pf: EXP2 (n, p)
-| bt: btree (a, n), n: int (n), hp: bheap (a, n1, sz)
+| bt: btree (a, n), n: Int (n), hp: bheap (a, n1, sz)
 ) :<!wrt> [n2:int | n2 >= min(n, n1)] bheap (a, n2, sz+p) =
   case+ hp of
   | ~bheap_nil () =>
@@ -421,7 +421,7 @@ fun remove
   {n:nat}{sz:nat}
   {pos:nat} .<pos>. (
   hp0: &bheap (a, n, sz) >> bheap (a, n1, sz-p)
-, pos: int (pos)
+, pos: Int (pos)
 , btmin: &btree(a, 0)? >> btree (a, n2)
 ) :<!wrt> #[
   n1,n2,p:int | n1 >= n; n2 >= n; sz >= p

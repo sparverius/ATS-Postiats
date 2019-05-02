@@ -59,13 +59,13 @@ implement{
 implement{
 } gnode_is_null
   {tk}{a}{l}(nx) = let
-  val p = $UN.cast{ptr}(nx) in $UN.cast{bool(l==null)}(p = nullp)
+  val p = $UN.cast{ptr}(nx) in $UN.cast{Bool(l==null)}(p = nullp)
 end // end of [gnode_is_null]
 
 implement{}
 gnode_isnot_null
   {tk}{a}{l}(nx) = let
-  val p = $UN.cast{ptr}(nx) in $UN.cast{bool(l > null)}(p > nullp)
+  val p = $UN.cast{ptr}(nx) in $UN.cast{Bool(l > null)}(p > nullp)
 end // end of [gnode_isnot_null]
 
 (* ****** ****** *)

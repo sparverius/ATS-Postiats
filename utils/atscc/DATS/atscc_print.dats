@@ -161,11 +161,11 @@ fprint_val<ca>
   fprint_commarg(out, x)
 //
 implement
-fprint_list$sep<>
+fprint_List$sep<>
   (out) = fprint_string(out, " ")
 //
 in
-  fprint_list<ca> (out, cas)
+  fprint_List<ca> (out, cas)
 end // end of [fprint_ccomarglst]
 
 (* ****** ****** *)
@@ -226,12 +226,12 @@ in
 //
 case+ cas of
 //
-| list_cons
+| List_cons
     (ca, cas) => let
     val () = aux (out, ca, i) in auxlst (out, cas, i+1)
-  end // end of [list_cons]
+  end // end of [List_cons]
 //
-| list_nil ((*void*)) => ()
+| List_nil ((*void*)) => ()
 //
 end // end of [auxlst]
 //
@@ -280,40 +280,40 @@ fun auxlst
 in
 //
 case+ cas2 of
-| list_nil
+| List_nil
     ((*void*)) => let
-    val () = list_vt_free (cas1) in (*nothing*)
-  end (* end of [list_nil] *)
+    val () = List_vt_free (cas1) in (*nothing*)
+  end (* end of [List_nil] *)
 //
-| list_cons
+| List_cons
     (ca2, cas2) =>
   (
     case+ ca2 of
 //
     | CAvats () => let
         val () =
-          fprint_atsoptline (out, $UN.list_vt2t(cas1), ca2)
+          fprint_atsoptline (out, $UN.List_vt2t(cas1), ca2)
         // end of [val]
       in
         auxlst (out, cas1, cas2)
       end (* end of [CAvats] *)
     | CAtcats () => let
         val cas1 =
-          list_vt_snoc (cas1, ca2) in auxlst (out, cas1, cas2)
+          List_vt_snoc (cas1, ca2) in auxlst (out, cas1, cas2)
       end (* end of [CAtcats] *)
 //
     | CAdats _ => let
         val cas1 =
-          list_vt_snoc (cas1, ca2) in auxlst (out, cas1, cas2)
+          List_vt_snoc (cas1, ca2) in auxlst (out, cas1, cas2)
       end (* end of [CAdats] *)
     | CAiats _ => let
         val cas1 =
-          list_vt_snoc (cas1, ca2) in auxlst (out, cas1, cas2)
+          List_vt_snoc (cas1, ca2) in auxlst (out, cas1, cas2)
       end (* end of [CAiats] *)
 //
     | CAfilats _ => let
         val () =
-          fprint_atsoptline (out, $UN.list_vt2t(cas1), ca2)
+          fprint_atsoptline (out, $UN.List_vt2t(cas1), ca2)
         // end of [val]
       in
         auxlst (out, cas1, cas2)
@@ -321,12 +321,12 @@ case+ cas2 of
 //
     | _(*ignored*) => auxlst (out, cas1, cas2)
 //
-  ) (* end of [list_cons] *)
+  ) (* end of [List_cons] *)
 //
 end // end of [auxlst]
 //
 in
-  auxlst (out, list_vt_nil, cas0)
+  auxlst (out, List_vt_nil, cas0)
 end // end of [fprint_atsoptline_all]
 
 (* ****** ****** *)
@@ -424,15 +424,15 @@ fun auxlst
 in
 //
 case+ cas of
-| list_cons
+| List_cons
     (ca, cas) => let
     val () = aux (out, ca, i) in auxlst (out, cas, i+1)
-  end // end of [list_cons]
-| list_nil ((*void*)) => ()
+  end // end of [List_cons]
+| List_nil ((*void*)) => ()
 //
 end // end of [auxlst]
 //
-val-list_cons (ca, cas) = cas0
+val-List_cons (ca, cas) = cas0
 //
 val () =
 fprint (out, atsccomp_get ())

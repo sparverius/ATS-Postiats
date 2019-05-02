@@ -63,8 +63,8 @@ datatype TYPE(a:vt@ype) = TYPE(a) of ()
 #define true true_bool // shorthand
 #define false false_bool // shorthand
 //
-val true_bool : bool(true)  = "mac#atsbool_true" // = 1
-val false_bool : bool(false) = "mac#atsbool_false" // = 0
+val true_bool : bool1(true)  = "mac#atsbool_true" // = 1
+val false_bool : bool1(false) = "mac#atsbool_false" // = 0
 //
 (* ****** ****** *)
 //
@@ -92,7 +92,7 @@ lemma_subcls_transitive
 (* ****** ****** *)
 //
 praxi
-praxi_int{i:int} ((*void*)): int(i)
+praxi_int{i:int} ((*void*)): int1(i)
 //
 dataprop
 MUL_prop
@@ -138,7 +138,7 @@ eqint_make_guint
 (* ****** ****** *)
 
 praxi praxi_ptr{l:addr} ((*void*)): ptr(l)
-praxi praxi_bool{b:bool} ((*void*)): bool(b)
+praxi praxi_bool{b:bool} ((*void*)): bool1(b)
 
 (* ****** ****** *)
 
@@ -160,7 +160,7 @@ prfun
 eqbool_make{x,y:bool | x == y}(): EQBOOL(x, y)
 //
 prfun
-eqbool_make_bool{x:bool}(x: bool(x)): [y:bool] EQBOOL(x, y)
+eqbool_make_bool{x:bool}(x: bool1(x)): [y:bool] EQBOOL(x, y)
 //
 (* ****** ****** *)
 //
@@ -193,7 +193,7 @@ viewptr_match
 //
 val{
 a:vt0ype
-} sizeof : size_t(sizeof(a))
+} sizeof : size1_t(sizeof(a))
 //
 praxi
 lemma_sizeof
@@ -378,7 +378,7 @@ lemma_addr_param
 
 praxi
 lemma_string_param
-  {n:int} (x: string(n)): [n >= 0] void
+  {n:int} (x: string1(n)): [n >= 0] void
 // end of [lemma_string_param]
 praxi
 lemma_stropt_param
@@ -484,29 +484,29 @@ datatype
 // t@ype+: covariant
 list_t0ype_int_type
   (a:t@ype+, int) =
-  | list_nil(a, 0) of ()
+  | List_nil(a, 0) of ()
   | {n:int | n >= 0}
-    list_cons(a, n+1) of (a, list_t0ype_int_type(a, n))
+    List_cons(a, n+1) of (a, list_t0ype_int_type(a, n))
 // end of [datatype]
-stadef list = list_t0ype_int_type
+stadef List = list_t0ype_int_type
 typedef
-List(a:t0p) = [n:int] list(a, n)
+List_1(a:t0p) = [n:int] List(a, n)
 typedef
-List0(a:t0p) = [n:int | n >= 0] list(a, n)
+List0(a:t0p) = [n:int | n >= 0] List(a, n)
 typedef
-List1(a:t0p) = [n:int | n >= 1] list(a, n)
-typedef listLt
-  (a:t0p, n:int) = [k:nat | k < n] list(a, k)
-typedef listLte
-  (a:t0p, n:int) = [k:nat | k <= n] list(a, k)
-typedef listGt
-  (a:t0p, n:int) = [k:int | k > n] list(a, k)
-typedef listGte
-  (a:t0p, n:int) = [k:int | k >= n] list(a, k)
-typedef listBtw
-  (a:t0p, m:int, n:int) = [k:int | m <= k; k < n] list(a, k)
-typedef listBtwe
-  (a:t0p, m:int, n:int) = [k:int | m <= k; k <= n] list(a, k)
+List1(a:t0p) = [n:int | n >= 1] List(a, n)
+typedef ListLt
+  (a:t0p, n:int) = [k:nat | k < n] List(a, k)
+typedef ListLte
+  (a:t0p, n:int) = [k:nat | k <= n] List(a, k)
+typedef ListGt
+  (a:t0p, n:int) = [k:int | k > n] List(a, k)
+typedef ListGte
+  (a:t0p, n:int) = [k:int | k >= n] List(a, k)
+typedef ListBtw
+  (a:t0p, m:int, n:int) = [k:int | m <= k; k < n] List(a, k)
+typedef ListBtwe
+  (a:t0p, m:int, n:int) = [k:int | m <= k; k <= n] List(a, k)
 //
 (* ****** ****** *)
 //
@@ -514,29 +514,29 @@ datavtype
 // vt@ype+: covariant
 list_vt0ype_int_vtype
   (a:vt@ype+, int) =
-  | list_vt_nil(a, 0) of ()
+  | List_vt_nil(a, 0) of ()
   | {n:int | n >= 0}
-    list_vt_cons(a, n+1) of (a, list_vt0ype_int_vtype(a, n))
+    List_vt_cons(a, n+1) of (a, list_vt0ype_int_vtype(a, n))
 // end of [list_vt0ype_int_vtype]
-stadef list_vt = list_vt0ype_int_vtype
+stadef List_vt = list_vt0ype_int_vtype
 vtypedef
-List_vt(a:vt0p) = [n:int] list_vt(a, n)
+List_vt_1(a:vt0p) = [n:int] List_vt(a, n)
 vtypedef
-List0_vt(a:vt0p) = [n:int | n >= 0] list_vt(a, n)
+List0_vt(a:vt0p) = [n:int | n >= 0] List_vt(a, n)
 vtypedef
-List1_vt(a:vt0p) = [n:int | n >= 1] list_vt(a, n)
-vtypedef listLt_vt
-  (a:vt0p, n:int) = [k:nat | k < n] list_vt(a, k)
-vtypedef listLte_vt
-  (a:vt0p, n:int) = [k:nat | k <= n] list_vt(a, k)
-vtypedef listGt_vt
-  (a:vt0p, n:int) = [k:int | k > n] list_vt(a, k)
-vtypedef listGte_vt
-  (a:vt0p, n:int) = [k:int | k >= n] list_vt(a, k)
-vtypedef listBtw_vt
-  (a:vt0p, m:int, n:int) = [k:int | m <= k; k < n] list_vt(a, k)
-vtypedef listBtwe_vt
-  (a:vt0p, m:int, n:int) = [k:int | m <= k; k <= n] list_vt(a, k)
+List1_vt(a:vt0p) = [n:int | n >= 1] List_vt(a, n)
+vtypedef ListLt_vt
+  (a:vt0p, n:int) = [k:nat | k < n] List_vt(a, k)
+vtypedef ListLte_vt
+  (a:vt0p, n:int) = [k:nat | k <= n] List_vt(a, k)
+vtypedef ListGt_vt
+  (a:vt0p, n:int) = [k:int | k > n] List_vt(a, k)
+vtypedef ListGte_vt
+  (a:vt0p, n:int) = [k:int | k >= n] List_vt(a, k)
+vtypedef ListBtw_vt
+  (a:vt0p, m:int, n:int) = [k:int | m <= k; k < n] List_vt(a, k)
+vtypedef ListBtwe_vt
+  (a:vt0p, m:int, n:int) = [k:int | m <= k; k <= n] List_vt(a, k)
 //
 (* ****** ****** *)
 //
@@ -564,10 +564,10 @@ option_t0ype_bool_type
 (
   a:t@ype+, bool
 ) = // option_t0ype_bool_type
-  | Some(a, true) of (INV(a)) | None(a, false)
+  | Some1(a, true) of (INV(a)) | None1(a, false)
 // end of [datatype]
-stadef option = option_t0ype_bool_type
-typedef Option(a:t0p) = [b:bool] option(a, b)
+stadef Option = option_t0ype_bool_type
+typedef Option_1(a:t0p) = [b:bool] Option(a, b)
 //
 datavtype
 // vt@ype+: covariant
@@ -575,10 +575,10 @@ option_vt0ype_bool_vtype
 (
   a:vt@ype+, bool
 ) = // option_vt0ype_bool_vtype
-  | Some_vt(a, true) of (INV(a)) | None_vt(a, false)
+  | Some1_vt(a, true) of (INV(a)) | None1_vt(a, false)
 // end of [option_vt0ype_bool_vtype]
-stadef option_vt = option_vt0ype_bool_vtype
-vtypedef Option_vt(a:vt0p) = [b:bool] option_vt(a, b)
+stadef Option_vt = option_vt0ype_bool_vtype
+vtypedef Option_vt_1(a:vt0p) = [b:bool] Option_vt(a, b)
 //
 (* ****** ****** *)
 //
@@ -694,9 +694,9 @@ overload [] with argv_set_at
 (* ****** ****** *)
 //
 fun{}
-listize_argc_argv
+Listize_argc_argv
   {n:int}
-  (argc: int(n), argv: !argv(n)): list_vt(string, n)
+  (argc: Int(n), argv: !argv(n)): List_vt(string, n)
 //
 (* ****** ****** *)
 //
@@ -710,11 +710,11 @@ main_void_0
 fun
 main_argc_argv_0
   {n:int | n >= 1}
-  (argc: int n, argv: !argv(n)): void = "ext#mainats_argc_argv_0"
+  (argc: int1 n, argv: !argv(n)): void = "ext#mainats_argc_argv_0"
 fun
 main_argc_argv_envp_0
   {n:int | n >= 1}
-  (argc: int n, argv: !argv(n), envp: ptr): void = "ext#mainats_argc_argv_envp_0"
+  (argc: int1 n, argv: !argv(n), envp: ptr): void = "ext#mainats_argc_argv_envp_0"
 //
 overload main0 with main_void_0
 overload main0 with main_argc_argv_0
@@ -732,11 +732,11 @@ main_void_int
 fun
 main_argc_argv_int
   {n:int | n >= 1}
-  (argc: int n, argv: !argv(n)): int = "ext#mainats_argc_argv_int"
+  (argc: int1 n, argv: !argv(n)): int = "ext#mainats_argc_argv_int"
 fun
 main_argc_argv_envp_int
   {n:int | n >= 1}
-  (argc: int n, argv: !argv n, envp: ptr): int = "ext#mainats_argc_argv_envp_int"
+  (argc: int1 n, argv: !argv n, envp: ptr): int = "ext#mainats_argc_argv_envp_int"
 //
 overload main with main_void_int
 overload main with main_argc_argv_int
@@ -757,7 +757,7 @@ fun exit_fprintf{ts:types}
 ) :<!exn> {a:vt0p}(a) = "mac#%" // end of [exit_fprintf]
 *)
 //
-(* ****** ****** *)
+(* *****p* ****** *)
 //
 fun
 exit_void
@@ -773,7 +773,7 @@ assert_bool0
   (x: bool):<!exn> void = "mac#%"
 fun
 assert_bool1
-  {b:bool} (x: bool (b)):<!exn> [b] void = "mac#%"
+  {b:bool} (x: bool1 (b)):<!exn> [b] void = "mac#%"
 //
 overload assert with assert_bool0 of 0
 overload assert with assert_bool1 of 10
@@ -783,7 +783,7 @@ overload assert with assert_bool1 of 10
 fun{}
 assertexn_bool0 (x: bool):<!exn> void
 fun{}
-assertexn_bool1 {b:bool} (x: bool (b)):<!exn> [b] void
+assertexn_bool1 {b:bool} (x: bool1 (b)):<!exn> [b] void
 //
 symintr assertexn
 overload assertexn with assertexn_bool0 of 0
@@ -796,7 +796,7 @@ assert_errmsg_bool0
   (x: bool, msg: string):<!exn> void = "mac#%"
 fun
 assert_errmsg_bool1
-  {b:bool} (x: bool b, msg: string):<!exn> [b] void = "mac#%"
+  {b:bool} (x: bool1 b, msg: string):<!exn> [b] void = "mac#%"
 //
 symintr assert_errmsg
 overload assert_errmsg with assert_errmsg_bool0 of 0
@@ -809,7 +809,7 @@ assert_errmsg2_bool0
   (x: bool, msg1: string, msg2: string):<!exn> void = "mac#%"
 fun
 assert_errmsg2_bool1{b:bool}
-  (x: bool b, msg1: string, msg2: string):<!exn> [b] void = "mac#%"
+  (x: bool1 b, msg1: string, msg2: string):<!exn> [b] void = "mac#%"
 //
 symintr assert_errmsg2
 overload assert_errmsg2 with assert_errmsg2_bool0 of 0
@@ -913,6 +913,45 @@ fun prerr_newline((*void*)): void = "mac#%"
 fun fprint_newline(out: FILEref): void = "mac#%"
 
 (* ****** ****** *)
+
+#ifdef ATS2_5
+
+// t@ype+: covariant
+
+datatype 
+list_t0ype (a:t@ype+) =
+  | list_nil(a) of ()
+  | list_cons(a) of (a, list_t0ype(a))
+
+stadef
+list = list_t0ype
+
+datavtype
+list_vt0ype (a:vt@ype+) =
+  | list_vt_nil(a) of ()
+  | list_vt_cons(a) of (a, list_vt0ype(a))
+
+stadef
+list_vt = list_t0ype
+
+datatype
+option_t0ype (a:t@ype+) =
+  | Some1(a) of (INV(a)) 
+  | None1(a)
+
+stadef
+option = option_t0ype
+
+datavtype
+option_vt0ype (a:vt@ype+) =
+  | Some1_vt(a, true) of (INV(a)) 
+  | None1_vt(a, false)
+
+stadef
+option_vt = option_vt0ype
+
+#endif
+
 
 #if VERBOSE_PRELUDE #then
 #print "Loading [basics_dyn.sats] finishes!\n"

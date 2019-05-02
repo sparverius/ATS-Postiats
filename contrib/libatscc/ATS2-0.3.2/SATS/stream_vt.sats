@@ -108,7 +108,7 @@ fun
 stream_vt_mapopt_cloref
   {a:vt0p}{b:vt0p}
 (
-xs: stream_vt(INV(a)), fopr: (a) -<cloref1> Option_vt(b)
+xs: stream_vt(INV(a)), fopr: (a) -<cloref1> Option_vt_1(b)
 ) : stream_vt(b) = "mac#%" // end-of-function
 //
 fun
@@ -127,7 +127,7 @@ stream_vt_mapopt_method
 xs: stream_vt(INV(a)), TYPE(b)
 ) :
 (
- (a) -<cloref1> Option_vt(b)
+ (a) -<cloref1> Option_vt_1(b)
 ) -<lincloptr1> stream_vt(b) = "mac#%" // endfun
 //
 (* ****** ****** *)

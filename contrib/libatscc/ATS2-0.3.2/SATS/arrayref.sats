@@ -13,7 +13,7 @@ staload "./../basics.sats"
 fun
 arrayref_make_elt
   {a:t0p}{n:nat}
-  (int(n), a): arrayref(a, n) = "mac#%"
+  (Int(n), a): arrayref(a, n) = "mac#%"
 //
 (* ****** ****** *)
 //
@@ -43,14 +43,14 @@ fun
 arrayref_exists_cloref
   {a:vt0p}{n:int}
 ( A0: arrayref(a, n)
-, asz: int(n), ftest: natLt(n) -<cloref1> bool
+, asz: Int(n), ftest: natLt(n) -<cloref1> bool
 ) : bool = "mac#%" // end-of-fun
 //
 fun
 arrayref_forall_cloref
   {a:vt0p}{n:int}
 ( A0: arrayref(a, n)
-, asz: int(n), ftest: natLt(n) -<cloref1> bool
+, asz: Int(n), ftest: natLt(n) -<cloref1> bool
 ) : bool = "mac#%" // end-of-fun
 //
 (* ****** ****** *)
@@ -59,7 +59,7 @@ fun
 arrayref_foreach_cloref
   {a:vt0p}{n:int}
 ( A0: arrayref(a, n)
-, asz: int(n), fwork: natLt(n) -<cloref1> void
+, asz: Int(n), fwork: natLt(n) -<cloref1> void
 ) : void = "mac#%" // end-of-fun
 
 (* ****** ****** *)
@@ -68,7 +68,7 @@ fun
 arrayref_tabulate_cloref
   {a:vt0p}{n:int}
 (
-  asz: int(n), fopr: (natLt(n)) -<cloref1> (a)
+  asz: Int(n), fopr: (natLt(n)) -<cloref1> (a)
 ) : arrayref(a, n) = "mac#%" // end-of-fun
 //
 (* ****** ****** *)
@@ -94,7 +94,7 @@ overload .size with arrszref_get_size
 fun
 arrszref_make_elt
   {a:t0p}{n:nat}
-  (int(n), a): arrszref(a) = "mac#%"
+  (Int(n), a): arrszref(a) = "mac#%"
 //
 (* ****** ****** *)
 //
@@ -106,7 +106,7 @@ arrszref_get_arrayref
 fun
 arrszref_make_arrayref
   {a:t0p}{n:int}
-  (arrayref(a, n), int(n)): arrszref(a) = "mac#%"
+  (arrayref(a, n), Int(n)): arrszref(a) = "mac#%"
 // end of [arrszref_make_arrayref]
 //
 (* ****** ****** *)
@@ -197,7 +197,7 @@ overload
 fun
 arrszref_tabulate_cloref
   {a:vt0p}{n:int}
-( asz: int(n)
+( asz: Int(n)
 , fopr: (natLt(n)) -<cloref1> (a)): arrszref(a) = "mac#%"
 //
 (* ****** ****** *)

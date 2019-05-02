@@ -62,7 +62,7 @@ fprint_gvector$sep<> (out) = fprint_gmatrix$sep1 (out)
 fun loop_row
   {l:addr}{m:nat}.<m>.
 (
-  pf: !GMR(a, l, m, n, ld) | p: ptr l, m: int m
+  pf: !GMR(a, l, m, n, ld) | p: ptr l, m: Int m
 ) : void =
 (
 if m > 0
@@ -88,7 +88,7 @@ end else () // end of [if]
 fun loop_col
   {l:addr}{m:nat}.<m>.
 (
-  pf: !GMC(a, l, m, n, ld) | p: ptr l, m: int m
+  pf: !GMC(a, l, m, n, ld) | p: ptr l, m: Int m
 ) : void =
 (
 if m > 0

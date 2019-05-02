@@ -62,7 +62,7 @@ datatype avltree
      hl <= hr+HTDF;
      hr <= hl+HTDF}
     B (a, 1+max(hl,hr)) of
-      (int (1+max(hl,hr)), a, avltree (a, hl), avltree (a, hr))
+      (Int (1+max(hl,hr)), a, avltree (a, hl), avltree (a, hr))
   | E (a, 0) of ((*void*))
 // end of [avltree]
 
@@ -197,14 +197,14 @@ avltree_lrotate
   {hl,hr:nat | hl+HTDF1 == hr}
 (
   x: a
-, hl : int hl
+, hl : Int hl
 , tl: avltree (a, hl)
-, hr : int hr
+, hr : Int hr
 , tr: avltree (a, hr)
 ) :<> avltree_inc (a, hr) = let
   val+B{..}{hrl,hrr}(_, xr, trl, trr) = tr
-  val hrl = avlht(trl) : int hrl
-  and hrr = avlht(trr) : int hrr
+  val hrl = avlht(trl) : Int hrl
+  and hrr = avlht(trr) : Int hrr
 in
 //
 if hrl <= hrr+HTDF_1 then let
@@ -213,8 +213,8 @@ in
   B{a}(1+max(hrl1,hrr), xr, B{a}(hrl1, x, tl, trl), trr)
 end else let // [hrl=hrr+2]: deep rotation
   val+B{..}{hrll,hrlr}(_(*hrl*), xrl, trll, trlr) = trl
-  val hrll = avlht(trll) : int hrll
-  and hrlr = avlht(trlr) : int hrlr
+  val hrll = avlht(trll) : Int hrll
+  and hrlr = avlht(trlr) : Int hrlr
 in
   B{a}(hr, xrl, B{a}(1+max(hl,hrll), x, tl, trll), B{a}(1+max(hrlr,hrr), xr, trlr, trr))
 end // end of [if]
@@ -231,14 +231,14 @@ avltree_rrotate
   {hl,hr:nat | hl == hr+HTDF1}
 (
   x: a
-, hl: int hl
+, hl: Int hl
 , tl: avltree (a, hl)
-, hr: int hr
+, hr: Int hr
 , tr: avltree (a, hr)
 ) :<> avltree_inc (a, hl) = let
   val+B{..}{hll,hlr}(_(*hl*), xl, tll, tlr) = tl
-  val hll = avlht(tll) : int hll
-  and hlr = avlht(tlr) : int hlr
+  val hll = avlht(tll) : Int hll
+  and hlr = avlht(tlr) : Int hlr
 in
 //
 if hll+HTDF_1 >= hlr then let
@@ -247,8 +247,8 @@ in
   B{a}(1+max(hll,hlr1), xl, tll, B{a}(hlr1, x, tlr, tr))
 end else let
   val+B{..}{hlrl,hlrr}(_(*hlr*), xlr, tlrl, tlrr) = tlr
-  val hlrl = avlht(tlrl) : int hlrl
-  and hlrr = avlht(tlrr) : int hlrr
+  val hlrl = avlht(tlrl) : Int hlrl
+  and hlrr = avlht(tlrr) : Int hlrr
 in
   B{a}(hl, xlr, B{a}(1+max(hll,hlrl), xl, tll, tlrl), B{a}(1+max(hlrr,hr), x, tlrr, tr))
 end // end of [if]
@@ -276,8 +276,8 @@ case+ t of
   in
     if sgn < 0 then let
       val [hl:int] tl = insert (tl, found)
-      val hl = avlht(tl) : int hl
-      and hr = avlht(tr) : int hr
+      val hl = avlht(tl) : Int hl
+      and hr = avlht(tr) : Int hr
     in
       if hl-hr <= HTDF
         then B{a}(1+max(hl,hr), x, tl, tr)
@@ -285,8 +285,8 @@ case+ t of
       // end of [if]
     end else if sgn > 0 then let
       val [hr:int] tr = insert (tr, found)
-      val hl = avlht(tl) : int hl
-      and hr = avlht(tr) : int hr
+      val hl = avlht(tl) : Int hl
+      and hr = avlht(tr) : Int hr
     in
       if hr-hl <= HTDF
         then B{a}(1+max(hl, hr), x, tl, tr)
@@ -322,8 +322,8 @@ case+ tr of
 | B _ => let
     val [hr:int]
       tr = avlmaxout<a> (tr, x0)
-    val hl = avlht(tl) : int(hl)
-    and hr = avlht(tr) : int(hr)
+    val hl = avlht(tl) : Int(hl)
+    and hr = avlht(tr) : Int(hr)
   in
     if hl-hr <= HTDF
       then B{a}(1+max(hl,hr), x, tl, tr)
@@ -350,8 +350,8 @@ case+ tl of
 | B _ => let
     val [hl:int]
       tl = avlminout<a> (tl, x0)
-    val hl = avlht(tl) : int(hl)
-    and hr = avlht(tr) : int(hr)
+    val hl = avlht(tl) : Int(hl)
+    and hr = avlht(tr) : Int(hr)
   in
     if hr-hl <= HTDF
       then B{a}(1+max(hl,hr), x, tl, tr)
@@ -373,15 +373,15 @@ avltree_ljoin
 (
   x: a, tl: avltree (a, hl), tr: avltree (a, hr)
 ) :<> avltree_inc (a, hl) = let
-  val hl = avlht(tl) : int hl
-  and hr = avlht(tr) : int hr
+  val hl = avlht(tl) : Int hl
+  and hr = avlht(tr) : Int hr
 in
 //
 if hl >= hr + HTDF1 then let
   val+B{..}{hll, hlr}(_, xl, tll, tlr) = tl
   val [hlr:int] tlr = avltree_ljoin<a> (x, tlr, tr)
-  val hll = avlht(tll) : int hll
-  and hlr = avlht(tlr) : int hlr
+  val hll = avlht(tll) : Int hll
+  and hlr = avlht(tlr) : Int hlr
 in
   if hlr <= hll + HTDF
     then B{a}(max(hll,hlr)+1, xl, tll, tlr)
@@ -402,15 +402,15 @@ avltree_rjoin
 (
   x: a, tl: avltree (a, hl), tr: avltree (a, hr)
 ) :<> avltree_inc (a, hr) = let
-  val hl = avlht(tl) : int hl
-  and hr = avlht(tr) : int hr
+  val hl = avlht(tl) : Int hl
+  and hr = avlht(tr) : Int hr
 in
 //
 if hr >= hl + HTDF1 then let
   val+B{..}{hrl,hrr}(_, xr, trl, trr) = tr
   val [hrl:int] trl = avltree_rjoin<a> (x, tl, trl)
-  val hrl = avlht(trl) : int hrl
-  and hrr = avlht(trr) : int hrr
+  val hrl = avlht(trl) : Int hrl
+  and hrr = avlht(trr) : Int hrr
 in
   if hrl <= hrr + HTDF
     then B{a}(max(hrl,hrr)+1, xr, trl, trr)
@@ -430,8 +430,8 @@ avltree_join3
 ) :<> [
   h:int | hl <= h; hr <= h; h <= max(hl,hr)+1
 ] avltree (a, h) = let
-  val hl = avlht(tl) : int hl
-  and hr = avlht(tr) : int hr
+  val hl = avlht(tl) : Int hl
+  and hr = avlht(tr) : Int hr
 in
   if hl >= hr then
     avltree_ljoin<a> (x, tl, tr) else avltree_rjoin<a> (x, tl, tr)
@@ -469,7 +469,7 @@ avltree_split_at
 , tl0: &ptr? >> avltree (a, hl)
 , tr0: &ptr? >> avltree (a, hr)
 ) :<!wrt>
-  #[i,hl,hr:nat | i <= 1; hl <= h; hr <= h] int (i) =
+  #[i,hl,hr:nat | i <= 1; hl <= h; hr <= h] Int (i) =
 (
 case+ t of
 | B (_, x, tl, tr) => let
@@ -510,8 +510,8 @@ case+ t of
     case+ 0 of
     | _ when sgn < 0 => let
         val [hl:int] tl = remove (tl, found)
-        val hl = avlht(tl) : int hl
-        and hr = avlht(tr) : int hr
+        val hl = avlht(tl) : Int hl
+        and hr = avlht(tr) : Int hr
       in
         if hr-hl <= HTDF
           then B{a}(1+max(hl,hr), x, tl, tr)
@@ -520,8 +520,8 @@ case+ t of
       end // end of [sgn < 0]
     | _ when sgn > 0 => let
         val [hr:int] tr = remove (tr, found)
-        val hl = avlht(tl) : int hl
-        and hr = avlht(tr) : int hr
+        val hl = avlht(tl) : Int hl
+        and hr = avlht(tr) : Int hr
       in
         if hl-hr <= HTDF
           then B{a}(1+max(hl,hr), x, tl, tr)
@@ -535,8 +535,8 @@ case+ t of
         | B _ => let
             var xmin: a? // uninitialized
             val [hr:int] tr = avlminout<a> (tr, xmin)
-            val hl = avlht(tl) : int (hl)
-            and hr = avlht(tr) : int (hr)
+            val hl = avlht(tl) : Int (hl)
+            and hr = avlht(tr) : Int (hr)
           in
             if hl-hr <= HTDF
               then B{a}(1+max(hl,hr), xmin, tl, tr)
@@ -953,7 +953,7 @@ in
 case+ t of
 | B (_, x, tl, tr) => let
     val res = aux (tr, res)
-    val res = list_vt_cons{a}(x, res)
+    val res = List_vt_cons{a}(x, res)
     val res = aux (tl, res)
   in
     res
@@ -963,7 +963,7 @@ case+ t of
 end // end of [aux]
 //
 in
-  aux (xs, list_vt_nil)
+  aux (xs, List_vt_nil)
 end // end of [funset_listize]
 
 (* ****** ****** *)

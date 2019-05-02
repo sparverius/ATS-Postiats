@@ -95,7 +95,7 @@ lemma_stkarray_param
 
 fun{a:vt0p}
 stkarray_make_cap
-  {m:int} (cap: size_t(m)):<!wrt> stkarray(a, m, 0)
+  {m:int} (cap: Size_t(m)):<!wrt> stkarray(a, m, 0)
 // end of [stkarray_make_cap]
 
 (* ****** ****** *)
@@ -106,7 +106,7 @@ stkarray_make_ngc_tsz
   {l:addr}{m:int}
 (
   stkarray_tsize? @ l
-| ptr(l), arrayptr(a?, m), size_t(m), sizeof_t(a)
+| ptr(l), arrayptr(a?, m), Size_t(m), sizeof_t(a)
 ) :<!wrt> (mfree_ngc_v (l) | stkarray(a, m, 0)) = "mac#%"
 
 (* ****** ****** *)
@@ -127,10 +127,10 @@ stkarray_getfree_arrayptr
 //
 fun{a:vt0p}
 stkarray_get_size
-  {m,n:int} (stk: !stkarray(INV(a), m, n)):<> size_t(n)
+  {m,n:int} (stk: !stkarray(INV(a), m, n)):<> Size_t(n)
 fun{a:vt0p}
 stkarray_get_capacity
-  {m,n:int} (stk: !stkarray(INV(a), m, n)):<> size_t(m)
+  {m,n:int} (stk: !stkarray(INV(a), m, n)):<> Size_t(m)
 //
 (* ****** ****** *)
 
@@ -144,22 +144,22 @@ stkarray_get_ptrbeg{a:vt0p}
 fun
 stkarray_is_nil
   {a:vt0p}{m,n:int}
-  (stk: !stkarray(INV(a), m, n)):<> bool(n==0) = "mac#%"
+  (stk: !stkarray(INV(a), m, n)):<> Bool(n==0) = "mac#%"
 fun
 stkarray_isnot_nil
   {a:vt0p}{m,n:int}
-  (stk: !stkarray(INV(a), m, n)):<> bool(n > 0) = "mac#%"
+  (stk: !stkarray(INV(a), m, n)):<> Bool(n > 0) = "mac#%"
 //
 (* ****** ****** *)
 //
 fun
 stkarray_is_full
   {a:vt0p}{m,n:int}
-  (stk: !stkarray(INV(a), m, n)):<> bool(m==n) = "mac#%"
+  (stk: !stkarray(INV(a), m, n)):<> Bool(m==n) = "mac#%"
 fun
 stkarray_isnot_full
   {a:vt0p}{m,n:int}
-  (stk: !stkarray(INV(a), m, n)):<> bool(m > n) = "mac#%"
+  (stk: !stkarray(INV(a), m, n)):<> Bool(m > n) = "mac#%"
 //
 (* ****** ****** *)
 
@@ -189,7 +189,7 @@ stkarray_insert
 
 fun{a:vt0p}
 stkarray_insert_opt
-  (stk: !stkarray(INV(a)) >> _, x0: a):<!wrt> Option_vt(a)
+  (stk: !stkarray(INV(a)) >> _, x0: a):<!wrt> Option_vt_1(a)
 // end of [stkarray_insert_opt]
 
 (* ****** ****** *)
@@ -204,7 +204,7 @@ stkarray_takeout
 
 fun{a:vt0p}
 stkarray_takeout_opt
-  (stk: !stkarray(INV(a)) >> _):<!wrt> Option_vt(a)
+  (stk: !stkarray(INV(a)) >> _):<!wrt> Option_vt_1(a)
 // end of [stkarray_takeout_opt]
 
 (* ****** ****** *)
@@ -222,12 +222,12 @@ symintr stkarray_getref_at
 fun{a:vt0p}
 stkarray_getref_at_int
   {m,n:int}{i:nat | i < n}
-  (stk: !stkarray(INV(a), m, n), i: int(i)):<> cPtr1(a)
+  (stk: !stkarray(INV(a), m, n), i: Int(i)):<> cPtr1(a)
 //
 fun{a:vt0p}
 stkarray_getref_at_size
   {m,n:int}{i:nat | i < n}
-  (stk: !stkarray(INV(a), m, n), i: size_t(i)):<> cPtr1(a)
+  (stk: !stkarray(INV(a), m, n), i: Size_t(i)):<> cPtr1(a)
 //
 overload stkarray_getref_at with stkarray_getref_at_int
 overload stkarray_getref_at with stkarray_getref_at_size

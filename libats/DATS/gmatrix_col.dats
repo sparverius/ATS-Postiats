@@ -263,7 +263,7 @@ gmatcol_foreachcol_env
 fun loop
   {l:addr}{n:nat} .<n>.
 (
-  pfM: !GMC(a, l, m, n, ld) | p: ptr l, n: int n, env: &env
+  pfM: !GMC(a, l, m, n, ld) | p: ptr l, n: Int n, env: &env
 ) : void = let
 in
 //
@@ -317,7 +317,7 @@ fun loop
 (
   pfA: !GMC(a1, l1, m, n, lda)
 , pfB: !GMC(a2, l2, m, n, ldb)
-| p1: ptr l1, p2: ptr l2, n: int n, env: &env
+| p1: ptr l1, p2: ptr l2, n: Int n, env: &env
 ) : void = let
 in
 //

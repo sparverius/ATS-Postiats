@@ -83,7 +83,7 @@ stringbuf_getfree_strptr(sbf: stringbuf):<!wrt> Strptr1
 
 fun{}
 stringbuf_getfree_strnptr
-  (sbf: stringbuf, n: &size_t? >> size_t(n)):<!wrt> #[n:nat] strnptr(n)
+  (sbf: stringbuf, n: &size_t? >> Size_t(n)):<!wrt> #[n:nat] strnptr(n)
 // end of [stringbuf_getfree_strnptr]
 
 (* ****** ****** *)
@@ -105,7 +105,7 @@ stringbuf_get_strptr(sbf: !stringbuf):<!wrt> vStrptr1
 fun{}
 stringbuf_takeout_strbuf
 (
-  sbf: !stringbuf, n: &size_t? >> size_t(n)
+  sbf: !stringbuf, n: &size_t? >> Size_t(n)
 ) :<!wrt> #[l:addr;n:nat]
 (
   bytes_v (l, n), bytes_v (l, n) -<lin,prf> void | ptr(l)
@@ -139,7 +139,7 @@ fun{}
 stringbuf_insert_string(!stringbuf, x: string): int
 fun{}
 stringbuf_insert_strlen
-  {n:int}(buf: !stringbuf, string n, size_t n): int
+  {n:int}(buf: !stringbuf, String n, Size_t n): int
 fun{}
 stringbuf_insert_bool(sbf: !stringbuf, x: bool): int
 
@@ -179,7 +179,7 @@ stringbuf_insert_fread
 fun{}
 stringbuf_insert_fgets
 (
-  sbf: !stringbuf, inp: FILEref, last: &char(0) >> char
+  sbf: !stringbuf, inp: FILEref, last: &Char(0) >> char
 ) : int // end of [stringbuf_insert_fgets]
 
 (* ****** ****** *)
@@ -198,7 +198,7 @@ stringbuf_insert_val(sbf: !stringbuf, x: a): int
 (* ****** ****** *)
 
 fun{a:t0p}
-stringbuf_insert_list(sbf: !stringbuf, x: List(a)): int
+stringbuf_insert_list(sbf: !stringbuf, x: List_1(a)): int
 
 (* ****** ****** *)
 //

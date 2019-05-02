@@ -77,7 +77,7 @@ key:t0p;itm:vt0p
 } chain_insert (
   &chain(key, INV(itm)) >> _
 , k0: key, x0: itm, res: &itm? >> opt(itm, b)
-) : #[b:bool] bool (b) // endfun
+) : #[b:bool] Bool (b) // endfun
 
 extern
 fun{
@@ -93,7 +93,7 @@ fun{
 key:t0p;itm:vt0p
 } chain_takeout (
   &chain(key, INV(itm)) >> _, k0: key, res: &itm? >> opt(itm, b)
-) : #[b:bool] bool (b) // endfun
+) : #[b:bool] Bool (b) // endfun
 
 (* ****** ****** *)
 
@@ -113,14 +113,14 @@ extern
 fun
 {key:t0p
 ;itm:vt0p}
-chain_listize (chain(key, itm)): List_vt @(key, itm)
+chain_listize (chain(key, itm)): List_vt_1 @(key, itm)
 
 extern
 fun
 {key:t0p
 ;itm:vt0p}
 {ki2:vt0p}
-chain_flistize (kxs: chain(key, itm)): List_vt (ki2)
+chain_flistize (kxs: chain(key, itm)): List_vt_1 (ki2)
 
 (* ****** ****** *)
 
@@ -209,14 +209,14 @@ fun{
 key:t0p;itm:vt0p
 } chainarr_insert_any
   {m:int | m >= 1} (
-  A: !arrayptr (chain(key, itm), m), m: size_t m, k: key, x: itm
+  A: !arrayptr (chain(key, itm), m), m: Size_t m, k: key, x: itm
 ) : void // end of [chainarr_insert_any]
 extern
 fun{
 key:t0p;itm:vt0p
 } chainarr_insert_chain
   {m:int | m >= 1} (
-  A: !arrayptr (chain(key, itm), m), m: size_t m, kxs: chain(key, itm)
+  A: !arrayptr (chain(key, itm), m), m: Size_t m, kxs: chain(key, itm)
 ) : void // end of [chainarr_insert_chain]
 
 (* ****** ****** *)
@@ -257,22 +257,22 @@ chain = chain(key, itm)
 //
 fun loop
 (
-  A: !arrayptr (chain, m), m: size_t m, kxs: List_vt @(key, itm)
+  A: !arrayptr (chain, m), m: Size_t m, kxs: List_vt_1 @(key, itm)
 ) : void = let
 in
 //
 case+ kxs of
-| ~list_vt_cons
+| ~List_vt_cons
     ((k, x), kxs) => let
     val () = chainarr_insert_any<key,itm> (A, m, k, x) in loop (A, m, kxs)
   end // end of [list_vt_cons]
-| ~list_vt_nil ((*void*)) => ()
+| ~List_vt_nil ((*void*)) => ()
 //
 end // end of [loop]
 //
 val kxs =
   chain_listize<key,itm> (kxs)
-val kxs = list_vt_reverse (kxs)
+val kxs = List_vt_reverse (kxs)
 //
 in
   loop (A, m, kxs)
@@ -286,7 +286,7 @@ datavtype hashtbl
 ) =
   {m:int | m >= 1}
   HASHTBL of (
-    arrayptr (chain(key, itm), m), size_t m, size_t
+    arrayptr (chain(key, itm), m), Size_t m, size_t
   ) (* end of [HASHTBL] *)
 // end of [hashtbl]
 
@@ -503,14 +503,14 @@ array_rforeach$fwork<a><tenv>
   val kxs2 = $UN.castvwtp0{chain}(kxs)
   val () = kxs := $UN.castvwtp0{a}(chain_nil())
   val kxs2 = chain_listize<key,itm> (kxs2)
-  val kxs2 = list_vt_append (kxs2, $UN.castvwtp0{tenv2}(env))
+  val kxs2 = List_vt_append (kxs2, $UN.castvwtp0{tenv2}(env))
   val () = env := $UN.castvwtp0{ptr}(kxs2)
 in
   // nothing
 end // end of [array_rforeach$fwork]
 in (* in of [local] *)
 var env: ptr
-val () = env := $UN.castvwtp0{ptr}(list_vt_nil)
+val () = env := $UN.castvwtp0{ptr}(List_vt_nil)
 val _(*cap*) = $effmask_all
   (arrayptr_rforeach_env<chain><tenv> (A, cap, env))
 end // end of [local]
@@ -647,14 +647,14 @@ array_rforeach$fwork<chain><tenv>
   (kxs, env) = let
   val kxs = $UN.castvwtp1{chain}(kxs)
   val kxs2 = chain_listize<key,itm> (kxs)
-  val kxs2 = list_vt_append(kxs2, $UN.castvwtp0{tenv2}(env))
+  val kxs2 = List_vt_append(kxs2, $UN.castvwtp0{tenv2}(env))
   val ((*set*)) = env := $UN.castvwtp0{ptr}(kxs2)
 in
   // nothing
 end // end of [array_rforeach$fwork]
 in(* in of [local] *)
 var env: ptr
-val () = env := $UN.castvwtp0{ptr}(list_vt_nil)
+val () = env := $UN.castvwtp0{ptr}(List_vt_nil)
 val _(*cap*) = $effmask_all
   (arrayptr_rforeach_env<chain><tenv> (A, cap, env))
 end // end of [local]
@@ -693,7 +693,7 @@ array_rforeach$fwork<chain><tenv>
   val kxs2 =
     chain_flistize<key,itm><ki2> (kxs)
   val kxs2 =
-    list_vt_append (kxs2, $UN.castvwtp0{tenv2}(env))
+    List_vt_append (kxs2, $UN.castvwtp0{tenv2}(env))
   val ((*void*)) = env := $UN.castvwtp0{ptr}(kxs2)
 in
   // nothing
@@ -703,7 +703,7 @@ in(* in of [local] *)
 //
 var env: ptr
 //
-val () = (env := $UN.castvwtp0{ptr}(list_vt_nil))
+val () = (env := $UN.castvwtp0{ptr}(List_vt_nil))
 //
 val _(*cap*) =
 $effmask_all

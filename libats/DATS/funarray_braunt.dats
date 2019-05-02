@@ -94,8 +94,8 @@ diff
 | nr <= nl && nl <= nr+1
 } .<nr>. 
 (
-  nr: int(nr), t0: bt(a, nl)
-) : int (nl-nr) =
+  nr: Int(nr), t0: bt(a, nl)
+) : Int (nl-nr) =
 (
 case+ t0 of
 | E () => 0
@@ -118,7 +118,7 @@ size
 {n:nat} .<n>.
 (
   t0: bt(a, n)
-) : int(n) =
+) : Int(n) =
 (
 case+ t0 of
 | E () => 0
@@ -158,33 +158,33 @@ farray_make_list
 fnx
 aux01
 {n:nat} .<n>.
-( xs0: list(a, n)
-, res0: &ptr? >> list(a, (n+1)/2)
-, res1: &ptr? >> list(a, (n+0)/2)
+( xs0: List(a, n)
+, res0: &ptr? >> List(a, (n+1)/2)
+, res1: &ptr? >> List(a, (n+0)/2)
 ) :<!wrt> void =
 (
 case+ xs0 of
-| list_nil() =>
+| List_nil() =>
   {
-    val () = res0 := list_nil()
-    val () = res1 := list_nil()
+    val () = res0 := List_nil()
+    val () = res1 := List_nil()
   }
-| list_cons(x0, xs1) =>
+| List_cons(x0, xs1) =>
   (
   case+ xs1 of
-  | list_nil() =>
+  | List_nil() =>
     {
-      val () = res1 := list_nil()
-      val () = res0 := list_sing(x0)
+      val () = res1 := List_nil()
+      val () = res0 := List_sing(x0)
     }
-  | list_cons(x1, xs2) =>
+  | List_cons(x1, xs2) =>
     {
       val () =
-      (res0 := list_cons{a}{0}(x0, _))
+      (res0 := List_cons{a}{0}(x0, _))
       val () =
-      (res1 := list_cons{a}{0}(x1, _))
-      val+list_cons(_, res0_tl) = res0
-      val+list_cons(_, res1_tl) = res1
+      (res1 := List_cons{a}{0}(x1, _))
+      val+List_cons(_, res0_tl) = res0
+      val+List_cons(_, res1_tl) = res1
       val () = aux01(xs2, res0_tl, res1_tl)
       prval () = fold@(res0) and () = fold@(res1)
     }
@@ -199,8 +199,8 @@ farray_make_list<a>
 ) = lam(xs) =>
 (
 case+ xs of
-| list_nil() => E()
-| list_cons(x0, xs) => let
+| List_nil() => E()
+| List_cons(x0, xs) => let
     var res0: ptr
     and res1: ptr
     val ((*void*)) =
@@ -225,7 +225,7 @@ get_at
 n,i:nat| i < n
 } .<n>.
 (
-  t0: bt(a, n), i: int i
+  t0: bt(a, n), i: Int i
 ) : a =
 (
 if
@@ -266,7 +266,7 @@ set_at
   n,i:nat | i < n
 } .<n>.
 (
-  t0: bt(a, n), i: int i, x0: a
+  t0: bt(a, n), i: Int i, x0: a
 ) :<> bt(a, n) =
 (
 if
@@ -304,18 +304,18 @@ fun
 getopt_at
 {n,i:nat} .<n>.
 (
-t0: bt(a, n), i: int i
-) : option_vt(a, i < n) =
+t0: bt(a, n), i: Int i
+) : Option_vt(a, i < n) =
 (
 case+ t0 of
 | E() =>
-  None_vt()
+  None1_vt()
 | B(x0, tl, tr) =>
   (
   if
   (i = 0)
   then (
-    Some_vt(x0)
+    Some1_vt(x0)
   ) else let
     val i2 = half(i)
   in
@@ -342,9 +342,9 @@ fun
 setopt_at
 {n,i:nat} .<n>.
 (
-t0: bt(a, n), i: int(i)
+t0: bt(a, n), i: Int(i)
 ,
-x0: a, opt: &bool? >> bool(i < n)
+x0: a, opt: &bool? >> Bool(i < n)
 ) :<!wrt> bt(a, n) =
 (
 case+ t0 of
@@ -428,7 +428,7 @@ fun
 ins_r
 {n:nat} .<n>.
 (
-  t0: bt(a, n), n: int n, x0: a
+  t0: bt(a, n), n: Int n, x0: a
 ) : bt(a, n+1) =
 (
 //
@@ -490,7 +490,7 @@ fun
 rem_r
 {n:pos} .<n>.
 (
-  t0: &bt(a, n) >> bt(a, n-1), n: int n
+  t0: &bt(a, n) >> bt(a, n-1), n: Int n
 ) : a = let
 //
 val n2 = half(n); val+B(x, tl, tr) = t0
@@ -567,22 +567,22 @@ fnx
 aux01
 {m,n:nat}
 (
-xs: list_vt(a, m)
+xs: List_vt(a, m)
 ,
-ys: list_vt(a, n)
+ys: List_vt(a, n)
 ,
-res: &ptr? >> list_vt(a, m+n)
+res: &ptr? >> List_vt(a, m+n)
 ) : void =
 (
 case+ xs of
-| ~list_vt_nil() =>
+| ~List_vt_nil() =>
     (res := ys)
-| @list_vt_cons(x, xs_tl) =>
+| @List_vt_cons(x, xs_tl) =>
   (
     case+ ys of
-    | ~list_vt_nil() =>
+    | ~List_vt_nil() =>
         (fold@(xs); res := xs)
-    | @list_vt_cons
+    | @List_vt_cons
         (y, ys_tl) =>
       {
         val xs_tl_ = xs_tl
@@ -604,13 +604,13 @@ farray_listize<a>
 (
   case+ t0 of
   | E() =>
-    list_vt_nil()
+    List_vt_nil()
   | B(x0, tl, tr) => let
       var res: ptr
       val ((*void*)) =
       aux01(auxmain(tl), auxmain(tr), res)
     in
-      list_vt_cons(x0, res)
+      List_vt_cons(x0, res)
     end // end of [B]
 )
 //
@@ -637,22 +637,22 @@ implement
 {a}{env}(*tmp*)
 farray_foreach_env
   (A, env) =
-  list_vt_free<a>(xs) where
+  List_vt_free<a>(xs) where
 {
 //
 implement
-list_vt_foreach$cont<a><env>
+List_vt_foreach$cont<a><env>
   (x, env) =
   farray_foreach$cont<a><env>(x, env)
 //
 implement
-list_vt_foreach$fwork<a><env>
+List_vt_foreach$fwork<a><env>
   (x, env) =
   farray_foreach$fwork<a><env>(x, env)
 //
 val xs = farray_listize<a>(A)
 val () =
-  list_vt_foreach_env<a><env>(xs, env)
+  List_vt_foreach_env<a><env>(xs, env)
 //
 } (* end of [farray_foreach_env] *)
 

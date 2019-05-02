@@ -103,14 +103,14 @@ gflist2list
   {a:t@ype}{xs:ilist}
 (
   gflist(INV(a), xs)
-) :<> [n:nat] (LENGTH (xs, n) | list(a, n))
+) :<> [n:nat] (LENGTH (xs, n) | List(a, n))
 // end of [gflist2list]
 
 castfn
 list2gflist
   {a:t@ype}{n:int}
 (
-  xs: list(INV(a), n)
+  xs: List(INV(a), n)
 ) :<> [xs:ilist] (LENGTH(xs, n) | gflist(a, xs))
 // end of [list2gflist]
 
@@ -121,14 +121,14 @@ gflist2list_vt
   {a:vt@ype}{xs:ilist}
 (
   gflist_vt(INV(a), xs)
-) :<> [n:nat] (LENGTH (xs, n) | list_vt (a, n))
+) :<> [n:nat] (LENGTH (xs, n) | List_vt (a, n))
 // end of [gflist2list_vt]
 
 castfn
 list2gflist_vt
   {a:vt@ype}{n:int}
 (
-  xs: list_vt(INV(a), n)
+  xs: List_vt(INV(a), n)
 ) :<> [xs:ilist] (LENGTH(xs, n) | gflist_vt (a, xs))
 // end of [list2gflist_vt]
 
@@ -147,7 +147,7 @@ gflist_length
   {xs:ilist}
 (
   xs: gflist(INV(a), xs)
-) :<> [n:nat] (LENGTH(xs, n) | int(n))
+) :<> [n:nat] (LENGTH(xs, n) | Int(n))
 // end of [gflist_length]
 //
 (* ****** ****** *)
@@ -220,7 +220,7 @@ fun{a:t0p}
 gflist_get_at
   {xs:ilist}{x0:int}{i:int}
 (
-  pf: NTH(x0, xs, i) | xs: gflist(INV(a), xs), i: int(i)
+  pf: NTH(x0, xs, i) | xs: gflist(INV(a), xs), i: Int(i)
 ) : stamped_t(a, x0) // end-of-function
 //
 (* ****** ****** *)
@@ -235,7 +235,7 @@ gflist_mergesort
 fun{a:t0p}
 gflist_mergesort$cmp
   {x1,x2:int}
-  (x1: stamped_t(a, x1), x2: stamped_t(a, x2)): int(sgn(x1-x2))
+  (x1: stamped_t(a, x1), x2: stamped_t(a, x2)): Int(sgn(x1-x2))
 //
 (* ****** ****** *)
 

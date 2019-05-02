@@ -74,9 +74,9 @@ val () = println! ("linheap_getmin_opt: ans = ", ans)
 in
 //
 if ans then let
-  prval () = opt_unsome{a}(res) in Some_vt{a}(res)
+  prval () = opt_unsome{a}(res) in Some1_vt{a}(res)
 end else let
-  prval () = opt_unnone{a}(res) in None_vt{a}((*void*))
+  prval () = opt_unnone{a}(res) in None1_vt{a}((*void*))
 end // end of [if]
 //
 end // end of [linheap_getmin_opt]
@@ -93,9 +93,9 @@ val ans = linheap_delmin (hp0, res)
 in
 //
 if ans then let
-  prval () = opt_unsome{a}(res) in Some_vt{a}(res)
+  prval () = opt_unsome{a}(res) in Some1_vt{a}(res)
 end else let
-  prval () = opt_unnone{a}(res) in None_vt{a}((*void*))
+  prval () = opt_unnone{a}(res) in None1_vt{a}((*void*))
 end // end of [if]
 //
 end // end of [linheap_delmin_opt]

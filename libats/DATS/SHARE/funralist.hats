@@ -44,19 +44,19 @@ funralist_make_list
 //
 fun loop {m,n:nat} .<m>.
 (
-  xs: list_vt (a, m), res: ralist (a, n)
+  xs: List_vt (a, m), res: ralist (a, n)
 ) : ralist (a, m+n) =
 (
   case+ xs of
-  | ~list_vt_cons
+  | ~List_vt_cons
       (x, xs) => loop (xs, funralist_cons (x, res))
-  | ~list_vt_nil ((*void*)) => res
+  | ~List_vt_nil ((*void*)) => res
 ) // end of [loop]
 //
-prval () = lemma_list_param (xs)
+prval () = lemma_List_param (xs)
 //
 in
-  loop (list_reverse (xs), funralist_nil ())
+  loop (List_reverse (xs), funralist_nil ())
 end // end of [funralist_make_list]
 
 (* ****** ****** *)
@@ -115,7 +115,7 @@ val res = $Q.qstruct_takeout_list (env)
 val () = $Q.qstruct_uninitize {a} (env)
 //
 in
-  $UN.castvwtp0{list_vt(a,n)}(res)
+  $UN.castvwtp0{List_vt(a,n)}(res)
 end // end of [funralist_listize]
 
 end // end of [local]

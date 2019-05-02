@@ -57,18 +57,18 @@ lemma_farray_param
 fun{}
 farray_is_nil
   {a:t0p}{n:int}
-  (farray(a, n)):<> bool(n==0)
+  (farray(a, n)):<> Bool(n==0)
 fun{}
 farray_isnot_nil
   {a:t0p}{n:int}
-  (farray(a, n)):<> bool(n > 0)
+  (farray(a, n)):<> Bool(n > 0)
 //
 (* ****** ****** *)
 //
 fun
 {a:t0p}
 farray_size
-{n:int}(A: farray(INV(a), n)):<> int(n)
+{n:int}(A: farray(INV(a), n)):<> Int(n)
 //
 overload size with farray_size
 overload .size with farray_size
@@ -87,7 +87,7 @@ farray_make_nil
 fun
 {a:t0p}
 farray_make_list
-  {n:int}(xs: list(a, n)):<> farray(a, n)
+  {n:int}(xs: List(a, n)):<> farray(a, n)
 //
 (* ****** ****** *)
 //
@@ -110,13 +110,13 @@ fun
 {a:t0p}
 farray_getopt_at
 {n:int}{i:nat}
-(A: farray(INV(a), n), i: int(i)):<> option_vt(a, i < n)
+(A: farray(INV(a), n), i: Int(i)):<> Option_vt(a, i < n)
 //
 fun
 {a:t0p}
 farray_setopt_at
 {n:int}{i:nat}
-(A: &farray(INV(a), n) >> _, i: int(i), x: a):<!wrt> bool(i < n)
+(A: &farray(INV(a), n) >> _, i: Int(i), x: a):<!wrt> Bool(i < n)
 //
 overload getopt_at with farray_getopt_at
 overload setopt_at with farray_setopt_at
@@ -133,7 +133,7 @@ fun
 {a:t0p}
 farray_insert_r{n:int}
 (
- A: &farray(INV(a), n) >> farray(a, n+1), n: int(n), x: a
+ A: &farray(INV(a), n) >> farray(a, n+1), n: Int(n), x: a
 ) : void // end-of-function
 //
 (* ****** ****** *)
@@ -147,7 +147,7 @@ farray_remove_l{n:pos}
 fun
 {a:t0p}
 farray_remove_r{n:pos}
-  (A: &farray(INV(a), n) >> farray(a, n-1), n: int(n)): a
+  (A: &farray(INV(a), n) >> farray(a, n-1), n: Int(n)): a
 // end of [farray_remove_r]
 //
 (* ****** ****** *)
@@ -169,7 +169,7 @@ overload fprint with fprint_farray
 fun{
 x:t0p
 } farray_listize
-  {n:int}(xs: farray(x, n)): list_vt(x, n)
+  {n:int}(xs: farray(x, n)): List_vt(x, n)
 //
 (* ****** ****** *)
 //

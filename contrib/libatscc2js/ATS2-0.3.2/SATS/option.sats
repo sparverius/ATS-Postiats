@@ -26,7 +26,7 @@ LIBATSCC_targetloc
 //
 fun{a:t0p}
 fprint_option
-  (JSfilr, Option(INV(a))): void = "mac#%"
+  (JSfilr, Option_1(INV(a))): void = "mac#%"
 //
 (* ****** ****** *)
 

@@ -101,7 +101,7 @@ key,itm:t0p
 } funmap_search
 (
   map: map(key, INV(itm)), k0: key
-) : Option_vt(itm) // end of [funmap_search]
+) : Option_vt_1(itm) // end of [funmap_search]
 
 (* ****** ****** *)
 //
@@ -110,7 +110,7 @@ key,itm:t0p
 } funmap_insert
 (
   &map(key, INV(itm)) >> _, key, itm
-) : Option_vt(itm) // end of [funmap_insert]
+) : Option_vt_1(itm) // end of [funmap_insert]
 //
 (* ****** ****** *)
 //
@@ -119,7 +119,7 @@ key,itm:t0p
 } funmap_takeout
 (
   map: &map(key, INV(itm)) >> _, k0: key
-) : Option_vt(itm) // end of [funmap_takeout]
+) : Option_vt_1(itm) // end of [funmap_takeout]
 //
 (* ****** ****** *)
 //
